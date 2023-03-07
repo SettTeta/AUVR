@@ -137,6 +137,12 @@ export default function ImmersionZone() {
                                     />
                                 ))}
 
+                                {/* <video id="intro" autoplay
+                                    src="https://player.vimeo.com/video/789745180?h=fd40523f2e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                                    onEnded={handleDisplayOff}
+                                >
+                                </video> */}
+
                                 {/* video for display */}
                                 <video id="salad" autoplay
                                     src="sala.mp4" type="video/mp4"
