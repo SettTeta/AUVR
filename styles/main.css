@@ -23,3 +23,14 @@
     top: 0;
     left: 0;
 }
+
+.scroll {
+    flex-shrink: 0;
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    margin-left: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
