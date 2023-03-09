@@ -12,24 +12,32 @@ export default async function handler(req, res) {
         const docs = await Video.find()
         res.status(200).json(docs)
         console.debug('connection', connectionString)
-    }  else {
-        res.setHeader('Allow', ['GET'])
+    } else if (req.method === 'POST') {
+        // console.log(typeof(req.body))
+        console.log("POST", req.body)
+        const doc = await Video.create(req.body)
+        res.status(201).json(doc)
+    } else {
+        res.setHeader('Allow', ['GET', 'POST']);
         res.status(405).end(`Method ${req.method} Not Allowed`)
     }
 }
 
 
 
-const videoSchema = new Schema({
-    title: String,
-    link: String,
-    desc: String,
-    type: Boolean,
-    duration: String,
-    thumbnail: String,
-    location: String,
-    dateOfUpload: String,
-});
+const videoSchema = new Schema(
+    {
+        title: String,
+        link: String,
+        desc: String,
+        type: String,
+        duration: String,
+        thumbnail: String,
+        location: String,
+        dateOfUpload: String,
+    },
+    { strict: false }
+);
 
 console.log("Mongoose Models", models)
 const Video = models?.video || model('video', videoSchema);
