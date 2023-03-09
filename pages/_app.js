@@ -2,9 +2,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { SSRProvider } from 'react-bootstrap';
 import { useEffect } from "react";
 import '@/styles/main.css'
+import { SessionProvider } from "next-auth/react"
 
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps: { session, ...pageProps }, }) {
 
   //for bootstrap functionality
   useEffect(() => {
@@ -13,9 +14,12 @@ function App({ Component, pageProps }) {
 
 
   return (
-    <SSRProvider>
-      <Component {...pageProps} />
-    </SSRProvider>
+    <SessionProvider session={session}>
+      <SSRProvider>
+        <Component {...pageProps} />
+      </SSRProvider>
+    </SessionProvider>
+
   )
 
 }

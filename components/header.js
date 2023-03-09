@@ -2,7 +2,14 @@ import * as React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Link from 'next/link';
 
+import { useSession, signIn, signOut } from "next-auth/react"
+import LoginButton from 'components/login'
+
+
 const Header = () => {
+
+    const { data: session } = useSession()
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -16,16 +23,19 @@ const Header = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" aria-current="page" href="/">Home</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" href="/browse">Browse</Link>
-                            </li>
+
+                            {session && (
+                                <li className="nav-item">
+                                    <Link className="nav-link" href="/browse">Browse</Link>
+                                </li>)}
+
                             <li className="nav-item">
                                 <Link className="nav-link" href="/gettingStarted">Getting Started</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" href="/story">Start Immersion</Link>
                             </li>
-                            
+
                             {/* <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown link
@@ -37,6 +47,9 @@ const Header = () => {
                                 </ul>
                             </li> */}
                         </ul>
+                    </div>
+                    <div>
+                        <LoginButton />
                     </div>
                 </div>
             </nav>
