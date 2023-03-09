@@ -68,7 +68,7 @@ export default function BrowsePage({ videos }) {
 
 
   if (!videos) return (
-    <div>
+    <div style={{marginTop: "10vh"}}>
       <p>Videos not found</p>
       <Link href="/browse">Back</Link>
     </div>
@@ -85,7 +85,7 @@ export default function BrowsePage({ videos }) {
 
       <Header />
 
-      <section className="jumbotron text-center">
+      <section className="jumbotron text-center" style={{marginTop: "10vh"}}>
         <div className="container">
           <br></br>
           <h1 className="jumbotron-heading">VR Videos just for you</h1>
@@ -130,7 +130,7 @@ export default function BrowsePage({ videos }) {
 
       <div className='container' style={{paddingBottom:"1rem"}} >
         <h1 style={{paddingLeft:"3rem", paddingBottom:"1rem"}}>Leisure</h1>
-        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "520px" }}>
+        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
           {videos.map(src => (
             <div
               key={src}
@@ -153,7 +153,7 @@ export default function BrowsePage({ videos }) {
 
       <div className='container' style={{paddingBottom:"1rem"}} >
         <h1 style={{paddingLeft:"3rem", paddingBottom:"1rem"}}>Facilities</h1>
-        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "520px" }}>
+        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
           {videos.map(src => (
             <div
               key={src}
@@ -176,7 +176,7 @@ export default function BrowsePage({ videos }) {
 
       <div className='container' style={{paddingBottom:"1rem"}} >
         <h1 style={{paddingLeft:"3rem", paddingBottom:"1rem"}}>Monuments</h1>
-        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "520px" }}>
+        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
           {videos.map(src => (
             <div
               key={src}
