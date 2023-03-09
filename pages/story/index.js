@@ -137,11 +137,6 @@ export default function ImmersionZone() {
                                     />
                                 ))}
 
-                                {/* <video id="intro" autoplay
-                                    src="https://player.vimeo.com/video/789745180?h=fd40523f2e&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                                    onEnded={handleDisplayOff}
-                                >
-                                </video> */}
 
                                 {/* video for display */}
                                 <video id="salad" autoplay
@@ -154,6 +149,9 @@ export default function ImmersionZone() {
 
                             </a-assets>
 
+                            <a-entity vimeo="id: 789745180" id="vimeo" position="0 -1 -3">
+                                <a-plane color="#000000" scale="3.2 1.8" position="0.0 3.4 -2.0"></a-plane>
+                            </a-entity>
 
                             <a-camera>
                                 {/* inner */}
@@ -353,7 +351,7 @@ export default function ImmersionZone() {
                                 <Entity
                                     position="-2 1 0"
                                     rotation="0 90 0"
-                                    events={{ click: handleImageOff}}
+                                    events={{ click: handleImageOff }}
                                 >
                                     <Entity
                                         geometry="primitive: plane; height: 2; width: 1"

@@ -6,6 +6,7 @@ import '@/styles/main.css'
 
 function App({ Component, pageProps }) {
 
+  //for bootstrap functionality
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min.js")
   }, [])
