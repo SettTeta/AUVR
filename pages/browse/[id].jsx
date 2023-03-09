@@ -33,7 +33,7 @@ export default function Video({ video }) {
 
 
     if (!video) return (
-        <div>
+        <div style={{marginTop: "10vh"}}>
             <p>Video not found</p>
             <Link href="/browse">Back</Link>
         </div>
@@ -47,7 +47,7 @@ export default function Video({ video }) {
 
             <Header />
 
-            <section className="jumbotron">
+            <section className="jumbotron" style={{marginTop: "10vh"}}>
                 <div className="container">
                     <br />
                     <h1 className="jumbotron-heading">{video.title}</h1>
@@ -55,46 +55,7 @@ export default function Video({ video }) {
             </section>
 
             <div className="album py-5 bg-light">
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                    <ul className="nav nav-tabs">
-                        <li className="nav-item">
-                            <Button className={`nav-link ${activeTab === "ios" ? "active" : ""}`} onClick={() => handleTab("ios")} data-bs-toggle="collapse" href="#collapseExample1" aria-controls="collapseExample1"><Image className="rounded mx-auto d-block"
-                                src={iosIcon}
-                                alt=""
-                                width="35"
-                                height="35" /></Button>
-                        </li>
-                        <li className="nav-item">
-                            <Button className={`nav-link ${activeTab === "android" ? "active" : ""}`} onClick={() => handleTab("android")} data-bs-toggle="collapse" href="#collapseExample2" aria-controls="collapseExample2"><Image className="rounded mx-auto d-block"
-                                src={andIcon}
-                                alt=""
-                                width="35"
-                                height="35" /></Button>
-                        </li>
-                        <li className="nav-item">
-                            <Button className={`nav-link ${activeTab === "desktop" ? "active" : ""}`} onClick={() => handleTab("desktop")} ><Image className="rounded mx-auto d-block"
-                                src={deskIcon}
-                                alt=""
-                                width="35"
-                                height="35" /></Button>
-                        </li>
-                        <li className="nav-item">
-                            <Button className={`nav-link ${activeTab === "card" ? "active" : ""}`} onClick={() => handleTab("card")} ><Image className="rounded mx-auto d-block"
-                                src={cardIcon}
-                                alt=""
-                                width="35"
-                                height="25"
-                            /></Button>
-                        </li>
-                        <li className="nav-item">
-                            <Button className={`nav-link ${activeTab === "vrHeadset" ? "active" : ""}`} onClick={() => handleTab("vrHeadset")} ><Image className="rounded mx-auto d-block"
-                                src={vrIcon}
-                                alt=""
-                                width="35"
-                                height="35" /></Button>
-                        </li>
-                    </ul>
-                </div>
+                
 
 
                 <div className="collapse" id="collapseExample1" style={{ padding: "20px" }}>

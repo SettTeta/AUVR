@@ -2,22 +2,65 @@ import * as React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Header from 'components/header'
+import Footer from 'components/footer'
+
 
 function HomePage() {
     return (
         <main role="main">
 
-            <div>
-                <Head>
-                    <title>VR Tours - Home</title>
-                    <meta name="description" content="A VR Video Hosting platform" />
-                </Head>
-            </div>
+            <Head>
+                <title>VR Tours - Home</title>
+                <meta name="description" content="A VR Video Hosting platform" />
+            </Head>
 
             <Header></Header>
 
-            <div className="Container">
-                <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel" >
+            <div style={{
+                position: 'relative',
+                paddingTop: "100vh",
+                marginTop: "10vh",
+                backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOaG6RYDRhGtJ3hk8VQekA8foa4RmoRYEyoOvgLlbXLu-HUiVdA7nZ9Mlp01LSMlAFt6k&usqp=CAU')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat"
+            }}>
+
+                <div className="content p-0 text-center bg-image" style={{height:"100vh", top:"0", position: "absolute", background: "rgba(0, 0, 0, 0.6)" , width: "100%" }}>
+                    <div className="d-flex justify-content-center align-items-center h-100">
+                        <div className="text-white">
+                            <h1 className="mb-3">Welcome to AU VR - A VR Video Hosting Platform</h1>
+                            <h4 className="mb-3">Here is a collection of VR Videos that are tailored to your liking</h4>
+                            <br></br>
+                            <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Browse</Link>
+                            <Link className="btn btn-outline-light btn-lg" href="/story" role="button" style={{marginLeft:"10px"}}>Immerse</Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+
+
+
+            <Footer />
+
+        </main>
+    )
+}
+
+export default HomePage
+
+
+
+
+
+
+
+
+
+{/* <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel" >
 
                     <div className="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -66,14 +109,14 @@ function HomePage() {
                                 <source src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4" type="video/mp4" />
                             </video>
 
-                            <div className="content p-0 text-center bg-image" style={{ height: "100vh", position: "relative", bottom: "0", background: "rgba(0, 0, 0, 0.6)", color: "#f1f1f1", width: "100%",  paddingTop: "56.25%" }}>
+                            <div className="content p-0 text-center bg-image" style={{ height: "100vh", position: "relative", bottom: "0", background: "rgba(0, 0, 0, 0.6)", color: "#f1f1f1", width: "100%", paddingTop: "56.25%" }}>
                                 <div className="d-flex justify-content-center align-items-center h-100">
                                     <div className='container'>
                                         <div className="text-white" style={{ paddingBottom: "50px" }}>
                                             <h4 className="mb-3">Here is a Teaser of What to Expect</h4>
                                         </div>
-                                        <div className="container" style={{ position: "relative", overflow: "hidden", width: "100%", height: "100%"}}>
-                                            <iframe width="921" height="518"  src="https://www.youtube.com/embed/wnrHCMI1FNs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                                        <div className="container" style={{ position: "relative", overflow: "hidden", width: "100%", height: "100%" }}>
+                                            <iframe width="921" height="518" src="https://www.youtube.com/embed/wnrHCMI1FNs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                                         </div>
                                     </div>
                                 </div>
@@ -92,28 +135,4 @@ function HomePage() {
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
                         <span className="visually-hidden">Next</span>
                     </button>
-                </div>
-            </div>
-
-            {/* <div className="container">
-                <div className="content p-0 text-center bg-image">
-                    <div className="d-flex justify-content-center align-items-center h-100">
-                        <div className='container'>
-                            <div className="text-black" style={{ paddingBottom: "50px" }}>
-                                <h4 className="mb-3">Here is a Teaser of What to Expect</h4>
-                            </div>
-                            <div>
-                                <iframe width="80%"
-                                    src="https://www.youtube.com/embed/wnrHCMI1FNs" allowFullScreen>
-                                </iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
-
-        </main>
-    )
-}
-
-export default HomePage
+                </div>*/}
