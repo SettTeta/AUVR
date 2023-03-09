@@ -26,11 +26,20 @@
 
 .scroll {
     flex-shrink: 0;
-    width: 400px;
-    height: 200px;
+    width: 300px;
+    height: 150px;
     border-radius: 10px;
     margin-left: 10px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
   }
+
+  .scroll:hover {
+    opacity: 0.75;
+}
+
+* {
+    font-size: 100%;
+    font-family: "Times New Roman";
+   }

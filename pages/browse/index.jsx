@@ -1,4 +1,5 @@
 import Header from 'components/header'
+import Footer from 'components/footer'
 import * as React from 'react'
 import VideoCard from 'components/Card.js'
 import ScrollCard from 'components/CardForScroll.js'
@@ -68,7 +69,7 @@ export default function BrowsePage({ videos }) {
 
 
   if (!videos) return (
-    <div style={{marginTop: "10vh"}}>
+    <div style={{ marginTop: "10vh" }}>
       <p>Videos not found</p>
       <Link href="/browse">Back</Link>
     </div>
@@ -85,7 +86,7 @@ export default function BrowsePage({ videos }) {
 
       <Header />
 
-      <section className="jumbotron text-center" style={{marginTop: "10vh"}}>
+      <section className="jumbotron text-center" style={{ marginTop: "10vh" }}>
         <div className="container">
           <br></br>
           <h1 className="jumbotron-heading">VR Videos just for you</h1>
@@ -106,7 +107,7 @@ export default function BrowsePage({ videos }) {
 
       <br />
 
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      {/* <div style={{ display: "flex", justifyContent: "center" }}>
         <ul className="nav nav-tabs">
           <li className="nav-item">
             <Link className={`nav-link ${activeTab === "all" ? "active" : ""}`} href="" onClick={handleShowAllClick} >360 VR Tour</Link>
@@ -115,7 +116,7 @@ export default function BrowsePage({ videos }) {
             <Link className={`nav-link ${activeTab === "true" ? "active" : ""}`} href="" onClick={handleShowOnlyTrueClick} >Interactive Tour</Link>
           </li>
         </ul>
-      </div>
+      </div> */}
 
       {/* <div className="album py-5 bg-light">
         <div className="container-xxl content-row">
@@ -128,76 +129,78 @@ export default function BrowsePage({ videos }) {
         </div>
       </div> */}
 
-      <div className='container' style={{paddingBottom:"1rem"}} >
-        <h1 style={{paddingLeft:"3rem", paddingBottom:"1rem"}}>Leisure</h1>
-        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
-          {videos.map(src => (
-            <div
-              key={src}
-              className="scroll"
-            >
-              <ScrollCard
-                title={src.title}
-                link={src.youtube}
-                thumbnail={src.thumbnail}
-                desc={src.desc}
-                onView={src._id}
-                duration={src.duration}
-                location={src.location}
-                dOU={src.dateOfUpload}
-              />
-            </div>
-          ))}
+      <div className="album py-5 bg-light">
+        <div className='container' style={{ paddingBottom: "1rem" }} >
+          <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem" }}>Leisure</h1>
+          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
+            {videos.map(src => (
+              <div
+                className="scroll"
+                key={src._id}
+              >
+                <ScrollCard
+                  title={src.title}
+                  link={src.youtube}
+                  thumbnail={src.thumbnail}
+                  desc={src.desc}
+                  onView={src._id}
+                  duration={src.duration}
+                  location={src.location}
+                  dOU={src.dateOfUpload}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className='container' style={{ paddingBottom: "1rem" }} >
+          <h1 style={{ paddingLeft: "3rem", paddingBottom: "1rem" }}>Facilities</h1>
+          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
+            {videos.map(src => (
+              <div
+                className="scroll"
+                key={src._id}
+              >
+                <ScrollCard
+                  title={src.title}
+                  link={src.youtube}
+                  thumbnail={src.thumbnail}
+                  desc={src.desc}
+                  onView={src._id}
+                  duration={src.duration}
+                  location={src.location}
+                  dOU={src.dateOfUpload}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className='container' style={{ paddingBottom: "1rem" }} >
+          <h1 style={{ paddingLeft: "3rem", paddingBottom: "1rem" }}>Monuments</h1>
+          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
+            {videos.map(src => (
+              <div
+                className="scroll"
+                key={src._id}
+              >
+                <ScrollCard
+                  title={src.title}
+                  link={src.youtube}
+                  thumbnail={src.thumbnail}
+                  desc={src.desc}
+                  onView={src._id}
+                  duration={src.duration}
+                  location={src.location}
+                  dOU={src.dateOfUpload}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className='container' style={{paddingBottom:"1rem"}} >
-        <h1 style={{paddingLeft:"3rem", paddingBottom:"1rem"}}>Facilities</h1>
-        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
-          {videos.map(src => (
-            <div
-              key={src}
-              className="scroll"
-            >
-              <ScrollCard
-                title={src.title}
-                link={src.youtube}
-                thumbnail={src.thumbnail}
-                desc={src.desc}
-                onView={src._id}
-                duration={src.duration}
-                location={src.location}
-                dOU={src.dateOfUpload}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className='container' style={{paddingBottom:"1rem"}} >
-        <h1 style={{paddingLeft:"3rem", paddingBottom:"1rem"}}>Monuments</h1>
-        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
-          {videos.map(src => (
-            <div
-              key={src}
-              className="scroll"
-            >
-              <ScrollCard
-                title={src.title}
-                link={src.youtube}
-                thumbnail={src.thumbnail}
-                desc={src.desc}
-                onView={src._id}
-                duration={src.duration}
-                location={src.location}
-                dOU={src.dateOfUpload}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
-
+      <Footer />
     </main>
   )
 }

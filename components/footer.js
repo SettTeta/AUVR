@@ -2,7 +2,7 @@ import LoginButton from 'components/login'
 
 const Footer = () => {
     return (
-        <footer className="text-center text-lg-start mt-xl-5 pt-4" style={{ background: "#f04f4f" }}>
+        <footer className="text-center text-lg-start mt-xl-5 pt-4" style={{ background: "#aa1e2d" }}>
             <div className="container p-4">
 
                 <div className="row">
@@ -67,7 +67,7 @@ const Footer = () => {
 
             <div className="text-center p-3 border-top border-white">
                 © 2020 Copyright:
-                <a className="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                <a className="text-white" href="https://auvr.vercel.app/">auvr.vercel.app</a>
             </div>
         </footer>
     );

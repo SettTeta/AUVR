@@ -2,16 +2,16 @@ import * as React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Link from 'next/link';
 
-import { useSession, signIn, signOut } from "next-auth/react"
+// import { useSession, signIn, signOut } from "next-auth/react"
 
 
 const Header = () => {
 
-    const { data: session } = useSession()
+    // const { data: session } = useSession()
 
     return (
-        <header style={{position: "fixed", top: "0", left: "0", width: "100%", zIndex:"100"}}>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-danger">
+        <header style={{ position: "fixed", top: "0", left: "0", width: "100%", zIndex: "100" }}>
+            <nav className="navbar navbar-expand-lg navbar-dark" style={{background:"#aa1e2d"}}>
                 <div className="container-fluid">
                     <a className="navbar-brand" >AU VR</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,10 +24,9 @@ const Header = () => {
                                 <Link className="nav-link" aria-current="page" href="/">Home</Link>
                             </li>
 
-                            {session && (
-                                <li className="nav-item">
-                                    <Link className="nav-link" href="/browse">Browse</Link>
-                                </li>)}
+                            <li className="nav-item">
+                                <Link className="nav-link" href="/browse">Browse</Link>
+                            </li>
 
                             <li className="nav-item">
                                 <Link className="nav-link" href="/gettingStarted">Getting Started</Link>
