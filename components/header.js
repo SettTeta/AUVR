@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Link from 'next/link';
 
 import { useSession, signIn, signOut } from "next-auth/react"
-import LoginButton from 'components/login'
 
 
 const Header = () => {
@@ -11,13 +10,14 @@ const Header = () => {
     const { data: session } = useSession()
 
     return (
-        <header>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <header style={{position: "fixed", top: "0", left: "0", width: "100%", zIndex:"100"}}>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-danger">
                 <div className="container-fluid">
-                    <a className="navbar-brand" >VR Tour</a>
+                    <a className="navbar-brand" >AU VR</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
+
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav">
                             <li className="nav-item">
@@ -47,9 +47,8 @@ const Header = () => {
                                 </ul>
                             </li> */}
                         </ul>
-                    </div>
-                    <div>
-                        <LoginButton />
+                        <div>
+                        </div>
                     </div>
                 </div>
             </nav>
