@@ -86,26 +86,44 @@ export default function BrowsePage({ videos }) {
 
       <Header />
 
-      <section className="jumbotron text-center" style={{ marginTop: "10vh" }}>
-        <div className="container">
-          <br></br>
-          <h1 className="jumbotron-heading">VR Videos just for you</h1>
-          <p className="lead text-muted">
-            Browse our collection of VR videos and view them with your full entertainment
-          </p>
+      <section className="jumbotron text-center" style={{
+        marginTop: "5vh",
+        position: 'relative',
+        height: "50vh",
+        // backgroundImage: "url('https://media.istockphoto.com/id/1379108916/vector/metaverse-technology-background.jpg?s=612x612&w=0&k=20&c=BhoTlueNSWAXnanIpiZ6PlXO5ZXOD_eOquQ_NIEuZQk=')",
+        backgroundImage: "url('https://t3.ftcdn.net/jpg/05/16/23/48/360_F_516234867_emyTMrlCbP8UWGXJmVHfPpEGmbMbkXXh.jpg')",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
+      }}>
+        <div className="content p-0 text-center bg-image" style={{ height: "50vh", top: "0", position: "absolute", background: "rgba(0, 0, 0, 0.4)", width: "100%" }}>
+
+          <div className="container">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <h1 className="jumbotron-heading" style={{ color: "white", textShadow: "2px 2px 0px black" }}>VR Videos just for you</h1>
+            <p className="lead" style={{ color: "white", textShadow: "2px 2px 0px black" }}>
+              Browse our collection of VR videos and view them with your full entertainment
+            </p>
+
+          </div>
+
+          <br />
+          <br />
+
+          <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
+            <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+            <span className="input-group-text border-0" id="search-addon">
+              <i className="fas fa-search" onClick={search}>Clear</i>
+            </span>
+          </div>
         </div>
       </section>
 
-      <br />
-
-      <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
-        <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-        <span className="input-group-text border-0" id="search-addon">
-          <i className="fas fa-search" onClick={search}>Clear</i>
-        </span>
-      </div>
-
-      <br />
 
       {/* <div style={{ display: "flex", justifyContent: "center" }}>
         <ul className="nav nav-tabs">
@@ -131,8 +149,32 @@ export default function BrowsePage({ videos }) {
 
       <div className="album py-5 bg-light">
         <div className='container' style={{ paddingBottom: "1rem" }} >
-          <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem" }}>Leisure</h1>
-          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
+          <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "50px" }}>Leisure</h1>
+          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "270px" }}>
+            {videos.map(src => (
+              <div
+                className="scroll"
+                key={src._id}
+              >
+                <ScrollCard
+                  title={src.title}
+                  link={src.youtube}
+                  thumbnail={src.thumbnail}
+                  desc={src.desc}
+                  onView={src._id}
+                  duration={src.duration}
+                  location={src.location}
+                  dOU={src.dateOfUpload}
+
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className='container' style={{ paddingBottom: "1rem" }} >
+          <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "50px" }}>Facilities</h1>
+          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "270px" }}>
             {videos.map(src => (
               <div
                 className="scroll"
@@ -154,31 +196,8 @@ export default function BrowsePage({ videos }) {
         </div>
 
         <div className='container' style={{ paddingBottom: "1rem" }} >
-          <h1 style={{ paddingLeft: "3rem", paddingBottom: "1rem" }}>Facilities</h1>
-          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
-            {videos.map(src => (
-              <div
-                className="scroll"
-                key={src._id}
-              >
-                <ScrollCard
-                  title={src.title}
-                  link={src.youtube}
-                  thumbnail={src.thumbnail}
-                  desc={src.desc}
-                  onView={src._id}
-                  duration={src.duration}
-                  location={src.location}
-                  dOU={src.dateOfUpload}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className='container' style={{ paddingBottom: "1rem" }} >
-          <h1 style={{ paddingLeft: "3rem", paddingBottom: "1rem" }}>Monuments</h1>
-          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px" }}>
+          <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "50px" }}>Monuments</h1>
+          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "270px" }}>
             {videos.map(src => (
               <div
                 className="scroll"

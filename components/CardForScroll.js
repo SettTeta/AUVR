@@ -13,18 +13,13 @@ function CardTemplate(props) {
     return (
         <div >
             <Link href={`/browse/${onView}`} style={{ textDecoration: 'none', color: '#000' }}>
-                <div className="card mb-4 box-shadow" >
-                    <div className="card-header" style={{ verticalAlign: "middle", background: "#dc3545" }}>
+                <div className="container" style={{ borderRight: "1px solid #ccc", paddingRight: "1rem" }}>
+                    <div className="card mb-4 box-shadow" >
+                        <div style={{ background: "#ffffff" }}>
+                            <img src={thumbnail} style={{ height: "100%", width: "100%"}}></img>
+                        </div>
                     </div>
-
-                    <div style={{ background: "#dc3545" }}>
-                        <img src={thumbnail} style={{ height: "100%", width: "100%", borderRadius: "1%", padding: "5px" }}></img>
-                    </div>
-
-                    <div className="card-footer" style={{ verticalAlign: "middle", background: "#dc3545", color: "white" }}>
-                        <h5>{title}</h5>
-                    </div>
-
+                    <h5 style={{marginLeft:"10px"}}>{title}</h5>
                 </div>
             </Link >
         </div >
