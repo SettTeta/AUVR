@@ -53,6 +53,10 @@ function CardTemplate(props) {
                         </div>
                     </div>
                     <div className="d-flex justify-content-between">
+                    <div>
+                        <button onClick={onSave} className="btn btn-success me-2">Save</button>
+                        <button onClick={onCancel} className="btn btn-danger">Cancel</button>
+                    </div>
                 </div>
                 </div>
             // </Link >

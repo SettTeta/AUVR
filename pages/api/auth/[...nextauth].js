@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
     // Configure one or more authentication providers
-    secret:process.env.SECRET,
+    secret: process.env.SECRET,
 
     providers: [
         CredentialsProvider({
@@ -23,7 +23,7 @@ export const authOptions = {
                 if (credentials.username === 'a' && credentials.password === 'a') {
                     var user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
                 }
-                
+
                 if (user) {
                     // Any object returned will be saved in `user` property of the JWT
                     return user
