@@ -12,7 +12,10 @@ export default async function handler(req, res) {
         // Get only one document
         const doc = await Video.findOne({ _id: id })
         res.status(200).json(doc)
-    }  else {
+    } else if (req.method === 'DELETE') {
+        const deletedDoc = await Video.deleteOne({ _id: id })
+        res.status(200).json(deletedDoc)
+    } else {
         res.setHeader('Allow', ['GET'])
         res.status(405).end(`Method ${req.method} Not Allowed`)
 

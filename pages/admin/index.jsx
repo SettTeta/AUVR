@@ -32,6 +32,7 @@ export default function AdminPage({ videos }) {
                 duration={video.duration}
                 location={video.location}
                 dOU={video.dateOfUpload}
+                onDel={() => deleteVideo(video._id)}
             />
         );
     }
@@ -60,7 +61,7 @@ export default function AdminPage({ videos }) {
     );
 
     const addVideo = async (data) => {
-        const response = await fetch('https://auvr-git-admin-cms-settteta.vercel.app/api/browse/videos', {
+        const response = await fetch('/api/browse/videos', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -81,6 +82,19 @@ export default function AdminPage({ videos }) {
         console.log(result)
         setData(JSON.stringify(data))
     }
+
+    function deleteVideo(id) {
+        fetch(`/api/browse/videos/${id}`,
+          {
+            method: 'DELETE'
+          })
+          .then(res => res.json())
+          .then(data => {
+            // alert("Deleting " + id)
+            window.location.reload(false);
+          })
+    
+      }
 
     return (
         <main role="main">
