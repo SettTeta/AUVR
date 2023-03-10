@@ -230,7 +230,6 @@ export default function AdminPage({ videos }) {
                             Browse our collection of VR videos and view them with your full entertainment
                         </p>
                     </div>
-                    <Link href="/admin/add">Go to add page</Link>
                     <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
                 </section>
 
@@ -245,13 +244,15 @@ export default function AdminPage({ videos }) {
 
                 <br />
 
-                <div className="album py-5 bg-light">
-                    <div className="container-xxl content-row">
-                        <div className="row">
-                            {renderVideoCards()}
-                            {videosToShow < videos.length && (
-                                <button className="btn btn-secondary" onClick={loadMoreVideos}>Load more</button>
-                            )}
+                <div className="container" style={{ display: "flex", overflowY: "scroll", width: "100%", height: "100vh" }}>
+                    <div className="album py-5 bg-light">
+                        <div className="container-xxl content-row">
+                            <div className="row">
+                                {renderVideoCards()}
+                                {videosToShow < videos.length && (
+                                    <button className="btn btn-secondary" onClick={loadMoreVideos}>Load more</button>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -313,7 +314,7 @@ export default function AdminPage({ videos }) {
                 <Footer />
             </main>
         )
-    }  return <p>Access Denied</p>
+    } return <p>Access Denied</p>
 
 }
 
