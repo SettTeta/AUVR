@@ -9,7 +9,7 @@ import calenderIcon from 'public/calenderIcon.jpg';
 //browse/${onView}
 
 function CardTemplate(props) {
-    const { title, link, desc, thumbnail, onView, duration, location, dOU, onDel } = props
+    const { title, link, desc, thumbnail, onView, duration, location, dOU, onDel, onEdit, onSave, onCancel } = props
     return (
             // <Link href={`/browse/${onView}`} style={{ textDecoration: 'none', color: '#000' }}>
                 <div className="card mb-4 box-shadow" >
@@ -48,10 +48,16 @@ function CardTemplate(props) {
                             <small className="text-muted">{dOU}</small>
                         </div>
                         <div className="col-md" style={{paddingTop:"5vh", marginBottom:"5vh"}}>
-                            <button type="button" className="btn btn-primary">Update</button>
+                            <button type="button" className="btn btn-primary" onClick={onEdit}>Update</button>
                             <button type="button" className="btn btn-danger" style={{marginLeft:"1vh"}} onClick={onDel}>Delete</button>
                         </div>
                     </div>
+                    <div className="d-flex justify-content-between">
+                    <div>
+                        <button onClick={onSave} className="btn btn-success me-2">Save</button>
+                        <button onClick={onCancel} className="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
                 </div>
             // </Link >
     )

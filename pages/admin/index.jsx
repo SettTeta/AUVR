@@ -15,27 +15,113 @@ export default function AdminPage({ videos }) {
     const { register, handleSubmit } = useForm();
     const [data, setData] = useState("");
 
+    const [editedVideo, setEditedVideo] = useState(null);
+
 
     function loadMoreVideos() {
         setVideosToShow(videosToShow + 3);
     }
 
     function renderVideoCard(video) {
-        return (
-            <VideoCard
-                key={video._id}
-                title={video.title}
-                link={video.youtube}
-                thumbnail={video.thumbnail}
-                desc={video.desc}
-                onView={video._id}
-                duration={video.duration}
-                location={video.location}
-                dOU={video.dateOfUpload}
-                onDel={() => deleteVideo(video._id)}
-            />
-        );
+        if (editedVideo && editedVideo._id === video._id) {
+            return (
+                <VideoCard
+                    key={video._id}
+                    title={
+                        <input
+                            type="text"
+                            defaultValue={editedVideo.title}
+                            onChange={(e) =>
+                                setEditedVideo({ ...editedVideo, title: e.target.value })
+                            }
+                        />
+                    }
+                    link={
+                        <input
+                            type="text"
+                            defaultValue={editedVideo.link}
+                            onChange={(e) =>
+                                setEditedVideo({ ...editedVideo, link: e.target.value })
+                            }
+                        />
+                    }
+                    thumbnail={
+                        <input
+                            type="text"
+                            defaultValue={editedVideo.thumbnail}
+                            onChange={(e) =>
+                                setEditedVideo({ ...editedVideo, thumbnail: e.target.value })
+                            }
+                        />
+                    }
+                    desc={
+                        <input
+                            type="text"
+                            defaultValue={editedVideo.desc}
+                            onChange={(e) =>
+                                setEditedVideo({ ...editedVideo, desc: e.target.value })
+                            }
+                        />
+                    }
+                    onView={video._id}
+                    duration={
+                        <input
+                            type="text"
+                            defaultValue={editedVideo.duration}
+                            onChange={(e) =>
+                                setEditedVideo({ ...editedVideo, duration: e.target.value })
+                            }
+                        />
+                    }
+                    location={
+                        <input
+                            type="text"
+                            defaultValue={editedVideo.location}
+                            onChange={(e) =>
+                                setEditedVideo({ ...editedVideo, location: e.target.value })
+                            }
+                        />
+                    }
+                    dOU={
+                        <input
+                            type="text"
+                            defaultValue={editedVideo.dateOfUpload}
+                            onChange={(e) =>
+                                setEditedVideo({ ...editedVideo, dateOfUpload: e.target.value })
+                            }
+                        />
+                    }
+                    onSave={() => saveVideo()}
+                    onCancel={() => cancelEditing()}
+                />
+            );
+        } else {
+            return (
+                <VideoCard
+                    key={video._id}
+                    title={video.title}
+                    link={video.youtube}
+                    thumbnail={video.thumbnail}
+                    desc={video.desc}
+                    onView={video._id}
+                    duration={video.duration}
+                    location={video.location}
+                    dOU={video.dateOfUpload}
+                    onDel={() => deleteVideo(video._id)}
+                    onEdit={() => editVideo(video)}
+                />
+            );
+        }
     }
+
+    function editVideo(video) {
+        setEditedVideo(video);
+    }
+
+    function cancelEditing() {
+        setEditedVideo(null);
+    }
+
 
     function search() {
         setSearchValue("");
@@ -67,34 +153,57 @@ export default function AdminPage({ videos }) {
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             // credentials: "same-origin", // include, *same-origin, omit
             headers: {
-              "Content-Type": "application/json",
-              // 'Content-Type': 'application/x-www-form-urlencoded',
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            // redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            // serialisation
+            body: JSON.stringify(editedVideo), // body data type must match "Content-Type" header
+        });
+        const result = await response.json();   // deserialise
+        if (result.error) {
+            alert("Error: " + result.error)
+        }
+        console.log(result)
+        setData(JSON.stringify(editedVideo))
+    }
+
+    function deleteVideo(id) {
+        fetch(`/api/browse/videos/${id}`,
+            {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                // alert("Deleting " + id)
+                window.location.reload(false);
+            })
+
+    }
+
+    const saveVideo = async () => {
+        const response = await fetch(`/api/browse/videos/${editVideo._id}`, {
+            method: "PUT", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             // redirect: "follow", // manual, *follow, error
             referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             // serialisation
             body: JSON.stringify(data), // body data type must match "Content-Type" header
-          });
+        });
         const result = await response.json();   // deserialise
         if (result.error) {
             alert("Error: " + result.error)
-        } 
+        }
         console.log(result)
         setData(JSON.stringify(data))
     }
-
-    function deleteVideo(id) {
-        fetch(`/api/browse/videos/${id}`,
-          {
-            method: 'DELETE'
-          })
-          .then(res => res.json())
-          .then(data => {
-            // alert("Deleting " + id)
-            window.location.reload(false);
-          })
-    
-      }
 
     return (
         <main role="main">
@@ -116,7 +225,7 @@ export default function AdminPage({ videos }) {
                     </p>
                 </div>
                 <Link href="/admin/add">Go to add page</Link>
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add</button>
+                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
             </section>
 
             <br />
@@ -143,7 +252,7 @@ export default function AdminPage({ videos }) {
 
 
 
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="addModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
