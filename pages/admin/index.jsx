@@ -1,7 +1,10 @@
 import Header from 'components/header'
 import Footer from 'components/footer'
 import * as React from 'react'
+
 import VideoCard from 'components/Card.js'
+import EditCard from 'components/editCard'
+
 import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'
@@ -25,7 +28,7 @@ export default function AdminPage({ videos }) {
     function renderVideoCard(video) {
         if (editedVideo && editedVideo._id === video._id) {
             return (
-                <VideoCard
+                <EditCard
                     key={video._id}
                     title={
                         <input
@@ -183,7 +186,7 @@ export default function AdminPage({ videos }) {
     }
 
     const saveVideo = async () => {
-        const response = await fetch(`/api/browse/videos/${editVideo._id}`, {
+        const response = await fetch(`https://auvr-git-admin-cms-settteta.vercel.app/api/browse/videos/${editedVideo._id}`, {
             method: "PUT", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
