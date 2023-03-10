@@ -2,7 +2,6 @@ import Header from 'components/header'
 import Footer from 'components/footer'
 import * as React from 'react'
 import VideoCard from 'components/Card.js'
-import ScrollCard from 'components/CardForScroll.js'
 import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'
@@ -11,7 +10,6 @@ import { useForm } from "react-hook-form";
 export default function AdminPage({ videos }) {
 
     const [videosToShow, setVideosToShow] = useState(6);
-    const [showOnlyTrue, setShowOnlyTrue] = useState(false);
     const [searchValue, setSearchValue] = useState("");
 
     const { register, handleSubmit } = useForm();
@@ -47,13 +45,6 @@ export default function AdminPage({ videos }) {
     function renderVideoCards() {
         const videosToDisplay = videos
             .filter(video => {
-                if (showOnlyTrue) {
-                    return video.type === true;
-                } else {
-                    return video.type === false;
-                }
-            })
-            .filter(video => {
                 return video.title.toLowerCase().includes(searchValue.toLowerCase());
             })
             .slice(0, videosToShow);
@@ -69,7 +60,7 @@ export default function AdminPage({ videos }) {
     );
 
     const addVideo = async (data) => {
-        const response = await fetch('/api/browse/videos', {
+        const response = await fetch('https://auvr-git-admin-cms-settteta.vercel.app/api/browse/videos', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -110,7 +101,7 @@ export default function AdminPage({ videos }) {
                         Browse our collection of VR videos and view them with your full entertainment
                     </p>
                 </div>
-                <Link href="/admin/add">addadad</Link>
+                <Link href="/admin/add">Go to add page</Link>
                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add</button>
             </section>
 
