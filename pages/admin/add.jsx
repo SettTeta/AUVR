@@ -6,7 +6,7 @@ export default function AddBlogPage() {
     const [data, setData] = useState("");
 
     const addVideo = async (data) => {
-        const response = await fetch('http://localhost:3000/api/browse/videos', {
+        const response = await fetch('/api/browse/videos', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

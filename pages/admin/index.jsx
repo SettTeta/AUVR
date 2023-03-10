@@ -150,44 +150,8 @@ export default function AdminPage({ videos }) {
     );
 
     const addVideo = async (data) => {
-        const response = await fetch('/api/browse/videos', {
+        const response = await fetch('https://auvr-git-admin-cms-settteta.vercel.app/api/browse/videos', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
-            mode: "cors", // no-cors, *cors, same-origin
-            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-            // credentials: "same-origin", // include, *same-origin, omit
-            headers: {
-                "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            // redirect: "follow", // manual, *follow, error
-            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            // serialisation
-            body: JSON.stringify(editedVideo), // body data type must match "Content-Type" header
-        });
-        const result = await response.json();   // deserialise
-        if (result.error) {
-            alert("Error: " + result.error)
-        }
-        console.log(result)
-        setData(JSON.stringify(editedVideo))
-    }
-
-    function deleteVideo(id) {
-        fetch(`/api/browse/videos/${id}`,
-            {
-                method: 'DELETE'
-            })
-            .then(res => res.json())
-            .then(data => {
-                // alert("Deleting " + id)
-                window.location.reload(false);
-            })
-
-    }
-
-    const saveVideo = async () => {
-        const response = await fetch(`https://auvr-git-admin-cms-settteta.vercel.app/api/browse/videos/${editedVideo._id}`, {
-            method: "PUT", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             // credentials: "same-origin", // include, *same-origin, omit
@@ -206,6 +170,42 @@ export default function AdminPage({ videos }) {
         }
         console.log(result)
         setData(JSON.stringify(data))
+    }
+
+    function deleteVideo(id) {
+        fetch(`/api/browse/videos/${id}`,
+            {
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                // alert("Deleting " + id)
+                window.location.reload(false);
+            })
+
+    }
+
+    const saveVideo = async () => {
+        const response = await fetch(`/api/browse/videos/${editedVideo._id}`, {
+            method: "PUT", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            // redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            // serialisation
+            body: JSON.stringify(editedVideo), // body data type must match "Content-Type" header
+        });
+        const result = await response.json();   // deserialise
+        if (result.error) {
+            alert("Error: " + result.error)
+        }
+        console.log(result)
+        setData(JSON.stringify(editedVideo))
     }
 
     return (
