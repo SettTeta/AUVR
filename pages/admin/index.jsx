@@ -69,7 +69,7 @@ export default function AdminPage({ videos }) {
     );
 
     const addVideo = async (data) => {
-        const response = await fetch('https://sp-2-eta.vercel.app/api/browse/videos', {
+        const response = await fetch('/api/browse/videos', {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -86,10 +86,7 @@ export default function AdminPage({ videos }) {
         const result = await response.json();   // deserialise
         if (result.error) {
             alert("Error: " + result.error)
-        } else {
-            alert("Blog saved")
-            window.location.href = "/browse"
-        }
+        } 
         console.log(result)
         setData(JSON.stringify(data))
     }
