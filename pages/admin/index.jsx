@@ -204,8 +204,9 @@ export default function AdminPage({ videos }) {
         if (result.error) {
             alert("Error: " + result.error)
         }
-        console.log(result)
         setData(JSON.stringify(editedVideo))
+        setEditedVideo(null)
+        window.location.reload(true);
     }
 
     return (
