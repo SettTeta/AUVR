@@ -15,6 +15,11 @@ export default async function handler(req, res) {
     } else if (req.method === 'DELETE') {
         const deletedDoc = await Video.deleteOne({ _id: id })
         res.status(200).json(deletedDoc)
+    } else if (req.method === 'PUT') {
+        console.log('id', req.query.id)
+        console.log(req.body)
+        const updatedDoc = await Video.updateOne({ _id: id }, req.body)
+        res.status(200).json(updatedDoc)
     } else {
         res.setHeader('Allow', ['GET'])
         res.status(405).end(`Method ${req.method} Not Allowed`)
