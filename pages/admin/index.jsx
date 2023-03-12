@@ -1,8 +1,8 @@
-import Header from 'components/header'
-import Footer from 'components/footer'
+import Header from 'components/header.js'
+import Footer from 'components/footer.js'
 import * as React from 'react'
-import VideoCard from '@/components/CardAdmin.js'
-import EditCard from 'components/editCard'
+import VideoCard from 'components/CardAdmin.js'
+import EditCard from 'components/editCard.js'
 import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'
