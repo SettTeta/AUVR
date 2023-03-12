@@ -24,7 +24,7 @@ function CardTemplate(props) {
                         src="https://www.pngitem.com/pimgs/m/195-1951784_info-icon-svg-transparent-background-information-icon-hd.png"
                         width="30"
                         height="30"
-                        style={{ float: "right", marginTop: "4px", marginRight: "10px" }}
+                        style={{ float: "right", marginTop: "4px", marginRight:"10px" }}
                         data-bs-toggle="collapse" href={`#collapseExample-${onView}`} aria-controls={`collapseExample-${onView}`} aria-expanded="false"
                     />
                     <h5 style={{ paddingTop: "8px" }}>{title}</h5>
@@ -108,10 +108,6 @@ function CardTemplate(props) {
                         <br></br>
                     </div>
                 </div>
-            </div>
-            <div className="justify-content">
-                <button onClick={onSave} className="btn btn-success me-2">Save</button>
-                <button onClick={onCancel} className="btn btn-danger">Cancel</button>
             </div>
         </div>
     )
