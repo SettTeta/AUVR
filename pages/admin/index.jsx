@@ -222,42 +222,49 @@ export default function AdminPage({ videos }) {
 
             <Header />
 
-            <div style={{position:"sticky", marginTop: "7vh" }}>
-                <section className="jumbotron text-center" >
-                    <div className="container">
-                        <br></br>
-                        <h1 className="jumbotron-heading">VR Videos just for you</h1>
-                        <p className="lead text-muted">
-                            Browse our collection of VR videos and view them with your full entertainment
-                        </p>
+            <div style={{ display: 'flex', height: 'calc(100vh - 7vh)', marginTop: '7vh', marginBottom:"10vh" }}>
+
+                <div className='row g-0'>
+
+                    <div style={{ minWidth: '400px', width:"30%", padding: '20px', backgroundColor: '#f8f9fa' }}>
+                        <section className="jumbotron text-center" >
+                            <div className="container">
+                                <br></br>
+                                <h1 className="jumbotron-heading">VR Videos just for you</h1>
+                                <p className="lead text-muted">
+                                    Browse our collection of VR videos and view them with your full entertainment
+                                </p>
+                            </div>
+                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
+                        </section>
+
+                        <br />
+
+                        <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
+                            <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                            <span className="input-group-text border-0" id="search-addon">
+                                <i className="fas fa-search" onClick={clear}>Clear</i>
+                            </span>
+                        </div>
+
                     </div>
-                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
-                </section>
 
-                <br />
 
-                <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
-                    <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-                    <span className="input-group-text border-0" id="search-addon">
-                        <i className="fas fa-search" onClick={clear}>Clear</i>
-                    </span>
-                </div>
-
-            </div>
-
-            <br />
-
-            <div className="album py-5 bg-light">
-                <div className="container" style={{ display: "flex", overflowY: "scroll", width: "100%", height: "80vh" }}>
-                    <div className="container-xxl content-row">
-                        <div className="row">
-                            {renderVideoCards()}
-                            {videosToShow < videos.length && (
-                                <button className="btn btn-secondary" onClick={loadMoreVideos}>Load more</button>
-                            )}
+                    <div style={{ minWidth: '500px', width: '70%', height: '93vh', overflowY: 'scroll', marginBottom:"10vh" }}>
+                        <div className="album py-5 bg-light">
+                            <div className="container" style={{ display: "flex", width: "100%" }}>
+                                <div className="container-xxl content-row">
+                                    {renderVideoCards()}
+                                    {videosToShow < videos.length && (
+                                        <button className="btn btn-secondary" onClick={loadMoreVideos}>Load more</button>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
 
 

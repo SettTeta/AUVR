@@ -14,12 +14,8 @@ function CardTemplate(props) {
         <div >
             <Link href={`/browse/${onView}`} style={{ textDecoration: 'none', color: '#000' }}>
                 <div className="container" style={{ borderRight: "1px solid #ccc", paddingRight: "1rem" }}>
-                    <div className="card mb-4 box-shadow" >
-                        <div style={{ background: "#ffffff" }}>
-                            <img src={thumbnail} style={{ height: "100%", width: "100%"}}></img>
-                        </div>
-                    </div>
-                    <h5 style={{marginLeft:"10px"}}>{title}</h5>
+                    <img src={thumbnail} style={{ height: "100%", width: "100%", borderRadius: "10px" }}></img>
+                    <h5 style={{ marginLeft: "10px" }}>{title}</h5>
                 </div>
             </Link >
         </div >
