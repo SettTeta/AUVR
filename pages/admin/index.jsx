@@ -222,11 +222,11 @@ export default function AdminPage({ videos }) {
 
             <Header />
 
-            <div style={{ display: 'flex', height: 'calc(100vh - 7vh)', marginTop: '7vh', marginBottom:"10vh" }}>
+            <div style={{ display: 'flex', height: 'calc(100vh - 7vh)', marginTop: '7vh', marginBottom: "10vh" }}>
 
                 <div className='row g-0'>
 
-                    <div style={{ minWidth: '400px', width:"30%", padding: '20px', backgroundColor: '#f8f9fa' }}>
+                    <div style={{ minWidth: '400px', width: "30%", padding: '20px', backgroundColor: '#f8f9fa' }}>
                         <section className="jumbotron text-center" >
                             <div className="container">
                                 <br></br>
@@ -235,7 +235,6 @@ export default function AdminPage({ videos }) {
                                     Browse our collection of VR videos and view them with your full entertainment
                                 </p>
                             </div>
-                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add</button>
                         </section>
 
                         <br />
@@ -245,12 +244,19 @@ export default function AdminPage({ videos }) {
                             <span className="input-group-text border-0" id="search-addon">
                                 <i className="fas fa-search" onClick={clear}>Clear</i>
                             </span>
+                            <br/>
+                            <h4 className="jumbotron-heading">Leisure</h4>
+
+                        </div>
+
+                        <div>
+                            <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="30%" height="auto" data-bs-toggle="modal" data-bs-target="#addModal" style={{float:"right"}}/>
                         </div>
 
                     </div>
 
 
-                    <div style={{ minWidth: '500px', width: '70%', height: '93vh', overflowY: 'scroll', marginBottom:"10vh" }}>
+                    <div style={{ minWidth: '500px', width: '70%', height: '93vh', overflowY: 'scroll', marginBottom: "10vh" }}>
                         <div className="album py-5 bg-light">
                             <div className="container" style={{ display: "flex", width: "100%" }}>
                                 <div className="container-xxl content-row">

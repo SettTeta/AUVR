@@ -25,7 +25,7 @@ function CardTemplate(props) {
                         width="30"
                         height="30"
                         style={{ float: "right", marginTop: "4px", marginRight: "10px" }}
-                        data-bs-toggle="collapse" href={`#collapseExample-${onView}`} aria-controls={`collapseExample-${onView}`} aria-expanded="false"
+                        data-bs-toggle="collapse" href={`#collapseExample-${onView}`} aria-controls={`collapseExample-${onView}`} aria-expanded="true"
                     />
                     <h5 style={{ paddingTop: "8px" }}>{title}</h5>
                 </div>
