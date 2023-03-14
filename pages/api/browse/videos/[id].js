@@ -33,7 +33,7 @@ const videoSchema = new Schema({
     title: String,
     link: String,
     desc: String,
-    type: Boolean,
+    type: String,
     duration: String,
     thumbnail: String,
     location: String,

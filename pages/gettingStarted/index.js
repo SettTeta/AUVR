@@ -1,13 +1,13 @@
 import * as React from 'react'
 import Head from 'next/head'
-import Header from 'components/header'
+import Header from '../../components/header'
 import Image from 'next/image'
 
-import iosIcon from 'public/phoneIcon.jpg';
-import andIcon from 'public/androidIcon.jpg';
-import cardIcon from 'public/cardboardIcon.jpg';
-import desktopIcon from 'public/desktopIcon.jpg';
-import vrIcon from 'public/vrIcon.jpg';
+import iosIcon from '../../public/phoneIcon.jpg';
+import andIcon from '../../public/androidIcon.jpg';
+import cardIcon from '../../public/cardboardIcon.jpg';
+import desktopIcon from '../../public/desktopIcon.jpg';
+import vrIcon from '../../public/vrIcon.jpg';
 
 
 function GettingStartedPage() {

@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "^5.11.12",
     "@next/font": "13.1.6",
     "aframe": "^1.4.1",
     "aframe-always-fullscreen-component": "^1.0.0",

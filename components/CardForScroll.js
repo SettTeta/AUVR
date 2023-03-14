@@ -2,9 +2,9 @@ import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
 
-import locationIcon from 'public/locationIcon.jpg';
-import durationIcon from 'public/durationIcon2.jpg';
-import calenderIcon from 'public/calenderIcon.jpg';
+import locationIcon from '../public/locationIcon.jpg';
+import durationIcon from '../public/durationIcon2.jpg';
+import calenderIcon from '../public/calenderIcon.jpg';
 
 //browse/${onView}
 

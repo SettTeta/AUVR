@@ -13,7 +13,15 @@ const Header = () => {
         <header style={{ position: "fixed", top: "0", left: "0", width: "100%", zIndex: "100" }}>
             <nav className="navbar navbar-expand-lg navbar-dark" style={{ background: "#aa1e2d" }}>
                 <div className="container-fluid">
-                    <a className="navbar-brand" >AU VR</a>
+
+                    <img className="hover"
+                        src="https://upload.wikimedia.org/wikipedia/en/5/50/Assumption_University_of_Thailand_%28logo%29.png"
+                        width="70"
+                        height="70"
+                        style={{background:"white", borderRadius:"15px", paddingRight:"1.5px"}}
+                    />
+
+                    <a className="navbar-brand" style={{paddingLeft:"10px"}}>AU VR</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -52,8 +60,6 @@ const Header = () => {
                                 </ul>
                             </li> */}
                         </ul>
-                        <div>
-                        </div>
                     </div>
                 </div>
             </nav>
