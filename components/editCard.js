@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 function CardTemplate(props) {
     const { title, link, desc, thumbnail, onView, duration, location, dOU, onDel, onSave, onCancel, type, thTitle } = props
-
+    
     return (
         <div className="card mb-3">
             <div className="card-header bg-white" style={{ verticalAlign: "middle" }}>
@@ -24,7 +24,6 @@ function CardTemplate(props) {
                         onClick={onCancel}
                         fontSize="large"
                     />
-
                     <DeleteForeverOutlinedIcon className="hover"
                         style={{ float: "left", marginTop: "3px" }}
                         onClick={onDel}
