@@ -12,28 +12,6 @@ export default function BrowsePage({ videos }) {
   const [videosToShow, setVideosToShow] = useState(6);
   const [searchValue, setSearchValue] = useState("");
 
-
-  function loadMoreVideos() {
-    setVideosToShow(videosToShow + 3);
-  }
-
-  function renderVideoCard(video) {
-    return (
-      <ScrollCard
-        key={video._id}
-        title={video.title}
-        link={video.youtube}
-        type={video.type}
-        thumbnail={video.thumbnail}
-        desc={video.desc}
-        onView={video._id}
-        duration={video.duration}
-        location={video.location}
-        dOU={video.dateOfUpload}
-      />
-    );
-  }
-
   function search() {
     setSearchValue("");
     setVideosToShow(6);
@@ -50,9 +28,9 @@ export default function BrowsePage({ videos }) {
       })
       .slice(0, videosToShow);
     return (
-      <div className='container' style={{ paddingBottom: "1rem" }} key={vidType}>
+      <div className='container' key={vidType}>
         <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>{vidType}</h1>
-        <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "270px" }}>
+        <div className="container bg-white" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px", marginBottom:"30px"}}>
           {videosToDisplay.map(src => (
             <div
               className="scroll"
@@ -134,53 +112,7 @@ export default function BrowsePage({ videos }) {
         </div>
       </section>
 
-
-      {/* <div style={{ display: "flex", justifyContent: "center" }}>
-        <ul className="nav nav-tabs">
-          <li className="nav-item">
-            <Link className={`nav-link ${activeTab === "all" ? "active" : ""}`} href="" onClick={handleShowAllClick} >360 VR Tour</Link>
-          </li>
-          <li className="nav-item">
-            <Link className={`nav-link ${activeTab === "true" ? "active" : ""}`} href="" onClick={handleShowOnlyTrueClick} >Interactive Tour</Link>
-          </li>
-        </ul>
-      </div> */}
-
-      {/* <div className="album py-5 bg-light">
-        <div className="container-xxl content-row">
-          <div className="row">
-            {renderVideoCards()}
-            {videosToShow < videos.length && (
-              <button className="btn btn-secondary" onClick={loadMoreVideos}>Load more</button>
-            )}
-          </div>
-        </div>
-      </div> */}
-
       <div className="album py-5 bg-light">
-        {/* <div className='container' style={{ paddingBottom: "1rem" }} >
-          <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px" }}>All</h1>
-          <div className="container" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "270px" }}>
-            {videos.map(src => (
-              <div
-                className="scroll"
-                key={src._id}
-              >
-                <ScrollCard
-                  title={src.title}
-                  link={src.youtube}
-                  thumbnail={src.thumbnail}
-                  desc={src.desc}
-                  onView={src._id}
-                  duration={src.duration}
-                  location={src.location}
-                  dOU={src.dateOfUpload}
-
-                />
-              </div>
-            ))}
-          </div>
-        </div> */}
 
         {renderVideoRow("Leisure")}
         {renderVideoRow("Facilities")}

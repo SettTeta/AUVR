@@ -2,20 +2,22 @@ import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
 
-import locationIcon from '../public/locationIcon.jpg';
-import durationIcon from '../public/durationIcon2.jpg';
-import calenderIcon from '../public/calenderIcon.jpg';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import TimelapseOutlinedIcon from '@mui/icons-material/TimelapseOutlined';
 
 //browse/${onView}
 
 function CardTemplate(props) {
     const { title, link, desc, thumbnail, onView, duration, location, dOU } = props
     return (
-        <div >
+        <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
             <Link href={`/browse/${onView}`} style={{ textDecoration: 'none', color: '#000' }}>
-                <div className="container" style={{ borderRight: "1px solid #ccc", paddingRight: "1rem" }}>
-                    <img src={thumbnail} style={{ height: "100%", width: "100%", borderRadius: "10px" }}></img>
-                    <h5 style={{ marginLeft: "10px" }}>{title}</h5>
+                <div className="container" style={{ paddingRight: "1rem", textAlign: "center" }}>
+                    <img src={thumbnail} style={{ height: "100%", width: "100%", borderRadius: "5px" }}></img>
+                    <h5 style={{ marginTop:"10px"}}>{title}</h5>
+                    <small style={{paddingLeft:"10px", float:'left'}}><LocationOnOutlinedIcon fontSize="small" /> {location}</small>
+                    <small style={{paddingRight:"10px", float:'right'}}><TimelapseOutlinedIcon fontSize="small"/> {duration}mins</small>
+
                 </div>
             </Link >
         </div >
