@@ -315,20 +315,29 @@ export default function AdminPage({ videos }) {
                             <div className="container-fluid">
                                 <form onSubmit={handleSubmit(addVideo)}>
                                     <div className="row d-flex justify-content-start">
-                                        <div className="col-md-6 ">
+                                        <div className="col-md-7 ">
                                             <label htmlFor="title" className="col-form-label">Title:</label>
                                             <input type="text" className="form-control" id="title" {...register("title", { required: false })} placeholder="Video Title" />
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-md-5">
                                             <label htmlFor="link" className="col-form-label">URL Link:</label>
                                             <input className="form-control" id="link" {...register("link", { required: false })} placeholder="URL of Video"></input>
                                         </div>
-                                        <div className="col-md-4">
+                                        <div className="col-md-6">
                                             <label htmlFor="location" className="col-form-label">Location:</label>
                                             <select className="form-select" id="location" {...register("location", { required: false })}>
                                                 <option value="">Select Campus</option>
                                                 <option value="option1">Suvanabhumi</option>
                                                 <option value="option2">Hua Mak</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <label htmlFor="type" className="col-form-label">Location:</label>
+                                            <select className="form-select" id="type" {...register("type", { required: false })}>
+                                                <option value="">Select Building Type</option>
+                                                <option value="option1">Leisure</option>
+                                                <option value="option2">Facilities</option>
+                                                <option value="option2">Monuments</option>
                                             </select>
                                         </div>
                                         <div className="col-md-4">

@@ -13,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 function CardTemplate(props) {
     const { title, link, desc, thumbnail, onView, duration, location, dOU, onDel, onSave, onCancel, type, thTitle } = props
-    
+
     return (
         <div className="card mb-3">
             <div className="card-header bg-white" style={{ verticalAlign: "middle" }}>
@@ -29,7 +29,7 @@ function CardTemplate(props) {
                         style={{ float: "left", marginTop: "3px" }}
                         onClick={onDel}
                         fontSize="large" />
-                    <h5 style={{ paddingTop: "8px"}}>{thTitle}</h5>
+                    <h5 style={{ paddingTop: "8px" }}>{thTitle}</h5>
                 </div>
             </div>
 
@@ -55,10 +55,9 @@ function CardTemplate(props) {
 
                         <div className="justify-content" >
 
-                            <Button variant="text" onClick={onSave} style={{ float: "right" }}>
-                                <SaveAltIcon className="hover"
-                                    fontSize="large" /> Save
-                            </Button>
+                            <SaveAltIcon className="hover"
+                                fontSize="large"
+                                onClick={onSave} />
 
                         </div>
                     </div>
