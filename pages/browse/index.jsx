@@ -1,8 +1,8 @@
-import Header from 'components/header'
-import Footer from 'components/footer'
+import Header from '../../components/header'
+import Footer from '../../components/footer'
 import * as React from 'react'
-import VideoCard from '@/components/Card.js'
-import ScrollCard from 'components/CardForScroll.js'
+import VideoCard from '../../components/Card.js'
+import ScrollCard from '../../components/CardForScroll.js'
 import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'

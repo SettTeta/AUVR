@@ -1,8 +1,8 @@
-import Header from '../../components/header.js'
-import Footer from '../../components/footer.js'
+import Header from '../../components/header'
+import Footer from '../../components/footer'
 import * as React from 'react'
-import VideoCard from '../../components/CardAdmin.js'
-import EditCard from '../../components/editCard.js'
+import VideoCard from '../../components/CardAdmin'
+import EditCard from '../../components/editCard'
 import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'
@@ -46,6 +46,15 @@ export default function AdminPage({ videos }) {
                             defaultValue={editedVideo.link}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, link: e.target.value })
+                            }
+                        />
+                    }
+                    type={
+                        <input
+                            type="text"
+                            defaultValue={editedVideo.type}
+                            onChange={(e) =>
+                                setEditedVideo({ ...editedVideo, type: e.target.value })
                             }
                         />
                     }
@@ -97,6 +106,8 @@ export default function AdminPage({ videos }) {
                     }
                     onSave={() => saveVideo()}
                     onCancel={() => cancelEditing()}
+                    onDel={() => deleteVideo(video._id)}
+                    thTitle={video.title}
                 />
             );
         } else {
@@ -105,13 +116,13 @@ export default function AdminPage({ videos }) {
                     key={video._id}
                     title={video.title}
                     link={video.youtube}
+                    type={video.type}
                     thumbnail={video.thumbnail}
                     desc={video.desc}
                     onView={video._id}
                     duration={video.duration}
                     location={video.location}
                     dOU={video.dateOfUpload}
-                    onDel={() => deleteVideo(video._id)}
                     onEdit={() => editVideo(video)}
                 />
             );
@@ -171,6 +182,7 @@ export default function AdminPage({ videos }) {
         }
         console.log(result)
         setData(JSON.stringify(data))
+        window.location.reload(true);
     }
 
     function deleteVideo(id) {
@@ -230,9 +242,9 @@ export default function AdminPage({ videos }) {
                         <section className="jumbotron text-center" >
                             <div className="container">
                                 <br></br>
-                                <h1 className="jumbotron-heading">VR Videos just for you</h1>
+                                <h1 className="jumbotron-heading">Admin Page</h1>
                                 <p className="lead text-muted">
-                                    Browse our collection of VR videos and view them with your full entertainment
+                                    Add, Modify, Update and Delete any Videos within this page.
                                 </p>
                             </div>
                         </section>
@@ -244,19 +256,36 @@ export default function AdminPage({ videos }) {
                             <span className="input-group-text border-0" id="search-addon">
                                 <i className="fas fa-search" onClick={clear}>Clear</i>
                             </span>
-                            <br/>
-                            <h4 className="jumbotron-heading">Leisure</h4>
-
+                            <br />
                         </div>
 
+                        <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
+                            <h4 className="jumbotron-heading">Leisure</h4>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled />
+                                <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
+                            </div>
+                        </div>
+
+
                         <div>
-                            <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="30%" height="auto" data-bs-toggle="modal" data-bs-target="#addModal" style={{float:"right"}}/>
+                            <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="30%" height="auto" data-bs-toggle="modal" data-bs-target="#addModal" style={{ float: "right" }} />
                         </div>
 
                     </div>
 
 
-                    <div style={{ minWidth: '500px', width: '70%', height: '93vh', overflowY: 'scroll', marginBottom: "10vh" }}>
+                    <div style={{ minWidth: '400px', width: '70%', height: '93vh', overflowY: 'scroll', marginBottom: "10vh" }}>
                         <div className="album py-5 bg-light">
                             <div className="container" style={{ display: "flex", width: "100%" }}>
                                 <div className="container-xxl content-row">
@@ -297,10 +326,9 @@ export default function AdminPage({ videos }) {
                                         <div className="col-md-4">
                                             <label htmlFor="location" className="col-form-label">Location:</label>
                                             <select className="form-select" id="location" {...register("location", { required: false })}>
-                                                <option value="">Select an option</option>
-                                                <option value="option1">Option 1</option>
-                                                <option value="option2">Option 2</option>
-                                                <option value="option3">Option 3</option>
+                                                <option value="">Select Campus</option>
+                                                <option value="option1">Suvanabhumi</option>
+                                                <option value="option2">Hua Mak</option>
                                             </select>
                                         </div>
                                         <div className="col-md-4">

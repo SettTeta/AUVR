@@ -22,8 +22,8 @@ export default function ImmersionZone() {
     useEffect(() => {
         const loadAframe = async () => {
             const AFRAME = await import("aframe");
-            const pauseIcon = await import("components/pauseIcon");
-            const playIcon = await import("components/playIcon");
+            const pauseIcon = await import("../../components/pauseIcon");
+            const playIcon = await import("../../components/playIcon");
             console.log(AFRAME);
             setFr(true);
         };
