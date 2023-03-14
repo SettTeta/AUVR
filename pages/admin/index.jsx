@@ -261,19 +261,19 @@ export default function AdminPage({ videos }) {
 
                         <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
                             <h4 className="jumbotron-heading">Leisure</h4>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+                                <label className="form-check-label" htmlFor="inlineRadio1">1</label>
                             </div>
 
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+                                <label className="form-check-label" htmlFor="inlineRadio2">2</label>
                             </div>
 
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled />
-                                <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled />
+                                <label className="form-check-label" htmlFor="inlineRadio3">3 (disabled)</label>
                             </div>
                         </div>
 
@@ -327,17 +327,17 @@ export default function AdminPage({ videos }) {
                                             <label htmlFor="location" className="col-form-label">Location:</label>
                                             <select className="form-select" id="location" {...register("location", { required: false })}>
                                                 <option value="">Select Campus</option>
-                                                <option value="option1">Suvanabhumi</option>
-                                                <option value="option2">Hua Mak</option>
+                                                <option value="Suvanabhumi">Suvanabhumi</option>
+                                                <option value="Hua Mak">Hua Mak</option>
                                             </select>
                                         </div>
                                         <div className="col-md-6">
                                             <label htmlFor="type" className="col-form-label">Location:</label>
                                             <select className="form-select" id="type" {...register("type", { required: false })}>
                                                 <option value="">Select Building Type</option>
-                                                <option value="option1">Leisure</option>
-                                                <option value="option2">Facilities</option>
-                                                <option value="option2">Monuments</option>
+                                                <option value="Leisure">Leisure</option>
+                                                <option value="Facilities">Facilities</option>
+                                                <option value="Monuments">Monuments</option>
                                             </select>
                                         </div>
                                         <div className="col-md-4">
