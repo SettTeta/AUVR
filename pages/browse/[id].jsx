@@ -1,18 +1,18 @@
 import Head from "next/head"
 import Link from "next/link"
 import * as React from 'react'
-import Header from 'components/header'
+import Header from '../../components/header'
 import { useState } from "react"
 import { Button } from "react-bootstrap"
 import Image from "next/image"
 // import ReactPlayer from 'react-player/youtube'
-
-import iosIcon from 'public/iosIcon.jpg';
-import andIcon from 'public/androidIcon.jpg';
-import deskIcon from 'public/desktopIcon.jpg';
-import cardIcon from 'public/cardboardIcon.jpg';
-import vrIcon from 'public/vrIcon.jpg';
-import backArrow from 'public/backArrow2.jpg';
+import asd from '../../public'
+import iosIcon from '../../public/iosIcon.jpg';
+import andIcon from '../../public/androidIcon.jpg';
+import deskIcon from '../../public/desktopIcon.jpg';
+import cardIcon from '../../public/cardboardIcon.jpg';
+import vrIcon from '../../public/vrIcon.jpg';
+import backArrow from '../../public/backArrow2.jpg';
 
 import dynamic from 'next/dynamic'
 const ReactPlayer = dynamic(() => import("react-player/youtube"), { ssr: false });
