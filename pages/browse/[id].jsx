@@ -5,8 +5,9 @@ import Header from '../../components/header'
 import { useState } from "react"
 import { Button } from "react-bootstrap"
 import Image from "next/image"
+
 // import ReactPlayer from 'react-player/youtube'
-import asd from '../../public'
+
 import iosIcon from '../../public/iosIcon.jpg';
 import andIcon from '../../public/androidIcon.jpg';
 import deskIcon from '../../public/desktopIcon.jpg';
