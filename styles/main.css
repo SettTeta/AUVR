@@ -41,6 +41,10 @@
     transform: scale(1.15);
 }
 
+.hover:hover {
+    opacity: 0.65;
+}
+
 * {
     font-size: 100%;
     font-family: "Georgia";

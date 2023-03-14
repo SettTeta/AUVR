@@ -9,12 +9,21 @@ import Link from 'next/link'
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react"
 
+// import { FormControl, FormLabel, RadioGroup, FormControlLabel } from '@mui/material'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+import RadioGroup from '@mui/material/RadioGroup'
+import Radio from '@mui/material/Radio'
+import FormControlLabel from '@mui/material/FormControlLabel'
+
 export default function AdminPage({ videos }) {
 
     const { data: session } = useSession()
 
     const [videosToShow, setVideosToShow] = useState(6);
     const [searchValue, setSearchValue] = useState("");
+    const [location, setLocation] = useState("all");
+    const [type, setType] = useState("all");
 
     const { register, handleSubmit } = useForm();
     const [data, setData] = useState("");
@@ -147,19 +156,20 @@ export default function AdminPage({ videos }) {
     function renderVideoCards() {
         const videosToDisplay = videos
             .filter(video => {
-                return video.title.toLowerCase().includes(searchValue.toLowerCase());
+                let videoLocation = location === "all" ? true : video.location === location;
+                let videoType = type === "all" ? true : video.type === type;
+                return video.title.toLowerCase().includes(searchValue.toLowerCase()) && videoLocation && videoType;
             })
             .slice(0, videosToShow);
         return videosToDisplay.map(renderVideoCard);
     }
 
 
-    if (!videos) return (
-        <div style={{ marginTop: "10vh" }}>
-            <p>Videos not found</p>
-            <Link href="/browse">Back</Link>
-        </div>
-    );
+    // const clear = () => {
+    //     setSearchValue("");
+    //     setLocation("all");
+    //     setType("all");
+    // }
 
     const addVideo = async (data) => {
         const response = await fetch('/api/browse/videos', {
@@ -234,11 +244,10 @@ export default function AdminPage({ videos }) {
 
             <Header />
 
-            <div style={{ display: 'flex', height: 'calc(100vh - 7vh)', marginTop: '7vh', marginBottom: "10vh" }}>
+            <div style={{ display: 'flex', height: 'calc(100vh - 7vh)', marginTop: '7vh' }}>
 
                 <div className='row g-0'>
-
-                    <div style={{ minWidth: '400px', width: "30%", padding: '20px', backgroundColor: '#f8f9fa' }}>
+                    <div style={{ minWidth: '400px', width: "30%", padding: '20px', backgroundColor: '#f8f9fa', marginBottom: "10vh" }}>
                         <section className="jumbotron text-center" >
                             <div className="container">
                                 <br></br>
@@ -246,12 +255,16 @@ export default function AdminPage({ videos }) {
                                 <p className="lead text-muted">
                                     Add, Modify, Update and Delete any Videos within this page.
                                 </p>
+
+                            </div>
+                            <div>
+                                <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="25%" height="auto" data-bs-toggle="modal" data-bs-target="#addModal" style={{ justifyContent: 'center' }} />
                             </div>
                         </section>
 
                         <br />
 
-                        <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
+                        <div className="input-group rounded" style={{ padding: "5% 15% 0 15%" }}>
                             <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
                             <span className="input-group-text border-0" id="search-addon">
                                 <i className="fas fa-search" onClick={clear}>Clear</i>
@@ -259,27 +272,37 @@ export default function AdminPage({ videos }) {
                             <br />
                         </div>
 
-                        <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
-                            <h4 className="jumbotron-heading">Leisure</h4>
-                            <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-                                <label className="form-check-label" htmlFor="inlineRadio1">1</label>
-                            </div>
+                        <div className='container' style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <FormControl style={{ marginTop: "20px", paddingRight: "20px" }}>
+                                <FormLabel id="demo-radio-buttons-group-label">Campus: </FormLabel>
+                                <RadioGroup
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue="all"
+                                    name="radio-buttons-group"
+                                    value={location}
+                                    onChange={(e) => setLocation(e.target.value)}
+                                >
+                                    <FormControlLabel value="Suvanabhumi" control={<Radio />} label="Suvanabhumi" />
+                                    <FormControlLabel value="Hua Mak" control={<Radio />} label="Hua Mak" />
+                                    <FormControlLabel value="all" control={<Radio />} label="All" />
+                                </RadioGroup>
+                            </FormControl>
 
-                            <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-                                <label className="form-check-label" htmlFor="inlineRadio2">2</label>
-                            </div>
-
-                            <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled />
-                                <label className="form-check-label" htmlFor="inlineRadio3">3 (disabled)</label>
-                            </div>
-                        </div>
-
-
-                        <div>
-                            <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="30%" height="auto" data-bs-toggle="modal" data-bs-target="#addModal" style={{ float: "right" }} />
+                            <FormControl style={{ marginTop: "20px" }}>
+                                <FormLabel id="demo-radio-buttons-group-label">Type: </FormLabel>
+                                <RadioGroup
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue="all"
+                                    name="radio-buttons-group"
+                                    value={type}
+                                    onChange={(e) => setType(e.target.value)}
+                                >
+                                    <FormControlLabel value="Leisure" control={<Radio />} label="Leisure" />
+                                    <FormControlLabel value="Facilities" control={<Radio />} label="Facilities" />
+                                    <FormControlLabel value="Monuments" control={<Radio />} label="Monuments" />
+                                    <FormControlLabel value="all" control={<Radio />} label="All" />
+                                </RadioGroup>
+                            </FormControl>
                         </div>
 
                     </div>
