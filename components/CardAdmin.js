@@ -2,12 +2,12 @@ import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
 
-import locationIcon from 'public/locationIcon.jpg';
-import durationIcon from 'public/durationIcon2.jpg';
-import calenderIcon from 'public/calenderIcon.jpg';
+import locationIcon from '../public/locationIcon.jpg';
+import durationIcon from '../public/durationIcon2.jpg';
+import calenderIcon from '../public/calenderIcon.jpg';
 
 function CardTemplate(props) {
-    const { title, link, desc, thumbnail, onView, duration, location, dOU, onDel, onEdit, onSave, onCancel } = props
+    const { title, link, desc, thumbnail, onView, duration, location, dOU, onEdit, type } = props
 
     return (
         <div className="card mb-3" data-bs-toggle="collapse" href={`#collapseExample-${onView}`} aria-controls={`collapseExample-${onView}`} aria-expanded="false">
@@ -69,7 +69,7 @@ function CardTemplate(props) {
                             alt=""
                             width="40"
                             height="40" />
-                        <small className="text-muted">{duration} mins</small>
+                        <small className="text-muted">{type}</small>
                     </div>
                 </div>
 
