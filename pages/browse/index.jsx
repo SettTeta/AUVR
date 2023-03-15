@@ -30,7 +30,7 @@ export default function BrowsePage({ videos }) {
     return (
       <div className='container' key={vidType}>
         <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>{vidType}</h1>
-        <div className="container bg-white" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "300px", marginBottom:"30px"}}>
+        <div className="container bg-white" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "280px", marginBottom:"30px", borderRadius: "20px"}}>
           {videosToDisplay.map(src => (
             <div
               className="scroll"
@@ -75,16 +75,16 @@ export default function BrowsePage({ videos }) {
       <Header />
 
       <section className="jumbotron text-center" style={{
-        marginTop: "5vh",
+        marginTop: "10vh",
         position: 'relative',
-        height: "50vh",
+        height: "55vh",
         // backgroundImage: "url('https://media.istockphoto.com/id/1379108916/vector/metaverse-technology-background.jpg?s=612x612&w=0&k=20&c=BhoTlueNSWAXnanIpiZ6PlXO5ZXOD_eOquQ_NIEuZQk=')",
-        backgroundImage: "url('https://t3.ftcdn.net/jpg/05/16/23/48/360_F_516234867_emyTMrlCbP8UWGXJmVHfPpEGmbMbkXXh.jpg')",
+        backgroundImage: "url('https://img.freepik.com/premium-photo/metaverse-background-concept-3d-hands-virtual-reality-vr-are-connected-big-data-sphere_90380-3962.jpg')",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat"
       }}>
-        <div className="content p-0 text-center bg-image" style={{ height: "50vh", top: "0", position: "absolute", background: "rgba(0, 0, 0, 0.4)", width: "100%" }}>
+        <div className="content p-0 text-center bg-image" style={{ height: "55vh", top: "0", position: "absolute", background: "rgba(0, 0, 0, 0.4)", width: "100%" }}>
 
           <div className="container">
             <br />
