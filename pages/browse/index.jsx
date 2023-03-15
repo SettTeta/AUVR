@@ -30,7 +30,7 @@ export default function BrowsePage({ videos }) {
     return (
       <div className='container' key={vidType}>
         <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>{vidType}</h1>
-        <div className="container bg-white" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "280px", marginBottom:"30px", borderRadius: "20px"}}>
+        <div className="container bg-white" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "280px", marginBottom:"10px", borderRadius: "20px"}}>
           {videosToDisplay.map(src => (
             <div
               className="scroll"
