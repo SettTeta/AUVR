@@ -9,6 +9,8 @@ import Link from 'next/link'
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react"
 
+import Banner from '../../public/banner3.webp'
+
 // import { FormControl, FormLabel, RadioGroup, FormControlLabel } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
 import FormLabel from '@mui/material/FormLabel'
@@ -232,7 +234,7 @@ export default function AdminPage({ videos }) {
         window.location.reload(true);
     }
 
-    if (session) {
+    // if (session) {
         return (
             <main role="main">
                 <div>
@@ -244,10 +246,10 @@ export default function AdminPage({ videos }) {
 
                 <Header />
 
-                <div style={{ display: 'flex', height: 'calc(100vh - 7vh)', marginTop: '7vh' }}>
+                <div style={{ display: 'flex', height: '90vh', marginTop: '7vh', marginBottom:"55vh" }}>
 
                     <div className='row g-0'>
-                        <div style={{ minWidth: '400px', width: "30%", padding: '20px', backgroundColor: '#f8f9fa', marginBottom: "10vh" }}>
+                        <div style={{ minWidth: '400px', width: "30%", padding: '20px', backgroundColor: '#f8f9fa', border:"solid 1px" }}>
                             <section className="jumbotron text-center" >
                                 <div className="container">
                                     <br></br>
@@ -272,7 +274,7 @@ export default function AdminPage({ videos }) {
                                 <br />
                             </div>
 
-                            <div className='container' style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+                            <div className='container' style={{ display: 'flex', justifyContent: 'center' }}>
                                 <FormControl style={{ marginTop: "20px", paddingRight: "20px" }}>
                                     <FormLabel id="demo-radio-buttons-group-label">Campus: </FormLabel>
                                     <RadioGroup
@@ -308,7 +310,7 @@ export default function AdminPage({ videos }) {
                         </div>
 
 
-                        <div style={{ minWidth: '400px', width: '70%', height: '93vh', overflowY: 'scroll', marginBottom: "10vh" }}>
+                        <div style={{ minWidth: '400px', width: '70%', height: '93vh', overflowY: 'scroll' }}>
                             <div className="album py-5 bg-light">
                                 <div className="container" style={{ display: "flex", width: "100%" }}>
                                     <div className="container-xxl content-row">
@@ -415,7 +417,7 @@ export default function AdminPage({ videos }) {
                 <Footer />
             </main>
         )
-    }
+    // }
     return (<><p>Access Denied</p> <Footer /></>)
 
 }

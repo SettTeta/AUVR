@@ -4,8 +4,7 @@ import Link from 'next/link'
 import Header from '../components/header'
 import Footer from '../components/footer'
 
-import ScrollCard from '../components/CardForScroll.js'
-
+import Banner from '../public/banner1.webp'
 
 function HomePage() {
     return (
@@ -22,13 +21,14 @@ function HomePage() {
                 position: 'relative',
                 paddingTop: "100vh",
                 marginTop: "10vh",
-                backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOaG6RYDRhGtJ3hk8VQekA8foa4RmoRYEyoOvgLlbXLu-HUiVdA7nZ9Mlp01LSMlAFt6k&usqp=CAU')",
+                backgroundImage: `url(${Banner.src})`,
+                // backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOaG6RYDRhGtJ3hk8VQekA8foa4RmoRYEyoOvgLlbXLu-HUiVdA7nZ9Mlp01LSMlAFt6k&usqp=CAU')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat"
             }}>
 
-                <div className="content p-0 text-center bg-image" style={{height:"100vh", top:"0", position: "absolute", background: "rgba(0, 0, 0, 0.6)" , width: "100%" }}>
+                <div className="content p-0 text-center bg-image" style={{height:"100vh", top:"0", position: "absolute", background: "rgba(0, 0, 0, 0.4)" , width: "100%" }}>
                     <div className="d-flex justify-content-center align-items-center h-100">
                         <div className="text-white">
                             <h1 className="mb-3">Welcome to AU VR - A VR Video Hosting Platform</h1>

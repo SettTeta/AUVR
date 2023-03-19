@@ -7,6 +7,9 @@ import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'
 
+import Banner from '../../public/banner2.webp'
+
+
 export default function BrowsePage({ videos }) {
 
   const [videosToShow, setVideosToShow] = useState(6);
@@ -79,7 +82,8 @@ export default function BrowsePage({ videos }) {
         position: 'relative',
         height: "55vh",
         // backgroundImage: "url('https://media.istockphoto.com/id/1379108916/vector/metaverse-technology-background.jpg?s=612x612&w=0&k=20&c=BhoTlueNSWAXnanIpiZ6PlXO5ZXOD_eOquQ_NIEuZQk=')",
-        backgroundImage: "url('https://img.freepik.com/premium-photo/metaverse-background-concept-3d-hands-virtual-reality-vr-are-connected-big-data-sphere_90380-3962.jpg')",
+        // backgroundImage: "url('https://img.freepik.com/premium-photo/metaverse-background-concept-3d-hands-virtual-reality-vr-are-connected-big-data-sphere_90380-3962.jpg')",
+        backgroundImage: `url(${Banner.src})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat"
