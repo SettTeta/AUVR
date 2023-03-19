@@ -116,7 +116,7 @@
     transition: all var(--speed) ease-in-out;
 }
 
-@media(max-width: 800px){
+/* @media(max-width: 800px){
     .h1{
         font-size: 2rem;
     }
@@ -124,7 +124,7 @@
     .btn{
         width: 1rem;
     }
-}
+} */
 
 .footer-title{
     color: white;
