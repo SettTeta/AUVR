@@ -234,7 +234,7 @@ export default function AdminPage({ videos }) {
         window.location.reload(true);
     }
 
-    // if (session) {
+    if (session) {
         return (
             <main role="main">
                 <div>
@@ -417,7 +417,7 @@ export default function AdminPage({ videos }) {
                 <Footer />
             </main>
         )
-    // }
+    }
     return (<><p>Access Denied</p> <Footer /></>)
 
 }
