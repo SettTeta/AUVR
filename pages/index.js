@@ -55,7 +55,81 @@ export default HomePage
 
 
 
+// import * as React from 'react'
+// import Head from 'next/head'
+// import Link from 'next/link'
+// import Header from '../components/header'
+// import Footer from '../components/footer'
 
+// function HomePage() {
+//   const [isHoveringLeft, setIsHoveringLeft] = React.useState(false);
+
+//   const handleMouseOverLeft = () => {
+//     setIsHoveringLeft(true);
+//   };
+
+//   const handleMouseOutLeft = () => {
+//     setIsHoveringLeft(false);
+//   };
+
+//   return (
+//     <main role="main">
+//       <Head>
+//         <title>VR Tours - Home</title>
+//         <meta name="description" content="A VR Video Hosting platform" />
+//       </Head>
+
+//       <Header />
+
+//       <div>
+//         <h1>Split handling page</h1>
+//         <div
+//           className={isHoveringLeft ? "hover-left" : "hover-right"}
+//           style={{ position: "relative", width: "100vw", height: "100vh", background: "black" }}
+//         >
+//           <div
+//             className="split left"
+//             onMouseOver={handleMouseOverLeft}
+//             onMouseOut={handleMouseOutLeft}
+//           >
+//             <h1
+//               style={{ position: "absolute", color: "white", left: "50%", top: "20%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}
+//             >
+//               IMMERSE
+//             </h1>
+//             <Link
+//               className="btn btn-outline-light btn-lg"
+//               href="/story"
+//               role="button"
+//               style={{position:'absolute', left:"50%", top:"30%", transform:"translateX(-50%)", width:"15rem", fontWeight:"bold", textTransform:"uppercase"}}
+//             >
+//               Immerse
+//             </Link>
+//           </div>
+//           <div className="split right">
+//             <h1
+//               style={{ position: "absolute", color: "white", left: "50%", top: "20%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}
+//             >
+//               BROWSE
+//             </h1>
+//             <Link
+//               className="btn btn-outline-light btn-lg"
+//               href="/browse"
+//               role="button"
+//               style={{position:'absolute', left:"50%", top:"30%", transform:"translateX(-50%)", width:"15rem", fontWeight:"bold", textTransform:"uppercase"}}
+//             >
+//               Browse
+//             </Link>
+//           </div>
+//         </div>
+//       </div>
+
+//       <Footer />
+//     </main>
+//   )
+// }
+
+// export default HomePage
 
 
 
