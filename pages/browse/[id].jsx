@@ -5,9 +5,10 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 import dynamic from "next/dynamic";
-const YouTube = dynamic(() => import("react-player/youtube"), { ssr: false });
-const Vimeo = dynamic(() => import("react-player/Vimeo"), { ssr: false });
+const YouTube = dynamic(() => import("../../node_modules/react-player/youtube"), { ssr: false });
+const Vimeo = dynamic(() => import("../../node_modules/react-player/Vimeo"), { ssr: false });
 
+import casd from '../../node_modules/react-player'
 import Button from '@mui/material/Button';
 import LinkIcon from '@mui/icons-material/Link';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
