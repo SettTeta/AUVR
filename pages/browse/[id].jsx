@@ -26,13 +26,6 @@ const url = process.env.BRANCH_URL;
 // Step 2: This component is rendered from the server (Server-Side Rendering) SSR
 export default function Video({ video }) {
 
-    const [activeTab, setActiveTab] = useState("");
-
-    function handleTab(i) {
-        setActiveTab(i)
-    }
-
-
     if (!video) return (
         <div style={{marginTop: "10vh"}}>
             <p>Video not found</p>
