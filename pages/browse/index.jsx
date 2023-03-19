@@ -114,8 +114,8 @@ export default function BrowsePage({ videos }) {
 
       <div className="album py-5 bg-light">
 
-        {renderVideoRow("Leisure")}
         {renderVideoRow("Facilities")}
+        {renderVideoRow("Leisure")}
         {renderVideoRow("Monuments")}
 
 

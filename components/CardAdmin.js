@@ -40,6 +40,17 @@ function CardTemplate(props) {
                     </div>
                 </div>
 
+                <div className="col-md-2 align-self-center" style={{ minWidth: '50px', width:"20%"}}>
+                    <div className="card-body">
+                        <img className="rounded mx-auto d-block"
+                            src="https://www.iconpacks.net/icons/1/free-building-icon-1062-thumb.png"
+                            alt=""
+                            width="40"
+                            height="40" />
+                        <small className="text-muted">{type}</small>
+                    </div>
+                </div>
+
                 <div className="col-md-2 align-self-center" style={{ minWidth: '50px', width:"19%"}}>
                     <div className="card-body">
                         <Image className="rounded mx-auto d-block"
@@ -47,7 +58,7 @@ function CardTemplate(props) {
                             alt=""
                             width="40"
                             height="40" />
-                        <small className="text-muted">{duration} mins</small>
+                        <small className="text-muted">{duration}</small>
                     </div>
                 </div>
 
@@ -59,17 +70,6 @@ function CardTemplate(props) {
                             width="30"
                             height="30" />
                         <small className="text-muted">{dOU}</small>
-                    </div>
-                </div>
-
-                <div className="col-md-2 align-self-center" style={{ minWidth: '50px', width:"20%"}}>
-                    <div className="card-body">
-                        <img className="rounded mx-auto d-block"
-                            src="https://www.iconpacks.net/icons/1/free-building-icon-1062-thumb.png"
-                            alt=""
-                            width="40"
-                            height="40" />
-                        <small className="text-muted">{type}</small>
                     </div>
                 </div>
 
