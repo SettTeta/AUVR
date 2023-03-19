@@ -46,14 +46,14 @@ export default function Video({ video }) {
             <section className="jumbotron" style={{ marginTop: "10vh" }}>
                 <div className="container">
                     <br />
-                    <h1 className="jumbotron-heading" style={{ paddingBottom: "10px", justifyContent: "center", display: "flex", textDecoration: "underline" }}>{video.title}</h1>
+                    <h1 className="jumbotron-heading" style={{ paddingBottom: "10px", justifyContent: "center", display: "flex" }}>{video.title}</h1>
                 </div>
             </section>
 
             <div className="album py-5 bg-light">
                 <div>
                     <div className="row g-0">
-                        <div className="card mb-3 col-md-9" style={{ padding: "10px" }}>
+                        <div className="card mb-3" style={{ padding: "10px", width: "80vw" }}>
                             <div className="player-wrapper">
                                 <PlayerComponent
                                     url={video.link}
@@ -66,8 +66,28 @@ export default function Video({ video }) {
                             </div>
                         </div>
 
+                        <div style={{display:"flex", flexDirection:"row",justifyContent:"center"}}>
+                            <div>
+                                <div className="card mb-3" style={{display:"flex", flexDirection:"row", padding:"5px", marginRight:"5px"}}>
+                                    <h5 className="card-title"><LocationOnOutlinedIcon />:</h5>
+                                    <p className="card-text">{video.location}</p>
+                                </div>
+                            </div>
+                            <div >
+                                <div className="card mb-3" style={{display:"flex", flexDirection:"row", padding:"5px", marginRight:"5px"}}>
+                                    <h5 className="card-title"><TimelapseOutlinedIcon />:</h5>
+                                    <p className="card-text">{video.duration}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="card mb-3" style={{display:"flex", flexDirection:"row", padding:"5px"}}>
+                                    <h5 className="card-title"><CalendarMonthOutlinedIcon />:</h5>
+                                    <p className="card-text">{video.dateOfUpload}</p>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div className="card mb-3 col-md-3" style={{ marginLeft: "10px", padding: "5px", display: "flex", flexDirection: "column" }}>
+                        <div className="card mb-3" style={{ marginLeft: "10px", padding: "5px", display: "flex", flexDirection: "column", width: "90vw" }}>
                             <div >
                                 <div className="row g-0" style={{ justifyContent: "end" }}>
                                     <Button href={video.link} style={{ width: "5px" }}>
@@ -78,26 +98,8 @@ export default function Video({ video }) {
                                     </Button>
                                 </div>
                                 <div className="card-body">
-                                    <h5><DescriptionOutlinedIcon />:</h5>
+                                    <h5><DescriptionOutlinedIcon />  Description:</h5>
                                     <p className="card-text">{video.desc}</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="card-body">
-                                    <h5 className="card-title"><LocationOnOutlinedIcon />:</h5>
-                                    <p className="card-text">{video.location}</p>
-                                </div>
-                            </div>
-                            <div >
-                                <div className="card-body">
-                                    <h5 className="card-title"><TimelapseOutlinedIcon />:</h5>
-                                    <p className="card-text">{video.duration}</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="card-body">
-                                    <h5 className="card-title"><CalendarMonthOutlinedIcon />:</h5>
-                                    <p className="card-text">{video.dateOfUpload}</p>
                                 </div>
                             </div>
                         </div>

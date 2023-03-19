@@ -125,3 +125,16 @@
         width: 1rem;
     }
 }
+
+.footer-title{
+    color: white;
+}
+
+.text-white {
+    text-decoration: none;
+    font-size:small;
+}
+
+.text-white:hover {
+    text-decoration:underline;
+}

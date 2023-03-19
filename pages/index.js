@@ -30,9 +30,9 @@ function HomePage() {
 
                 <div className="content p-0 text-center bg-image" style={{height:"100vh", top:"0", position: "absolute", background: "rgba(0, 0, 0, 0.4)" , width: "100%" }}>
                     <div className="d-flex justify-content-center align-items-center h-100">
-                        <div className="text-white">
-                            <h1 className="mb-3">Welcome to AU VR - A VR Video Hosting Platform</h1>
-                            <h4 className="mb-3">Here is a collection of VR Videos that are tailored to your liking</h4>
+                        <div >
+                            <h1 className="mb-3" style={{color:"white", textShadow: "2px 2px 0px black"}}>Welcome to AU VR - A VR Video Hosting Platform</h1>
+                            <h4 className="mb-3" style={{color:"white", textShadow: "2px 2px 0px black"}}>Here is a collection of VR Videos that are tailored to your liking</h4>
                             <br></br>
                             <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Browse</Link>
                             <Link className="btn btn-outline-light btn-lg" href="/story" role="button" style={{marginLeft:"10px"}}>Immerse</Link>

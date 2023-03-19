@@ -9,9 +9,9 @@ const Footer = () => {
       <div className="container-fluid p-4" style={{marginTop:"100px"}}>
         <div className="row">
           <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 className="text-uppercase mb-4 text-white">UNDERGRADUATE</h5>
+            <h5 className="text-uppercase mb-4 footer-title">UNDERGRADUATE</h5>
 
-            <ul className="list-unstyled mb-4 text-white">
+            <ul className="list-unstyled mb-4">
               <li>
                 <a href="http://www.arch.au.edu/" className="text-white">
                   ARCHITECTURE AND DESIGN
@@ -66,7 +66,7 @@ const Footer = () => {
           </div>
 
           <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 className="text-uppercase mb-4 text-white">ABOUT US</h5>
+            <h5 className="text-uppercase mb-4 footer-title">ABOUT US</h5>
 
             <ul className="list-unstyled">
               <li>
@@ -125,7 +125,7 @@ const Footer = () => {
           </div>
 
           <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 className="text-uppercase mb-4 text-white">ADMISSIONS</h5>
+            <h5 className="text-uppercase mb-4 footer-title">ADMISSIONS</h5>
 
             <ul className="list-unstyled">
               <li>
@@ -153,7 +153,7 @@ const Footer = () => {
           </div>
 
           <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 className="text-uppercase mb-4 text-white">ONLINE LEARNING</h5>
+            <h5 className="text-uppercase mb-4 footer-title">ONLINE LEARNING</h5>
 
             <ul className="list-unstyled">
               <li>
@@ -170,7 +170,7 @@ const Footer = () => {
           </div>
 
           <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 className="text-uppercase mb-4 text-white">GRADUATE</h5>
+            <h5 className="text-uppercase mb-4 footer-title">GRADUATE</h5>
 
             <ul className="list-unstyled">
               <li>
@@ -187,7 +187,7 @@ const Footer = () => {
           </div>
 
           <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
-            <h5 className="text-uppercase mb-4 text-white">RESEARCH</h5>
+            <h5 className="text-uppercase mb-4 footer-title">RESEARCH</h5>
 
             <ul className="list-unstyled">
               <li>
