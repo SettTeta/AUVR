@@ -21,7 +21,7 @@ const Header = () => {
                         style={{background:"white", borderRadius:"15px", paddingRight:"1.5px"}}
                     />
 
-                    <a className="navbar-brand" style={{paddingLeft:"15px"}}>AU VR</a>
+                    <a className="navbar-brand" style={{paddingLeft:"15px", fontFamily:"Georgia"}}>AU VR</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

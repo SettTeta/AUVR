@@ -233,172 +233,190 @@ export default function AdminPage({ videos }) {
     }
 
     if (session) {
-    return (
-        <main role="main">
-            <div>
-                <Head>
-                    <title>VR Tours</title>
-                    <meta name="description" content="A VR Video Hosting platform" />
-                </Head>
-            </div>
+        return (
+            <main role="main">
+                <div>
+                    <Head>
+                        <title>VR Tours</title>
+                        <meta name="description" content="A VR Video Hosting platform" />
+                    </Head>
+                </div>
 
-            <Header />
+                <Header />
 
-            <div style={{ display: 'flex', height: 'calc(100vh - 7vh)', marginTop: '7vh' }}>
+                <div style={{ display: 'flex', height: 'calc(100vh - 7vh)', marginTop: '7vh' }}>
 
-                <div className='row g-0'>
-                    <div style={{ minWidth: '400px', width: "30%", padding: '20px', backgroundColor: '#f8f9fa', marginBottom: "10vh" }}>
-                        <section className="jumbotron text-center" >
-                            <div className="container">
-                                <br></br>
-                                <h1 className="jumbotron-heading">Admin Page</h1>
-                                <p className="lead text-muted">
-                                    Add, Modify, Update and Delete any Videos within this page.
-                                </p>
+                    <div className='row g-0'>
+                        <div style={{ minWidth: '400px', width: "30%", padding: '20px', backgroundColor: '#f8f9fa', marginBottom: "10vh" }}>
+                            <section className="jumbotron text-center" >
+                                <div className="container">
+                                    <br></br>
+                                    <h1 className="jumbotron-heading">Admin Page</h1>
+                                    <p className="lead text-muted">
+                                        Add, Modify, Update and Delete any Videos within this page.
+                                    </p>
 
-                            </div>
-                            <div>
-                                <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="25%" height="auto" data-bs-toggle="modal" data-bs-target="#addModal" style={{ justifyContent: 'center' }} />
-                            </div>
-                        </section>
+                                </div>
+                                <div>
+                                    <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="25%" height="auto" data-bs-toggle="modal" data-bs-target="#addModal" style={{ justifyContent: 'center' }} />
+                                </div>
+                            </section>
 
-                        <br />
-
-                        <div className="input-group rounded" style={{ padding: "5% 15% 0 15%" }}>
-                            <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-                            <span className="input-group-text border-0" id="search-addon">
-                                <i className="fas fa-search" onClick={clear}>Clear</i>
-                            </span>
                             <br />
+
+                            <div className="input-group rounded" style={{ padding: "5% 15% 0 15%" }}>
+                                <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                                <span className="input-group-text border-0" id="search-addon">
+                                    <i className="fas fa-search" onClick={clear}>Clear</i>
+                                </span>
+                                <br />
+                            </div>
+
+                            <div className='container' style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+                                <FormControl style={{ marginTop: "20px", paddingRight: "20px" }}>
+                                    <FormLabel id="demo-radio-buttons-group-label">Campus: </FormLabel>
+                                    <RadioGroup
+                                        aria-labelledby="demo-radio-buttons-group-label"
+                                        defaultValue="all"
+                                        name="radio-buttons-group"
+                                        value={location}
+                                        onChange={(e) => setLocation(e.target.value)}
+                                    >
+                                        <FormControlLabel value="Suvanabhumi" control={<Radio />} label="Suvanabhumi" />
+                                        <FormControlLabel value="Hua Mak" control={<Radio />} label="Hua Mak" />
+                                        <FormControlLabel value="all" control={<Radio />} label="All" />
+                                    </RadioGroup>
+                                </FormControl>
+
+                                <FormControl style={{ marginTop: "20px" }}>
+                                    <FormLabel id="demo-radio-buttons-group-label">Type: </FormLabel>
+                                    <RadioGroup
+                                        aria-labelledby="demo-radio-buttons-group-label"
+                                        defaultValue="all"
+                                        name="radio-buttons-group"
+                                        value={type}
+                                        onChange={(e) => setType(e.target.value)}
+                                    >
+                                        <FormControlLabel value="Leisure" control={<Radio />} label="Leisure" />
+                                        <FormControlLabel value="Facilities" control={<Radio />} label="Facilities" />
+                                        <FormControlLabel value="Monuments" control={<Radio />} label="Monuments" />
+                                        <FormControlLabel value="all" control={<Radio />} label="All" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </div>
+
                         </div>
 
-                        <div className='container' style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
-                            <FormControl style={{ marginTop: "20px", paddingRight: "20px" }}>
-                                <FormLabel id="demo-radio-buttons-group-label">Campus: </FormLabel>
-                                <RadioGroup
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="all"
-                                    name="radio-buttons-group"
-                                    value={location}
-                                    onChange={(e) => setLocation(e.target.value)}
-                                >
-                                    <FormControlLabel value="Suvanabhumi" control={<Radio />} label="Suvanabhumi" />
-                                    <FormControlLabel value="Hua Mak" control={<Radio />} label="Hua Mak" />
-                                    <FormControlLabel value="all" control={<Radio />} label="All" />
-                                </RadioGroup>
-                            </FormControl>
 
-                            <FormControl style={{ marginTop: "20px" }}>
-                                <FormLabel id="demo-radio-buttons-group-label">Type: </FormLabel>
-                                <RadioGroup
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="all"
-                                    name="radio-buttons-group"
-                                    value={type}
-                                    onChange={(e) => setType(e.target.value)}
-                                >
-                                    <FormControlLabel value="Leisure" control={<Radio />} label="Leisure" />
-                                    <FormControlLabel value="Facilities" control={<Radio />} label="Facilities" />
-                                    <FormControlLabel value="Monuments" control={<Radio />} label="Monuments" />
-                                    <FormControlLabel value="all" control={<Radio />} label="All" />
-                                </RadioGroup>
-                            </FormControl>
+                        <div style={{ minWidth: '400px', width: '70%', height: '93vh', overflowY: 'scroll', marginBottom: "10vh" }}>
+                            <div className="album py-5 bg-light">
+                                <div className="container" style={{ display: "flex", width: "100%" }}>
+                                    <div className="container-xxl content-row">
+                                        {renderVideoCards()}
+                                        {videosToShow < videos.length && (
+                                            <button className="btn btn-secondary" onClick={loadMoreVideos}>Load more</button>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
 
+                </div>
 
-                    <div style={{ minWidth: '400px', width: '70%', height: '93vh', overflowY: 'scroll', marginBottom: "10vh" }}>
-                        <div className="album py-5 bg-light">
-                            <div className="container" style={{ display: "flex", width: "100%" }}>
-                                <div className="container-xxl content-row">
-                                    {renderVideoCards()}
-                                    {videosToShow < videos.length && (
-                                        <button className="btn btn-secondary" onClick={loadMoreVideos}>Load more</button>
-                                    )}
+
+
+                <div className="modal fade" id="addModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Add Video</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="container-fluid">
+                                    <form onSubmit={handleSubmit(addVideo)}>
+                                        <div className="row d-flex justify-content-start">
+                                            <div className="col-md-7 ">
+                                                <label htmlFor="title" className="col-form-label">Title:</label>
+                                                <input type="text" className="form-control" id="title" {...register("title", { required: false })} placeholder="Video Title" />
+                                            </div>
+                                            <div className="col-md-5">
+                                                <label htmlFor="link" className="col-form-label">URL Link:</label>
+                                                <input className="form-control" id="link" {...register("link", { required: false })} placeholder="URL of Video"></input>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <label htmlFor="location" className="col-form-label">Location:</label>
+                                                <select className="form-select" id="location" {...register("location", { required: false })}>
+                                                    <option value="">Select Campus</option>
+                                                    <option value="Suvanabhumi">Suvanabhumi</option>
+                                                    <option value="Hua Mak">Hua Mak</option>
+                                                </select>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <label htmlFor="type" className="col-form-label">Location:</label>
+                                                <select className="form-select" id="type" {...register("type", { required: false })}>
+                                                    <option value="">Select Building Type</option>
+                                                    <option value="Leisure">Leisure</option>
+                                                    <option value="Facilities">Facilities</option>
+                                                    <option value="Monuments">Monuments</option>
+                                                </select>
+                                            </div>
+                                            <div className="col-md-4">
+                                                <label htmlFor="dateOfUpload" className="col-form-label">Date of Upload:</label>
+                                                <input className="form-control" type="date" id="dateOfUpload" {...register("dateOfUpload", { required: false })} />
+                                            </div>
+                                            <div className="col-md-4">
+                                                <label htmlFor="duration" className="col-form-label">Duration:</label>
+                                                <input className="form-control" type="time" id="duration" {...register("duration", { required: false })} />
+                                            </div>
+                                            <div className="col-md-4">
+                                                <label htmlFor="player" className="col-form-label">Player:</label>
+                                                <br />
+                                                <div style={{display:"flex", paddingTop:"7px"}}>
+                                                    <div className="form-check">
+                                                        <input className="form-check-input" type="radio" name="playerRadio" id="youtubeRadio" value="youtube" {...register("player", { required: false })}/>
+                                                        <label className="form-check-label" htmlFor="youtubeRadio">
+                                                            Youtube
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-check" style={{paddingLeft:"3rem"}}>
+                                                        <input className="form-check-input" type="radio" name="playerRadio" id="vimeoRadio" value="vimeo" {...register("player", { required: false })}/>
+                                                        <label className="form-check-label" htmlFor="vimeoRadio">
+                                                            Vimeo
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="mb-3">
+                                            <label htmlFor="desc" className="col-form-label">Description:</label>
+                                            <input className="form-control" type="text" id="desc" {...register("desc", { required: false })} placeholder="Description of Video"></input>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="thumbnail" className="col-form-label">Thumbnail:</label>
+                                            <input className="form-control" type="text" id="thumbnail" {...register("thumbnail", { required: false })}></input>
+                                            {/* <input className="form-control" type="file" id="thumbnail" {...register("thumbnail", { required: false })}></input> */}
+                                        </div>
+
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" className="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
-            </div>
-
-
-
-            <div className="modal fade" id="addModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-lg">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Add Video</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="container-fluid">
-                                <form onSubmit={handleSubmit(addVideo)}>
-                                    <div className="row d-flex justify-content-start">
-                                        <div className="col-md-7 ">
-                                            <label htmlFor="title" className="col-form-label">Title:</label>
-                                            <input type="text" className="form-control" id="title" {...register("title", { required: false })} placeholder="Video Title" />
-                                        </div>
-                                        <div className="col-md-5">
-                                            <label htmlFor="link" className="col-form-label">URL Link:</label>
-                                            <input className="form-control" id="link" {...register("link", { required: false })} placeholder="URL of Video"></input>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <label htmlFor="location" className="col-form-label">Location:</label>
-                                            <select className="form-select" id="location" {...register("location", { required: false })}>
-                                                <option value="">Select Campus</option>
-                                                <option value="Suvanabhumi">Suvanabhumi</option>
-                                                <option value="Hua Mak">Hua Mak</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <label htmlFor="type" className="col-form-label">Location:</label>
-                                            <select className="form-select" id="type" {...register("type", { required: false })}>
-                                                <option value="">Select Building Type</option>
-                                                <option value="Leisure">Leisure</option>
-                                                <option value="Facilities">Facilities</option>
-                                                <option value="Monuments">Monuments</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <label htmlFor="dateOfUpload" className="col-form-label">Date of Upload:</label>
-                                            <input className="form-control" type="date" id="dateOfUpload" {...register("dateOfUpload", { required: false })} />
-                                        </div>
-                                        <div className="col-md-4">
-                                            <label htmlFor="duration" className="col-form-label">Duration:</label>
-                                            <input className="form-control" type="time" id="duration" {...register("duration", { required: false })} />
-                                        </div>
-                                    </div>
-
-                                    <div className="mb-3">
-                                        <label htmlFor="desc" className="col-form-label">Description:</label>
-                                        <input className="form-control" type="text" id="desc" {...register("desc", { required: false })} placeholder="Description of Video"></input>
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="thumbnail" className="col-form-label">Thumbnail:</label>
-                                        <input className="form-control" type="text" id="thumbnail" {...register("thumbnail", { required: false })}></input>
-                                        {/* <input className="form-control" type="file" id="thumbnail" {...register("thumbnail", { required: false })}></input> */}
-                                    </div>
-
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" className="btn btn-primary">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <Footer />
-        </main>
-    )
-    } 
-    return <p>Access Denied</p>
+                <Footer />
+            </main>
+        )
+    }
+    return (<><p>Access Denied</p> <Footer /></>)
 
 }
 
