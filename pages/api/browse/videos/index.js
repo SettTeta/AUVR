@@ -36,6 +36,7 @@ const videoSchema = new Schema(
         location: String,
         dateOfUpload: String,
         player: String,
+        urlID: String,
     },
     { strict: false }
 );
