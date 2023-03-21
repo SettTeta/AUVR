@@ -127,6 +127,14 @@ export default function AdminPage({ videos, categories }) {
                     onCancel={() => cancelEditing()}
                     onDel={() => deleteVideo(video._id)}
                     thTitle={video.title}
+                    urlID={
+                        <input
+                            type="text"
+                            defaultValue={editedVideo.dateOfUpload}
+                            onChange={(e) =>
+                                setEditedVideo({ ...editedVideo, dateOfUpload: e.target.value })
+                            }
+                        />}
                 />
             );
         } else {
@@ -143,6 +151,8 @@ export default function AdminPage({ videos, categories }) {
                     location={video.location}
                     dOU={video.dateOfUpload}
                     onEdit={() => editVideo(video)}
+                    urlID={video.urlID}
+                    player={video.player}
                 />
             );
         }

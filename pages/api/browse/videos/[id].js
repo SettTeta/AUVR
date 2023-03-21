@@ -39,6 +39,7 @@ const videoSchema = new Schema({
     location: String,
     dateOfUpload: String,
     player: String,
+    urlID: String,
 });
 
 console.log("Mongoose Models", models)

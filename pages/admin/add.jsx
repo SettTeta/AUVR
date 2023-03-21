@@ -25,6 +25,9 @@ export default function AdminPage({ categories }) {
     const [data, setData] = useState("");
     const [activeStep, setActiveStep] = useState(0);
 
+    const [byID, setByID] = useState(false);
+
+
 
 
     const addVideo = async (data) => {
@@ -95,7 +98,7 @@ export default function AdminPage({ categories }) {
                                         <div className="row d-flex justify-content-start">
 
                                             <div className="col-md-4">
-                                                <label htmlFor="player" className="col-form-label">Player:</label>
+                                                <label htmlFor="player" className="col-form-label">Choose Video Player:</label>
                                                 <br />
                                                 <div style={{ display: "flex", paddingTop: "7px" }}>
                                                     <div className="form-check">

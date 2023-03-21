@@ -56,7 +56,7 @@ export default function Video({ video }) {
                         <div className="card mb-3" style={{ padding: "10px", width: "80vw" }}>
                             <div className="player-wrapper">
                                 <PlayerComponent
-                                    url={video.link}
+                                    src={(video.player === "vimeo") ? `https://vimeo.com/${video.urlID}`: `https://www.youtube.com/embed/${video.urlID}`}
                                     className="react-player"
                                     playing
                                     width="100%"
@@ -112,11 +112,9 @@ export default function Video({ video }) {
 }
 
 export async function getServerSideProps({ params }) {
-    console.debug("params", params);
     const res = await fetch(
         `https://auvr.vercel.app/api/browse/videos/${params.id}`
     );
     const video = await res.json();
-    console.debug("blog 1", video);
     return { props: { video } };
 }

@@ -48,7 +48,8 @@ export default function BrowsePage({ videos }) {
                 duration={src.duration}
                 location={src.location}
                 dOU={src.dateOfUpload}
-
+                player={src.player}
+                urlID={src.urlID}
               />
             </div>
           ))}
