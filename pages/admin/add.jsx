@@ -117,7 +117,7 @@ export default function AdminPage({ categories }) {
                                             </div>
 
                                             <div className="col-md-5">
-                                                <label htmlFor="link" className="col-form-label">URL Link:</label>
+                                                <label htmlFor="link" className="col-form-label">Choose:</label>
                                                 <input className="form-control" id="link" {...register("link", { required: false })} placeholder="URL of Video"></input>
                                             </div>
 

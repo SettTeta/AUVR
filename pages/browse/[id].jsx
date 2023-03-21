@@ -56,7 +56,7 @@ export default function Video({ video }) {
                         <div className="card mb-3" style={{ padding: "10px", width: "80vw" }}>
                             <div className="player-wrapper">
                                 <PlayerComponent
-                                    src={(video.player === "vimeo") ? `https://vimeo.com/${video.urlID}`: `https://www.youtube.com/embed/${video.urlID}`}
+                                    url={(video.player === "vimeo") ? `https://vimeo.com/${video.urlID}`: `https://www.youtube.com/embed/${video.urlID}`}
                                     className="react-player"
                                     playing
                                     width="100%"
