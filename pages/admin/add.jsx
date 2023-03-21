@@ -222,10 +222,7 @@ export default function AdminPage({ categories }) {
 }
 
 export async function getServerSideProps() {
-    const vid = await fetch(`https://auvr.vercel.app/api/browse/videos`)
-    const videos = await vid.json()
-
-    const cat = await fetch(`https://auvr-git-create-new-cat-settteta.vercel.app/api/browse/categories`)
+ const cat = await fetch(`https://auvr.vercel.app/api/browse/categories`)
     const categories = await cat.json()
     return { props: { videos, categories } }
 }
