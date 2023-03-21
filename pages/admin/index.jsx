@@ -6,7 +6,7 @@ import EditCard from '../../components/editCard'
 import Head from 'next/head'
 import { useState } from "react";
 import { useSession } from "next-auth/react"
-
+import Link from 'next/link'
 
 // import { FormControl, FormLabel, RadioGroup, FormControlLabel } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
@@ -240,9 +240,9 @@ export default function AdminPage({ videos, categories }) {
 
                             </div>
                             <div>
-                                <a href="/admin/add">
+                                <Link href="/admin/add">
                                     <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="25%" height="auto" style={{ justifyContent: 'center' }} />
-                                </a>
+                                </Link>
                             </div>
                         </section>
 
