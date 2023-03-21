@@ -9,13 +9,10 @@ export default async function handler(req, res) {
 
 
     if (req.method === 'GET') {
-        const docs = await Video.find()
+        const docs = await Category.find()
         res.status(200).json(docs)
-        console.debug('connection', connectionString)
     } else if (req.method === 'POST') {
-        // console.log(typeof(req.body))
-        console.log("POST", req.body)
-        const doc = await Video.create(req.body)
+        const doc = await Category.create(req.body)
         res.status(201).json(doc)
     } else {
         res.setHeader('Allow', ['GET', 'POST']);
@@ -25,21 +22,11 @@ export default async function handler(req, res) {
 
 
 
-const videoSchema = new Schema(
+const categorySchema = new Schema(
     {
-        title: String,
-        link: String,
-        desc: String,
-        type: String,
-        duration: String,
-        thumbnail: String,
-        location: String,
-        dateOfUpload: String,
-        player: String,
-        urlID: String,
+        name: String,
     },
     { strict: false }
 );
 
-console.log("Mongoose Models", models)
-const Video = models?.video || model('video', videoSchema);
+const Category = models?.category || model('categories', categorySchema);
