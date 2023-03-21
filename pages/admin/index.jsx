@@ -7,6 +7,8 @@ import Head from 'next/head'
 import { useState } from "react";
 import { useSession } from "next-auth/react"
 import Link from 'next/link'
+import { useForm } from "react-hook-form";
+
 
 // import { FormControl, FormLabel, RadioGroup, FormControlLabel } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
@@ -19,6 +21,26 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
+
+import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined';
+import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
 
 export default function AdminPage({ videos, categories }) {
 
@@ -36,10 +58,33 @@ export default function AdminPage({ videos, categories }) {
     const [location, setLocation] = useState("all");
     const [type, setType] = useState("all");
 
+    const { register, handleSubmit } = useForm();
     const [data, setData] = useState("");
 
     const [editedVideo, setEditedVideo] = useState(null);
 
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const addCategory = async (data) => {
+        const response = await fetch('/api/browse/categories', {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        if (result.error) {
+            alert("Error: " + result.error)
+        }
+        setData(JSON.stringify(data))
+        window.location.reload(true);
+    }
 
     function loadMoreVideos() {
         setVideosToShow(videosToShow + 3);
@@ -249,10 +294,30 @@ export default function AdminPage({ videos, categories }) {
                                 </p>
 
                             </div>
-                            <div>
-                                <Link href="/admin/add">
-                                    <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="25%" height="auto" style={{ justifyContent: 'center' }} />
+                            <div style={{ justifyContent: 'center' }}>
+                                <Link href="/admin/add" style={{ paddingRight: "15px", color: "black" }}>
+                                    {/* <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="20%" height="auto" style={{ justifyContent: 'center' }} /> */}
+                                    <VideoCallOutlinedIcon className='hover' style={{ width: "18%", height: "18%", paddingRight: "15px" }} />
                                 </Link>
+
+                                <AddLocationAltOutlinedIcon className='hover' style={{ width: "15%", height: "15%", paddingLeft: "15px" }} onClick={handleOpen} />
+                                <Modal
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style}>
+                                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                                            Add a Category
+                                        </Typography>
+                                        <form onSubmit={handleSubmit(addCategory)}>
+                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...register("name", { required: true })} />
+                                            <Button variant="text" type='submit'>Save</Button>
+                                        </form>
+
+                                    </Box>
+                                </Modal>
                             </div>
                         </section>
 

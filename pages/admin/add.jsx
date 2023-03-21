@@ -66,7 +66,7 @@ export default function AdminPage({ categories }) {
             alert("Error: " + result.error)
         }
         setData(JSON.stringify(data))
-        window.location.reload(true);
+        window.location.href = "/admin"
     }
 
     const handleNext = () => {
