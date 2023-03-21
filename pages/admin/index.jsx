@@ -17,11 +17,13 @@ import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
+//video and category view
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 
+//for adding categories
 import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined';
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import Box from '@mui/material/Box';
@@ -29,6 +31,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+
+//for dropbox
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 const style = {
     position: 'absolute',
@@ -44,9 +51,10 @@ const style = {
 
 export default function AdminPage({ videos, categories }) {
 
-    const [value, setValue] = React.useState(0);
+    //tabs
+    const [value, setValue] = useState(0);
 
-    const handleChange = (event, newValue) => {
+    const handleTabChange = (event, newValue) => {
         setValue(newValue)
     };
 
@@ -56,7 +64,7 @@ export default function AdminPage({ videos, categories }) {
     const [videosToShow, setVideosToShow] = useState(6);
     const [searchValue, setSearchValue] = useState("");
     const [location, setLocation] = useState("all");
-    const [type, setType] = useState("all");
+    const [selectedCat, setSelectedCat] = useState("all");
 
     const { register, handleSubmit } = useForm();
     const [data, setData] = useState("");
@@ -222,7 +230,7 @@ export default function AdminPage({ videos, categories }) {
         const videosToDisplay = videos
             .filter(video => {
                 let videoLocation = location === "all" ? true : video.location === location;
-                let videoType = type === "all" ? true : video.type === type;
+                let videoType = selectedCat === "all" ? true : video.type === selectedCat;
                 return video.title.toLowerCase().includes(searchValue.toLowerCase()) && videoLocation && videoType;
             })
             .slice(0, videosToShow);
@@ -233,7 +241,7 @@ export default function AdminPage({ videos, categories }) {
     const clear = () => {
         setSearchValue("");
         setLocation("all");
-        setType("all");
+        setSelectedCat("all");
     }
 
     function deleteVideo(id) {
@@ -347,28 +355,31 @@ export default function AdminPage({ videos, categories }) {
                                 </RadioGroup>
                             </FormControl>
 
-                            <FormControl style={{ marginTop: "20px" }}>
-                                <FormLabel id="demo-radio-buttons-group-label">Type: </FormLabel>
-                                <RadioGroup
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue="all"
-                                    name="radio-buttons-group"
-                                    value={type}
-                                    onChange={(e) => setType(e.target.value)}
-                                >
-                                    {categories.map(cat => (
-                                        <FormControlLabel key={cat._id} value={cat.name} control={<Radio />} label={cat.name} />
-                                    ))}
-                                    <FormControlLabel value="all" control={<Radio />} label="All" />
-                                </RadioGroup>
-                            </FormControl>
+                            <Box sx={{ minWidth: 120, paddingTop:2 }}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        defaultValue='all'
+                                        value={selectedCat}
+                                        label="Age"
+                                        onChange={(e) => setSelectedCat(e.target.value)}
+                                    >
+                                        <MenuItem value="all">All</MenuItem>
+                                        {categories.map(cat => (
+                                            <MenuItem key={cat._id} value={cat.name}>{cat.name}</MenuItem>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                            </Box>
                         </div>
                     </div>
 
 
                     <div style={{ minWidth: '400px', width: '70vw' }}>
                         <div className="album py-5 bg-light">
-                            <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
+                            <Tabs value={value} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
                                 <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
                                 <Tab icon={<InfoOutlinedIcon />} label="Categories" />
                             </Tabs>
