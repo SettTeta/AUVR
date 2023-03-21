@@ -5,11 +5,9 @@ import VideoCard from '../../components/CardAdmin'
 import EditCard from '../../components/editCard'
 import Head from 'next/head'
 import { useState } from "react";
-import Link from 'next/link'
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react"
 
-import Banner from '../../public/banner3.webp'
 
 // import { FormControl, FormLabel, RadioGroup, FormControlLabel } from '@mui/material'
 import FormControl from '@mui/material/FormControl'
@@ -149,10 +147,10 @@ export default function AdminPage({ videos }) {
     }
 
 
-    function clear() {
-        setSearchValue("");
-        setVideosToShow(6);
-    }
+    // function clear() {
+    //     setSearchValue("");
+    //     setVideosToShow(6);
+    // }
 
 
     function renderVideoCards() {
@@ -167,32 +165,27 @@ export default function AdminPage({ videos }) {
     }
 
 
-    // const clear = () => {
-    //     setSearchValue("");
-    //     setLocation("all");
-    //     setType("all");
-    // }
+    const clear = () => {
+        setSearchValue("");
+        setLocation("all");
+        setType("all");
+    }
 
     const addVideo = async (data) => {
         const response = await fetch('/api/browse/videos', {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            mode: "cors", // no-cors, *cors, same-origin
-            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-            // credentials: "same-origin", // include, *same-origin, omit
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache", 
             headers: {
                 "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            // redirect: "follow", // manual, *follow, error
-            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            // serialisation
-            body: JSON.stringify(data), // body data type must match "Content-Type" header
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(data),
         });
-        const result = await response.json();   // deserialise
+        const result = await response.json();
         if (result.error) {
             alert("Error: " + result.error)
         }
-        console.log(result)
         setData(JSON.stringify(data))
         window.location.reload(true);
     }
@@ -212,20 +205,16 @@ export default function AdminPage({ videos }) {
 
     const saveVideo = async () => {
         const response = await fetch(`/api/browse/videos/${editedVideo._id}`, {
-            method: "PUT", // *GET, POST, PUT, DELETE, etc.
-            mode: "cors", // no-cors, *cors, same-origin
-            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-            // credentials: "same-origin", // include, *same-origin, omit
+            method: "PUT",
+            mode: "cors",
+            cache: "no-cache",
             headers: {
                 "Content-Type": "application/json",
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            // redirect: "follow", // manual, *follow, error
-            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            // serialisation
-            body: JSON.stringify(editedVideo), // body data type must match "Content-Type" header
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(editedVideo),
         });
-        const result = await response.json();   // deserialise
+        const result = await response.json();
         if (result.error) {
             alert("Error: " + result.error)
         }
@@ -234,7 +223,7 @@ export default function AdminPage({ videos }) {
         window.location.reload(true);
     }
 
-    if (session) {
+    // if (session) {
         return (
             <main role="main">
                 <div>
@@ -246,10 +235,10 @@ export default function AdminPage({ videos }) {
 
                 <Header />
 
-                <div style={{ display: 'flex', height: '90vh', marginTop: '7vh', marginBottom:"55vh" }}>
+                <div style={{ display: 'flex', height: '90vh', marginTop: '7vh', marginBottom: "55vh" }}>
 
                     <div className='row g-0'>
-                        <div style={{ minWidth: '400px', width: "30%", padding: '20px', backgroundColor: '#f8f9fa', border:"solid 1px" }}>
+                        <div style={{ minWidth: '400px', width: "30vw", padding: '20px', backgroundColor: '#f8f9fa', border: "solid 1px" }}>
                             <section className="jumbotron text-center" >
                                 <div className="container">
                                     <br></br>
@@ -299,19 +288,17 @@ export default function AdminPage({ videos }) {
                                         value={type}
                                         onChange={(e) => setType(e.target.value)}
                                     >
-                                        <FormControlLabel value="Leisure" control={<Radio />} label="Leisure" />
-                                        <FormControlLabel value="Facilities" control={<Radio />} label="Facilities" />
-                                        <FormControlLabel value="Monuments" control={<Radio />} label="Monuments" />
+                                        <FormControlLabel value="Indoor" control={<Radio />} label="Indoor" />
+                                        <FormControlLabel value="Outdoor" control={<Radio />} label="Outdoor" />
                                         <FormControlLabel value="all" control={<Radio />} label="All" />
                                     </RadioGroup>
                                 </FormControl>
                             </div>
-
                         </div>
 
 
-                        <div style={{ minWidth: '400px', width: '70%', height: '93vh', overflowY: 'scroll' }}>
-                            <div className="album py-5 bg-light">
+                        <div style={{ minWidth: '400px', width: '70vw', overflowY: 'scroll'}}>
+                            <div className="album py-5 bg-light" style={{height: '93vh'}}>
                                 <div className="container" style={{ display: "flex", width: "100%" }}>
                                     <div className="container-xxl content-row">
                                         {renderVideoCards()}
@@ -322,12 +309,8 @@ export default function AdminPage({ videos }) {
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-
-
 
                 <div className="modal fade" id="addModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-lg">
@@ -357,12 +340,11 @@ export default function AdminPage({ videos }) {
                                                 </select>
                                             </div>
                                             <div className="col-md-6">
-                                                <label htmlFor="type" className="col-form-label">Location:</label>
+                                                <label htmlFor="type" className="col-form-label">Type:</label>
                                                 <select className="form-select" id="type" {...register("type", { required: false })}>
                                                     <option value="">Select Building Type</option>
-                                                    <option value="Leisure">Leisure</option>
-                                                    <option value="Facilities">Facilities</option>
-                                                    <option value="Monuments">Monuments</option>
+                                                    <option value="Indoor">Indoor</option>
+                                                    <option value="Outdoor">Outdoor</option>
                                                 </select>
                                             </div>
                                             <div className="col-md-4">
@@ -376,15 +358,15 @@ export default function AdminPage({ videos }) {
                                             <div className="col-md-4">
                                                 <label htmlFor="player" className="col-form-label">Player:</label>
                                                 <br />
-                                                <div style={{display:"flex", paddingTop:"7px"}}>
+                                                <div style={{ display: "flex", paddingTop: "7px" }}>
                                                     <div className="form-check">
-                                                        <input className="form-check-input" type="radio" name="playerRadio" id="youtubeRadio" value="youtube" {...register("player", { required: false })}/>
+                                                        <input className="form-check-input" type="radio" name="playerRadio" id="youtubeRadio" value="youtube" {...register("player", { required: false })} />
                                                         <label className="form-check-label" htmlFor="youtubeRadio">
                                                             Youtube
                                                         </label>
                                                     </div>
-                                                    <div className="form-check" style={{paddingLeft:"3rem"}}>
-                                                        <input className="form-check-input" type="radio" name="playerRadio" id="vimeoRadio" value="vimeo" {...register("player", { required: false })}/>
+                                                    <div className="form-check" style={{ paddingLeft: "3rem" }}>
+                                                        <input className="form-check-input" type="radio" name="playerRadio" id="vimeoRadio" value="vimeo" {...register("player", { required: false })} />
                                                         <label className="form-check-label" htmlFor="vimeoRadio">
                                                             Vimeo
                                                         </label>
@@ -417,7 +399,7 @@ export default function AdminPage({ videos }) {
                 <Footer />
             </main>
         )
-    }
+    // }
     return (<><p>Access Denied</p> <Footer /></>)
 
 }
@@ -425,7 +407,6 @@ export default function AdminPage({ videos }) {
 export async function getServerSideProps() {
     const res = await fetch(`https://auvr.vercel.app/api/browse/videos`)
     const videos = await res.json()
-    console.debug('blog 1', videos)
     return { props: { videos } }
 }
 
