@@ -288,9 +288,9 @@ export default function AdminPage({ videos, categories }) {
                                         value={type}
                                         onChange={(e) => setType(e.target.value)}
                                     >
-                                        <FormControlLabel value="Indoor" control={<Radio />} label="Indoor" />
-                                        <FormControlLabel value="Outdoor" control={<Radio />} label="Outdoor" />
-                                        <FormControlLabel value="all" control={<Radio />} label="All" />
+                                        {categories.map(cat => (
+                                            <FormControlLabel value={cat.name} control={<Radio />} label={cat.name} />
+                                        ))}
                                     </RadioGroup>
                                 </FormControl>
                             </div>
@@ -346,8 +346,6 @@ export default function AdminPage({ videos, categories }) {
                                                     {categories.map(cat => (
                                                         <option value={cat.name}>{cat.name}</option>
                                                     ))}
-                                                    <option value="Indoor">Indoor</option>
-                                                    <option value="Outdoor">Outdoor</option>
                                                 </select>
                                             </div>
                                             <div className="col-md-4">
@@ -411,7 +409,7 @@ export async function getServerSideProps() {
     const vid = await fetch(`https://auvr.vercel.app/api/browse/videos`)
     const videos = await vid.json()
 
-    const cat = await fetch(`https://auvr.vercel.app/api/browse/categories`)
+    const cat = await fetch(`https://auvr-git-create-new-cat-settteta.vercel.app/api/browse/categories`)
     const categories = await cat.json()
     return { props: { videos, categories } }
 }
