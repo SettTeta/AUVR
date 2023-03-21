@@ -16,7 +16,7 @@ import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
-export default function AdminPage({ videos }) {
+export default function AdminPage({ videos, categories }) {
 
     const { data: session } = useSession()
 
@@ -343,6 +343,9 @@ export default function AdminPage({ videos }) {
                                                 <label htmlFor="type" className="col-form-label">Type:</label>
                                                 <select className="form-select" id="type" {...register("type", { required: false })}>
                                                     <option value="">Select Building Type</option>
+                                                    {categories.map(cat => (
+                                                        <option value={cat.name}>{cat.name}</option>
+                                                    ))}
                                                     <option value="Indoor">Indoor</option>
                                                     <option value="Outdoor">Outdoor</option>
                                                 </select>
@@ -405,8 +408,11 @@ export default function AdminPage({ videos }) {
 }
 
 export async function getServerSideProps() {
-    const res = await fetch(`https://auvr.vercel.app/api/browse/videos`)
-    const videos = await res.json()
-    return { props: { videos } }
+    const vid = await fetch(`https://auvr.vercel.app/api/browse/videos`)
+    const videos = await vid.json()
+
+    const cat = await fetch(`https://auvr.vercel.app/api/browse/categories`)
+    const categories = await cat.json()
+    return { props: { videos, categories } }
 }
 
