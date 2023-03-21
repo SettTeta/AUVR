@@ -1,12 +1,4 @@
 import * as React from "react"
-import Image from "next/image"
-import Link from "next/link"
-
-import locationIcon from '../public/locationIcon.jpg';
-import durationIcon from '../public/durationIcon2.jpg';
-import calenderIcon from '../public/calenderIcon.jpg';
-
-import Button from '@mui/material/Button';
 import SaveAltIcon from '../node_modules/@mui/icons-material/SaveAltSharp';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import CloseIcon from '@mui/icons-material/Close';
