@@ -138,7 +138,7 @@ export default function AdminPage({ categories }) {
 
                                         <div className="col-md-5">
                                             <label htmlFor="link" className="col-form-label">Insert URL ID: <HelpOutlineOutlinedIcon className='hover' onClick={handleOpen} /></label>
-                                            <input className="form-control" id="link" {...register("link", { required: false })} placeholder="URL ID"></input>
+                                            <input className="form-control" id="link" {...register("urlID", { required: false })} placeholder="URL ID"></input>
                                         </div>
 
                                         <Modal

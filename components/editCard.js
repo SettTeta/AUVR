@@ -4,7 +4,7 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import CloseIcon from '@mui/icons-material/Close';
 
 function CardTemplate(props) {
-    const { title, link, desc, thumbnail, onView, duration, location, dOU, onDel, onSave, onCancel, type, thTitle } = props
+    const { title, link, desc, thumbnail, onView, duration, location, dOU, onDel, onSave, onCancel, type, thTitle, urlID } = props
     
     return (
         <div className="card mb-3">
@@ -33,10 +33,8 @@ function CardTemplate(props) {
                         <p>{desc}</p>
                         <h5>Type:</h5>
                         <p>{type}</p>
-                        <h5>Link:</h5>
-                        <p>{link}</p>
-                        <h5>Thumbnail:</h5>
-                        <p>{thumbnail}</p>
+                        <h5>URL ID:</h5>
+                        <p>{urlID}</p>
                         <h5>Location:</h5>
                         <p>{location}</p>
                         <h5>Duration:</h5>
