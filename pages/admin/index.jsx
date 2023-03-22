@@ -485,7 +485,7 @@ export default function AdminPage({ videos, categories }) {
                                     <Tab icon={<InfoOutlinedIcon />} label="Categories" />
                                 </Tabs>
                                 {tabValue === 1 && (
-                                    <Fab color="primary" aria-label="add" onClick={handleOpenModAdd}>
+                                    <Fab color="primary" aria-label="add" onClick={handleOpenModAdd} style={{height:"40px", width:"40px"}}>
                                         <AddIcon />
                                     </Fab>
                                 )}
