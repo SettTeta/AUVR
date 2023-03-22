@@ -22,11 +22,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 //for adding categories
-import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined';
-import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
-import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -58,10 +57,10 @@ const style = {
 export default function AdminPage({ videos, categories }) {
 
     //tabs
-    const [value, setValue] = useState(0);
+    const [tabValue, setTabValue] = useState(0);
 
     const handleTabChange = (event, newValue) => {
-        setValue(newValue)
+        setTabValue(newValue)
     };
 
 
@@ -480,14 +479,18 @@ export default function AdminPage({ videos, categories }) {
 
                     <div style={{ minWidth: '400px', width: '70vw' }}>
                         <div className="album py-5 bg-light">
-                            <Tabs value={value} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
-                                <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
-                                <Tab icon={<InfoOutlinedIcon />} label="Categories" />
-                                {value === 1 && (
-                                    <AddLocationAltOutlinedIcon className='hover' style={{ width: "5%", height: "5%", paddingLeft: "15px" }} onClick={handleOpenModAdd} />
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight:"5%", paddingLeft:"5%" }}>
+                                <Tabs value={tabValue} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
+                                    <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
+                                    <Tab icon={<InfoOutlinedIcon />} label="Categories" />
+                                </Tabs>
+                                {tabValue === 1 && (
+                                    <Fab color="primary" aria-label="add" onClick={handleOpenModAdd}>
+                                        <AddIcon />
+                                    </Fab>
                                 )}
-                            </Tabs>
-                            {value === 0 && (
+                            </div>
+                            {tabValue === 0 && (
                                 <div style={{ height: '93vh', overflowY: 'scroll' }}>
                                     <div className="container" style={{ display: "flex", width: "100%" }}>
                                         <div className="container-xxl content-row">
@@ -500,7 +503,7 @@ export default function AdminPage({ videos, categories }) {
                                 </div>
                             )}
 
-                            {value === 1 && (
+                            {tabValue === 1 && (
                                 <div>
                                     <DataGrid
                                         rows={dataCat}
