@@ -435,7 +435,7 @@ export default function AdminPage({ videos, categories }) {
                         <br />
 
                         <div className="input-group rounded justify-content-center" >
-                            <TextField type="search" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                            <TextField type="search" aria-label="Search" aria-describedby="search-addon" label="Search" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
                             <Button className="fas fa-search" onClick={clear}><BackspaceOutlinedIcon /></Button>
                         </div>
 
