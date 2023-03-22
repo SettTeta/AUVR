@@ -122,6 +122,9 @@ export default function AdminPage({ videos, categories }) {
                     title={
                         <TextField
                             type="text"
+                            fullWidth
+                            multiline
+                            variant='standard'
                             defaultValue={editedVideo.title}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, title: e.target.value })
@@ -129,9 +132,8 @@ export default function AdminPage({ videos, categories }) {
                         />
                     }
                     type={
-                        <Box sx={{ minWidth: 120, paddingTop: 2 }}>
-                            <FormControl variant='filled' fullWidth>
-                                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                        <Box sx={{ minWidth: 120, paddingTop: 2 }} >
+                            <FormControl variant='standard' fullWidth>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
@@ -149,7 +151,12 @@ export default function AdminPage({ videos, categories }) {
                     }
                     desc={
                         <TextField
+                            id="standard-multiline-static"
+                            fullWidth
+                            maxRows={2}
+                            multiline
                             type="text"
+                            variant='standard'
                             defaultValue={editedVideo.desc}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, desc: e.target.value })
@@ -158,7 +165,9 @@ export default function AdminPage({ videos, categories }) {
                     }
                     duration={
                         <TextField
+                            fullWidth
                             type="time"
+                            variant='standard'
                             defaultValue={editedVideo.duration}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, duration: e.target.value })
@@ -166,17 +175,24 @@ export default function AdminPage({ videos, categories }) {
                         />
                     }
                     location={
-                        <TextField
-                            type="text"
-                            defaultValue={editedVideo.location}
-                            onChange={(e) =>
-                                setEditedVideo({ ...editedVideo, location: e.target.value })
-                            }
-                        />
+                            <FormControl>
+                                <RadioGroup
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue={editVideo.location}
+                                    name="radio-buttons-group"
+                                    row
+                                    onChange={(e) => setEditedVideo({ ...editedVideo, location: e.target.value })}
+                                >
+                                    <FormControlLabel value="Suvanabhumi" control={<Radio />} label="Suvanabhumi" />
+                                    <FormControlLabel value="Hua Mak" control={<Radio />} label="Hua Mak" />
+                                </RadioGroup>
+                            </FormControl>
                     }
                     dOU={
                         <TextField
+                            fullWidth
                             type="date"
+                            variant='standard'
                             defaultValue={editedVideo.dateOfUpload}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, dateOfUpload: e.target.value })
@@ -189,7 +205,9 @@ export default function AdminPage({ videos, categories }) {
                     thTitle={video.title}
                     urlID={
                         <TextField
+                            fullWidth
                             type="text"
+                            variant='standard'
                             defaultValue={editedVideo.urlID}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, urlID: e.target.value })
@@ -435,14 +453,14 @@ export default function AdminPage({ videos, categories }) {
                             </FormControl>
 
                             <Box sx={{ minWidth: 120, paddingTop: 2 }}>
-                                <FormControl variant='filled' fullWidth>
-                                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Category:</InputLabel>
+                                <FormControl fullWidth>
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         defaultValue='all'
                                         value={selectedCatDropbox}
-                                        label="Cat"
+                                        // label="Cat"
                                         onChange={(e) => setSelectedCatDropbox(e.target.value)}
                                     >
                                         <MenuItem value="all">All</MenuItem>
