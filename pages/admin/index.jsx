@@ -9,13 +9,13 @@ import { useSession } from "next-auth/react"
 import Link from 'next/link'
 import { useForm } from "react-hook-form";
 
-
-// import { FormControl, FormLabel, RadioGroup, FormControlLabel } from '@mui/material'
+//admin interface
 import FormControl from '@mui/material/FormControl'
 import FormLabel from '@mui/material/FormLabel'
 import RadioGroup from '@mui/material/RadioGroup'
 import Radio from '@mui/material/Radio'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import BackspaceOutlinedIcon from '@mui/icons-material/BackspaceOutlined';
 
 //video and category view
 import Tabs from '@mui/material/Tabs';
@@ -68,6 +68,7 @@ export default function AdminPage({ videos, categories }) {
 
     const [videosToShow, setVideosToShow] = useState(6);
     const [searchValue, setSearchValue] = useState("");
+
     const [location, setLocation] = useState("all");
     const [selectedCatDropbox, setSelectedCatDropbox] = useState("all");
 
@@ -88,7 +89,7 @@ export default function AdminPage({ videos, categories }) {
 
     useEffect(() => {
         reset(categories)
-      }, [])
+    }, [])
 
     const addCategory = async (data) => {
         const response = await fetch('/api/browse/categories', {
@@ -119,7 +120,7 @@ export default function AdminPage({ videos, categories }) {
                 <EditCard
                     key={video._id}
                     title={
-                        <input
+                        <TextField
                             type="text"
                             defaultValue={editedVideo.title}
                             onChange={(e) =>
@@ -127,35 +128,27 @@ export default function AdminPage({ videos, categories }) {
                             }
                         />
                     }
-                    link={
-                        <input
-                            type="text"
-                            defaultValue={editedVideo.link}
-                            onChange={(e) =>
-                                setEditedVideo({ ...editedVideo, link: e.target.value })
-                            }
-                        />
-                    }
                     type={
-                        <input
-                            type="text"
-                            defaultValue={editedVideo.type}
-                            onChange={(e) =>
-                                setEditedVideo({ ...editedVideo, type: e.target.value })
-                            }
-                        />
-                    }
-                    thumbnail={
-                        <input
-                            type="text"
-                            defaultValue={editedVideo.thumbnail}
-                            onChange={(e) =>
-                                setEditedVideo({ ...editedVideo, thumbnail: e.target.value })
-                            }
-                        />
+                        <Box sx={{ minWidth: 120, paddingTop: 2 }}>
+                            <FormControl variant='filled' fullWidth>
+                                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    defaultValue={editedVideo.type}
+                                    value={editedVideo.type}
+                                    label="Cat"
+                                    onChange={(e) => setEditedVideo({ ...editedVideo, type: e.target.value })}
+                                >
+                                    {categories.map(cat => (
+                                        <MenuItem key={cat._id} value={cat.name}>{cat.name}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Box>
                     }
                     desc={
-                        <input
+                        <TextField
                             type="text"
                             defaultValue={editedVideo.desc}
                             onChange={(e) =>
@@ -163,10 +156,9 @@ export default function AdminPage({ videos, categories }) {
                             }
                         />
                     }
-                    onView={video._id}
                     duration={
-                        <input
-                            type="text"
+                        <TextField
+                            type="time"
                             defaultValue={editedVideo.duration}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, duration: e.target.value })
@@ -174,7 +166,7 @@ export default function AdminPage({ videos, categories }) {
                         />
                     }
                     location={
-                        <input
+                        <TextField
                             type="text"
                             defaultValue={editedVideo.location}
                             onChange={(e) =>
@@ -183,8 +175,8 @@ export default function AdminPage({ videos, categories }) {
                         />
                     }
                     dOU={
-                        <input
-                            type="text"
+                        <TextField
+                            type="date"
                             defaultValue={editedVideo.dateOfUpload}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, dateOfUpload: e.target.value })
@@ -196,7 +188,7 @@ export default function AdminPage({ videos, categories }) {
                     onDel={() => deleteVideo(video._id)}
                     thTitle={video.title}
                     urlID={
-                        <input
+                        <TextField
                             type="text"
                             defaultValue={editedVideo.urlID}
                             onChange={(e) =>
@@ -293,7 +285,7 @@ export default function AdminPage({ videos, categories }) {
     }
 
     const columns = [
-        { field: 'name', headerName: 'Name:', width: 200 },
+        { field: 'name', headerName: 'Name:', width: 500 },
         {
             field: 'delete',
             headerName: 'Delete',
@@ -335,7 +327,7 @@ export default function AdminPage({ videos, categories }) {
     ];
 
     function deleteCategory(id) {
-        const confirmed = window.confirm("Are you sure you want to delete this supplier?");
+        const confirmed = window.confirm("Are you sure you want to delete this category?");
         if (confirmed) {
             fetch(`/api/browse/categories/${id}`, {
                 method: "DELETE"
@@ -421,12 +413,9 @@ export default function AdminPage({ videos, categories }) {
 
                         <br />
 
-                        <div className="input-group rounded" style={{ padding: "5% 15% 0 15%" }}>
-                            <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-                            <span className="input-group-text border-0" id="search-addon">
-                                <i className="fas fa-search" onClick={clear}>Clear</i>
-                            </span>
-                            <br />
+                        <div className="input-group rounded justify-content-center" >
+                            <TextField type="search" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                            <Button className="fas fa-search" onClick={clear}><BackspaceOutlinedIcon /></Button>
                         </div>
 
                         <div className='container' style={{ display: 'flex', justifyContent: 'center' }}>
