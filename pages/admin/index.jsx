@@ -25,6 +25,7 @@ import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 
 //for adding categories
 import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined';
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -49,7 +50,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '0.5px solid #000',
     boxShadow: 24,
     p: 4,
 };
@@ -175,18 +176,18 @@ export default function AdminPage({ videos, categories }) {
                         />
                     }
                     location={
-                            <FormControl>
-                                <RadioGroup
-                                    aria-labelledby="demo-radio-buttons-group-label"
-                                    defaultValue={editVideo.location}
-                                    name="radio-buttons-group"
-                                    row
-                                    onChange={(e) => setEditedVideo({ ...editedVideo, location: e.target.value })}
-                                >
-                                    <FormControlLabel value="Suvanabhumi" control={<Radio />} label="Suvanabhumi" />
-                                    <FormControlLabel value="Hua Mak" control={<Radio />} label="Hua Mak" />
-                                </RadioGroup>
-                            </FormControl>
+                        <FormControl>
+                            <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue={editVideo.location}
+                                name="radio-buttons-group"
+                                row
+                                onChange={(e) => setEditedVideo({ ...editedVideo, location: e.target.value })}
+                            >
+                                <FormControlLabel value="Suvanabhumi" control={<Radio />} label="Suvanabhumi" />
+                                <FormControlLabel value="Hua Mak" control={<Radio />} label="Hua Mak" />
+                            </RadioGroup>
+                        </FormControl>
                     }
                     dOU={
                         <TextField
@@ -377,6 +378,7 @@ export default function AdminPage({ videos, categories }) {
         }
     };
 
+
     // if (session) {
     return (
         <main role="main" style={{ paddingTop: "7vh" }}>
@@ -403,12 +405,14 @@ export default function AdminPage({ videos, categories }) {
 
                             </div>
                             <div style={{ justifyContent: 'center' }}>
-                                <Link href="/admin/add" style={{ paddingRight: "15px", color: "black" }}>
-                                    {/* <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="20%" height="auto" style={{ justifyContent: 'center' }} /> */}
-                                    <VideoCallOutlinedIcon className='hover' style={{ width: "18%", height: "18%", paddingRight: "15px" }} />
-                                </Link>
 
-                                <AddLocationAltOutlinedIcon className='hover' style={{ width: "15%", height: "15%", paddingLeft: "15px" }} onClick={handleOpenModAdd} />
+                                <Button color='error'>
+                                    <Link href="/admin/add" style={{ color: "black" }}>
+                                        <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="60%" height="auto" style={{ justifyContent: 'center' }} />
+                                        {/* <VideoCallOutlinedIcon className='hover' style={{ width: "18%", height: "18%", paddingRight: "15px" }} /> */}
+                                    </Link>
+                                </Button>
+
                                 <Modal
                                     open={openModAdd}
                                     onClose={handleCloseModAdd}
@@ -479,6 +483,9 @@ export default function AdminPage({ videos, categories }) {
                             <Tabs value={value} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
                                 <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
                                 <Tab icon={<InfoOutlinedIcon />} label="Categories" />
+                                {value === 1 && (
+                                    <AddLocationAltOutlinedIcon className='hover' style={{ width: "5%", height: "5%", paddingLeft: "15px" }} onClick={handleOpenModAdd} />
+                                )}
                             </Tabs>
                             {value === 0 && (
                                 <div style={{ height: '93vh', overflowY: 'scroll' }}>
@@ -502,11 +509,6 @@ export default function AdminPage({ videos, categories }) {
                                         rowsPerPageOptions={[10]}
                                         getRowId={(row) => row.name}
                                         style={{ height: '75vh' }}
-                                    // onRowClick={(params) => {
-                                    //     setSelectedRow(params.row);
-                                    //     setCurrentSupplier(params.row);
-                                    // }}
-                                    // selectionModel={selectedRow ? [selectedRow._id] : []}
                                     />
                                     <Modal
                                         open={openModUpdate}

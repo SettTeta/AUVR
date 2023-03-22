@@ -1,8 +1,8 @@
 import * as React from "react"
 import SaveAltIcon from '../node_modules/@mui/icons-material/SaveAltSharp';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import CloseIcon from '@mui/icons-material/Close';
 import Button from '@mui/material/Button';
+import KeyboardReturnOutlinedIcon from '@mui/icons-material/KeyboardReturnOutlined';
 
 function CardTemplate(props) {
     const { title, link, desc, thumbnail, onView, duration, location, dOU, onDel, onSave, onCancel, type, thTitle, urlID } = props
@@ -11,16 +11,14 @@ function CardTemplate(props) {
         <div className="card mb-3">
             <div className="card-header bg-white" style={{ verticalAlign: "middle" }}>
                 <div>
-                    <CloseIcon className="hover"
-                        src="https://cdn-icons-png.flaticon.com/512/70/70091.png"
-                        style={{ float: "right", marginTop: "3px" }}
-                        onClick={onCancel}
-                        fontSize="large"
-                    />
-                    <DeleteForeverOutlinedIcon className="hover"
-                        style={{ float: "left", marginTop: "3px" }}
-                        onClick={onDel}
-                        fontSize="large" />
+                    <Button color="error" style={{ float: "right", marginTop: "3px" }}>
+                        <DeleteForeverOutlinedIcon className="hover"
+                            src="https://cdn-icons-png.flaticon.com/512/70/70091.png"
+                            onClick={onDel}
+                            fontSize="large"
+                        />
+                    </Button>
+
                     <h5 style={{ paddingTop: "8px" }}>{thTitle}</h5>
                 </div>
             </div>
@@ -62,21 +60,15 @@ function CardTemplate(props) {
                                 <p>{location}</p>
 
                                 <div className="col-md-12 d-flex justify-content-center">
-                                    <Button onClick={onSave}><SaveAltIcon className="hover"
-                                        fontSize="large"
+                                    <Button onClick={onCancel} style={{marginRight:"50px"}}><KeyboardReturnOutlinedIcon className="hover"
+                                        fontSize="large" 
+                                    /> Back</Button>
+                                    <Button onClick={onSave} style={{marginLeft:"50px"}}><SaveAltIcon className="hover"
+                                        fontSize="large" 
                                     /> Save</Button>
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
 
                     </div>
                 </div>
