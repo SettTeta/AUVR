@@ -10,7 +10,7 @@ import Link from 'next/link'
 import Banner from '../../public/banner2.webp'
 
 
-export default function BrowsePage({ videos }) {
+export default function BrowsePage({ videos, categories }) {
 
   const [videosToShow, setVideosToShow] = useState(6);
   const [searchValue, setSearchValue] = useState("");
@@ -33,7 +33,7 @@ export default function BrowsePage({ videos }) {
     return (
       <div className='container' key={vidType}>
         <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>{vidType}</h1>
-        <div className="container bg-white" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "280px", marginBottom:"10px", borderRadius: "20px"}}>
+        <div className="container bg-white" style={{ display: "flex", overflowX: "scroll", width: "100%", height: "280px", marginBottom: "10px", borderRadius: "20px" }}>
           {videosToDisplay.map(src => (
             <div
               className="scroll"
@@ -119,8 +119,9 @@ export default function BrowsePage({ videos }) {
 
       <div className="album py-5 bg-light">
 
-        {renderVideoRow("Indoor")}
-        {renderVideoRow("Outdoor")}
+        {categories.map(cat => (
+          renderVideoRow(`${cat.name}`)
+        ))}
 
       </div>
 
@@ -130,9 +131,11 @@ export default function BrowsePage({ videos }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`https://auvr.vercel.app/api/browse/videos`)
-  const videos = await res.json()
-  console.debug('blog 1', videos)
-  return { props: { videos } }
+  const vid = await fetch(`https://auvr.vercel.app/api/browse/videos`)
+  const videos = await vid.json()
+
+  const cat = await fetch(`https://auvr.vercel.app/api/browse/categories`)
+  const categories = await cat.json()
+  return { props: { videos, categories } }
 }
 
