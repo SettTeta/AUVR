@@ -322,6 +322,7 @@ export default function AdminPage({ videos, categories }) {
                         event.stopPropagation();
                         setCurrentCatRow(params.row);
                         handleOpenModUpdate()
+                        console.log(currentCatRow)
                     }}
                     color="success"
                 >
@@ -330,12 +331,6 @@ export default function AdminPage({ videos, categories }) {
             ),
         },
     ];
-
-    function renderCategory() {
-        if (currentCatRow && currentCatRow._id === categories._id) {
-
-        }
-    }
 
     function deleteCategory(id) {
         const confirmed = window.confirm("Are you sure you want to delete this supplier?");
@@ -365,8 +360,7 @@ export default function AdminPage({ videos, categories }) {
         if (result.error) {
             alert('Error: ' + result.error);
         } else {
-            setSelectedRow(null);
-            setEditedSupplier(null);
+            setCurrentCatRow(null);
             window.location.reload(false);
         }
     };
