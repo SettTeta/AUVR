@@ -31,11 +31,18 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
+
 
 //for dropbox
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+
+// data grid
+import { DataGrid } from '../../node_modules/@mui/x-data-grid';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import UpdateIcon from '@mui/icons-material/Update';
 
 const style = {
     position: 'absolute',
@@ -64,12 +71,14 @@ export default function AdminPage({ videos, categories }) {
     const [videosToShow, setVideosToShow] = useState(6);
     const [searchValue, setSearchValue] = useState("");
     const [location, setLocation] = useState("all");
-    const [selectedCat, setSelectedCat] = useState("all");
+    const [selectedCatDropbox, setSelectedCatDropbox] = useState("all");
 
     const { register, handleSubmit } = useForm();
     const [data, setData] = useState("");
 
     const [editedVideo, setEditedVideo] = useState(null);
+    const [dataCat, setDataCat] = useState(categories);
+    const [currentCatRow, setCurrentCatRow] = useState(null)
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -183,9 +192,9 @@ export default function AdminPage({ videos, categories }) {
                     urlID={
                         <input
                             type="text"
-                            defaultValue={editedVideo.dateOfUpload}
+                            defaultValue={editedVideo.urlID}
                             onChange={(e) =>
-                                setEditedVideo({ ...editedVideo, dateOfUpload: e.target.value })
+                                setEditedVideo({ ...editedVideo, urlID: e.target.value })
                             }
                         />}
                 />
@@ -230,7 +239,7 @@ export default function AdminPage({ videos, categories }) {
         const videosToDisplay = videos
             .filter(video => {
                 let videoLocation = location === "all" ? true : video.location === location;
-                let videoType = selectedCat === "all" ? true : video.type === selectedCat;
+                let videoType = selectedCatDropbox === "all" ? true : video.type === selectedCatDropbox;
                 return video.title.toLowerCase().includes(searchValue.toLowerCase()) && videoLocation && videoType;
             })
             .slice(0, videosToShow);
@@ -241,7 +250,7 @@ export default function AdminPage({ videos, categories }) {
     const clear = () => {
         setSearchValue("");
         setLocation("all");
-        setSelectedCat("all");
+        setSelectedCatDropbox("all");
     }
 
     function deleteVideo(id) {
@@ -276,6 +285,86 @@ export default function AdminPage({ videos, categories }) {
         setEditedVideo(null)
         window.location.reload(true);
     }
+
+    const columns = [
+        { field: 'name', headerName: 'Name:', width: 200 },
+        {
+            field: 'delete',
+            headerName: 'Delete',
+            sortable: false,
+            filterable: false,
+            width: 100,
+            renderCell: (params) => (
+                <Button
+                    onClick={(event) => {
+                        event.stopPropagation();
+                        deleteCategory(params.row._id);
+
+                    }}
+                    color="error"
+                ><DeleteForeverIcon></DeleteForeverIcon>
+                </Button>
+            ),
+        },
+        {
+            field: 'update',
+            headerName: 'Update',
+            sortable: false,
+            filterable: false,
+            width: 100,
+            renderCell: (params) => (
+                <Button
+                    onClick={(event) => {
+                        event.stopPropagation();
+                        setCurrentCatRow(params.row);
+                    }}
+                    color="success"
+                >
+                    <UpdateIcon></UpdateIcon>
+                </Button>
+            ),
+        },
+    ];
+
+    function renderCategory() {
+        if (currentCatRow && currentCatRow._id === categories._id) {
+            
+        }
+    }
+
+    function deleteCategory(id) {
+        const confirmed = window.confirm("Are you sure you want to delete this supplier?");
+        if (confirmed) {
+            fetch(`/api/browse/categories/${id}`, {
+                method: "DELETE"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    window.location.reload(false);
+                })
+        }
+    }
+
+    const renameCategory = async (data) => {
+        const response = await fetch(`/api/browse/categories/${currentCatRow._id}`, {
+            method: 'PUT',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+        if (result.error) {
+            alert('Error: ' + result.error);
+        } else {
+            setSelectedRow(null);
+            setEditedSupplier(null);
+            window.location.reload(false);
+        }
+    };
 
     // if (session) {
     return (
@@ -355,16 +444,16 @@ export default function AdminPage({ videos, categories }) {
                                 </RadioGroup>
                             </FormControl>
 
-                            <Box sx={{ minWidth: 120, paddingTop:2 }}>
-                                <FormControl fullWidth>
+                            <Box sx={{ minWidth: 120, paddingTop: 2 }}>
+                                <FormControl variant='filled' fullWidth>
                                     <InputLabel id="demo-simple-select-label">Category</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         defaultValue='all'
-                                        value={selectedCat}
-                                        label="Age"
-                                        onChange={(e) => setSelectedCat(e.target.value)}
+                                        value={selectedCatDropbox}
+                                        label="Cat"
+                                        onChange={(e) => setSelectedCatDropbox(e.target.value)}
                                     >
                                         <MenuItem value="all">All</MenuItem>
                                         {categories.map(cat => (
@@ -397,7 +486,21 @@ export default function AdminPage({ videos, categories }) {
                             )}
 
                             {value === 1 && (
-                                <div> show cat </div>
+                                <div>
+                                    <DataGrid
+                                        rows={dataCat}
+                                        columns={columns}
+                                        pageSize={10}
+                                        rowsPerPageOptions={[10]}
+                                        getRowId={(row) => row.name}
+                                        style={{ height: '75vh' }}
+                                    // onRowClick={(params) => {
+                                    //     setSelectedRow(params.row);
+                                    //     setCurrentSupplier(params.row);
+                                    // }}
+                                    // selectionModel={selectedRow ? [selectedRow._id] : []}
+                                    />
+                                </div>
                             )}
 
                         </div>
