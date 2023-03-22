@@ -31,8 +31,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
-import FormHelperText from '@mui/material/FormHelperText';
-
 
 //for dropbox
 import InputLabel from '@mui/material/InputLabel';
@@ -85,8 +83,8 @@ export default function AdminPage({ videos, categories }) {
     const handleCloseModAdd = () => setOpenModAdd(false);
 
     const [openModUpdate, setOpenModUpdate] = useState(false);
-    const handleOpenModUpdate = () => setOpenModAdd(true);
-    const handleCloseModUpdate = () => setOpenModAdd(false);
+    const handleOpenModUpdate = () => setOpenModUpdate(true);
+    const handleCloseModUpdate = () => setOpenModUpdate(false);
 
     const addCategory = async (data) => {
         const response = await fetch('/api/browse/categories', {
@@ -502,15 +500,15 @@ export default function AdminPage({ videos, categories }) {
                                     <Modal
                                         open={openModUpdate}
                                         onClose={handleCloseModUpdate}
-                                        aria-labelledby="modal-modal-title"
+                                        aria-labelledby="modal-update-category"
                                         aria-describedby="modal-modal-description"
                                     >
                                         <Box sx={style}>
-                                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                            <Typography id="modal-update-category" variant="h6" component="h2">
                                                 Update the Category
                                             </Typography>
                                             <form onSubmit={handleSubmit(renameCategory)}>
-                                                <TextField id="outlined-basic" label="Outlined" variant="outlined" {...register("name", { required: false })} />
+                                                <TextField id="outlined-basic" label="" variant="outlined" defaultValue="insert" {...register("name", { required: false })} />
                                                 <Button variant="text" type='submit'>Save</Button>
                                             </form>
                                         </Box>
