@@ -4,7 +4,7 @@ import * as React from 'react'
 import VideoCard from '../../components/CardAdmin'
 import EditCard from '../../components/editCard'
 import Head from 'next/head'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react"
 import Link from 'next/link'
 import { useForm } from "react-hook-form";
@@ -71,7 +71,7 @@ export default function AdminPage({ videos, categories }) {
     const [location, setLocation] = useState("all");
     const [selectedCatDropbox, setSelectedCatDropbox] = useState("all");
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const [data, setData] = useState("");
 
     const [editedVideo, setEditedVideo] = useState(null);
@@ -85,6 +85,10 @@ export default function AdminPage({ videos, categories }) {
     const [openModUpdate, setOpenModUpdate] = useState(false);
     const handleOpenModUpdate = () => setOpenModUpdate(true);
     const handleCloseModUpdate = () => setOpenModUpdate(false);
+
+    useEffect(() => {
+        reset(categories)
+      }, [])
 
     const addCategory = async (data) => {
         const response = await fetch('/api/browse/categories', {
@@ -508,7 +512,7 @@ export default function AdminPage({ videos, categories }) {
                                                 Update the Category
                                             </Typography>
                                             <form onSubmit={handleSubmit(renameCategory)}>
-                                                <TextField id="outlined-basic" label="" variant="outlined" defaultValue="insert" {...register("name", { required: false })} />
+                                                <TextField id="outlined-basic" label="" variant="outlined" defaultValue={currentCatRow?.name} {...register("name", { required: false })} />
                                                 <Button variant="text" type='submit'>Save</Button>
                                             </form>
                                         </Box>
