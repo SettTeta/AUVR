@@ -91,25 +91,6 @@ export default function AdminPage({ videos, categories }) {
         reset(categories)
     }, [])
 
-    const addCategory = async (data) => {
-        const response = await fetch('/api/browse/categories', {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            referrerPolicy: "no-referrer",
-            body: JSON.stringify(data),
-        });
-        const result = await response.json();
-        if (result.error) {
-            alert("Error: " + result.error)
-        }
-        setData(JSON.stringify(data))
-        window.location.reload(true);
-    }
-
     function loadMoreVideos() {
         setVideosToShow(videosToShow + 3);
     }
@@ -377,6 +358,25 @@ export default function AdminPage({ videos, categories }) {
         }
     };
 
+    const addCategory = async (data) => {
+        const response = await fetch('/api/browse/categories', {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        if (result.error) {
+            alert("Error: " + result.error)
+        }
+        setData(JSON.stringify(data))
+        window.location.reload(true);
+    }
+
 
     // if (session) {
     return (
@@ -412,23 +412,7 @@ export default function AdminPage({ videos, categories }) {
                                     </Link>
                                 </Button>
 
-                                <Modal
-                                    open={openModAdd}
-                                    onClose={handleCloseModAdd}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                                            Add a Category
-                                        </Typography>
-                                        <form onSubmit={handleSubmit(addCategory)}>
-                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...register("name", { required: true })} />
-                                            <Button variant="text" type='submit'>Save</Button>
-                                        </form>
 
-                                    </Box>
-                                </Modal>
                             </div>
                         </section>
 
@@ -479,17 +463,37 @@ export default function AdminPage({ videos, categories }) {
 
                     <div style={{ minWidth: '400px', width: '70vw' }}>
                         <div className="album py-5 bg-light">
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight:"5%", paddingLeft:"5%" }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: "5%", paddingLeft: "5%" }}>
                                 <Tabs value={tabValue} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
                                     <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
                                     <Tab icon={<InfoOutlinedIcon />} label="Categories" />
                                 </Tabs>
+                                
                                 {tabValue === 1 && (
-                                    <Fab color="primary" aria-label="add" onClick={handleOpenModAdd} style={{height:"40px", width:"40px"}}>
+                                    <Fab color="primary" aria-label="add" onClick={handleOpenModAdd} style={{ height: "40px", width: "40px" }}>
                                         <AddIcon />
                                     </Fab>
                                 )}
+
+                                <Modal
+                                    open={openModAdd}
+                                    onClose={handleCloseModAdd}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style}>
+                                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                                            Add a Category
+                                        </Typography>
+                                        <form onSubmit={handleSubmit(addCategory)}>
+                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...register("name", { required: true })} />
+                                            <Button variant="text" type='submit'>Save</Button>
+                                        </form>
+
+                                    </Box>
+                                </Modal>
                             </div>
+
                             {tabValue === 0 && (
                                 <div style={{ height: '93vh', overflowY: 'scroll' }}>
                                     <div className="container" style={{ display: "flex", width: "100%" }}>
