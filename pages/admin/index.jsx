@@ -22,10 +22,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 //for adding categories
-import AddLocationAltOutlinedIcon from '@mui/icons-material/AddLocationAltOutlined';
-import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -49,7 +49,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '0.5px solid #000',
     boxShadow: 24,
     p: 4,
 };
@@ -57,10 +57,10 @@ const style = {
 export default function AdminPage({ videos, categories }) {
 
     //tabs
-    const [value, setValue] = useState(0);
+    const [tabValue, setTabValue] = useState(0);
 
     const handleTabChange = (event, newValue) => {
-        setValue(newValue)
+        setTabValue(newValue)
     };
 
 
@@ -91,25 +91,6 @@ export default function AdminPage({ videos, categories }) {
         reset(categories)
     }, [])
 
-    const addCategory = async (data) => {
-        const response = await fetch('/api/browse/categories', {
-            method: "POST",
-            mode: "cors",
-            cache: "no-cache",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            referrerPolicy: "no-referrer",
-            body: JSON.stringify(data),
-        });
-        const result = await response.json();
-        if (result.error) {
-            alert("Error: " + result.error)
-        }
-        setData(JSON.stringify(data))
-        window.location.reload(true);
-    }
-
     function loadMoreVideos() {
         setVideosToShow(videosToShow + 3);
     }
@@ -122,6 +103,9 @@ export default function AdminPage({ videos, categories }) {
                     title={
                         <TextField
                             type="text"
+                            fullWidth
+                            multiline
+                            variant='standard'
                             defaultValue={editedVideo.title}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, title: e.target.value })
@@ -129,9 +113,8 @@ export default function AdminPage({ videos, categories }) {
                         />
                     }
                     type={
-                        <Box sx={{ minWidth: 120, paddingTop: 2 }}>
-                            <FormControl variant='filled' fullWidth>
-                                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                        <Box sx={{ minWidth: 120, paddingTop: 2 }} >
+                            <FormControl variant='standard' fullWidth>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
@@ -149,7 +132,12 @@ export default function AdminPage({ videos, categories }) {
                     }
                     desc={
                         <TextField
+                            id="standard-multiline-static"
+                            fullWidth
+                            maxRows={2}
+                            multiline
                             type="text"
+                            variant='standard'
                             defaultValue={editedVideo.desc}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, desc: e.target.value })
@@ -158,7 +146,9 @@ export default function AdminPage({ videos, categories }) {
                     }
                     duration={
                         <TextField
+                            fullWidth
                             type="time"
+                            variant='standard'
                             defaultValue={editedVideo.duration}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, duration: e.target.value })
@@ -166,17 +156,24 @@ export default function AdminPage({ videos, categories }) {
                         />
                     }
                     location={
-                        <TextField
-                            type="text"
-                            defaultValue={editedVideo.location}
-                            onChange={(e) =>
-                                setEditedVideo({ ...editedVideo, location: e.target.value })
-                            }
-                        />
+                        <FormControl>
+                            <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                defaultValue={editVideo.location}
+                                name="radio-buttons-group"
+                                row
+                                onChange={(e) => setEditedVideo({ ...editedVideo, location: e.target.value })}
+                            >
+                                <FormControlLabel value="Suvanabhumi" control={<Radio />} label="Suvanabhumi" />
+                                <FormControlLabel value="Hua Mak" control={<Radio />} label="Hua Mak" />
+                            </RadioGroup>
+                        </FormControl>
                     }
                     dOU={
                         <TextField
+                            fullWidth
                             type="date"
+                            variant='standard'
                             defaultValue={editedVideo.dateOfUpload}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, dateOfUpload: e.target.value })
@@ -189,7 +186,9 @@ export default function AdminPage({ videos, categories }) {
                     thTitle={video.title}
                     urlID={
                         <TextField
+                            fullWidth
                             type="text"
+                            variant='standard'
                             defaultValue={editedVideo.urlID}
                             onChange={(e) =>
                                 setEditedVideo({ ...editedVideo, urlID: e.target.value })
@@ -359,6 +358,26 @@ export default function AdminPage({ videos, categories }) {
         }
     };
 
+    const addCategory = async (data) => {
+        const response = await fetch('/api/browse/categories', {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        if (result.error) {
+            alert("Error: " + result.error)
+        }
+        setData(JSON.stringify(data))
+        window.location.reload(true);
+    }
+
+
     // if (session) {
     return (
         <main role="main" style={{ paddingTop: "7vh" }}>
@@ -385,36 +404,22 @@ export default function AdminPage({ videos, categories }) {
 
                             </div>
                             <div style={{ justifyContent: 'center' }}>
-                                <Link href="/admin/add" style={{ paddingRight: "15px", color: "black" }}>
-                                    {/* <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="20%" height="auto" style={{ justifyContent: 'center' }} /> */}
-                                    <VideoCallOutlinedIcon className='hover' style={{ width: "18%", height: "18%", paddingRight: "15px" }} />
-                                </Link>
 
-                                <AddLocationAltOutlinedIcon className='hover' style={{ width: "15%", height: "15%", paddingLeft: "15px" }} onClick={handleOpenModAdd} />
-                                <Modal
-                                    open={openModAdd}
-                                    onClose={handleCloseModAdd}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                                            Add a Category
-                                        </Typography>
-                                        <form onSubmit={handleSubmit(addCategory)}>
-                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...register("name", { required: true })} />
-                                            <Button variant="text" type='submit'>Save</Button>
-                                        </form>
+                                <Button color='error'>
+                                    <Link href="/admin/add" style={{ color: "black" }}>
+                                        <img className='hover' src="https://static.thenounproject.com/png/767525-200.png" width="60%" height="auto" style={{ justifyContent: 'center' }} />
+                                        {/* <VideoCallOutlinedIcon className='hover' style={{ width: "18%", height: "18%", paddingRight: "15px" }} /> */}
+                                    </Link>
+                                </Button>
 
-                                    </Box>
-                                </Modal>
+
                             </div>
                         </section>
 
                         <br />
 
                         <div className="input-group rounded justify-content-center" >
-                            <TextField type="search" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                            <TextField type="search" aria-label="Search" aria-describedby="search-addon" label="Search" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
                             <Button className="fas fa-search" onClick={clear}><BackspaceOutlinedIcon /></Button>
                         </div>
 
@@ -435,14 +440,14 @@ export default function AdminPage({ videos, categories }) {
                             </FormControl>
 
                             <Box sx={{ minWidth: 120, paddingTop: 2 }}>
-                                <FormControl variant='filled' fullWidth>
-                                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Category:</InputLabel>
+                                <FormControl fullWidth>
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         defaultValue='all'
                                         value={selectedCatDropbox}
-                                        label="Cat"
+                                        // label="Cat"
                                         onChange={(e) => setSelectedCatDropbox(e.target.value)}
                                     >
                                         <MenuItem value="all">All</MenuItem>
@@ -458,11 +463,38 @@ export default function AdminPage({ videos, categories }) {
 
                     <div style={{ minWidth: '400px', width: '70vw' }}>
                         <div className="album py-5 bg-light">
-                            <Tabs value={value} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
-                                <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
-                                <Tab icon={<InfoOutlinedIcon />} label="Categories" />
-                            </Tabs>
-                            {value === 0 && (
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: "5%", paddingLeft: "5%" }}>
+                                <Tabs value={tabValue} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
+                                    <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
+                                    <Tab icon={<InfoOutlinedIcon />} label="Categories" />
+                                </Tabs>
+                                
+                                {tabValue === 1 && (
+                                    <Fab color="primary" aria-label="add" onClick={handleOpenModAdd} style={{ height: "40px", width: "40px" }}>
+                                        <AddIcon />
+                                    </Fab>
+                                )}
+
+                                <Modal
+                                    open={openModAdd}
+                                    onClose={handleCloseModAdd}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                >
+                                    <Box sx={style}>
+                                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                                            Add a Category
+                                        </Typography>
+                                        <form onSubmit={handleSubmit(addCategory)}>
+                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...register("name", { required: true })} />
+                                            <Button variant="text" type='submit'>Save</Button>
+                                        </form>
+
+                                    </Box>
+                                </Modal>
+                            </div>
+
+                            {tabValue === 0 && (
                                 <div style={{ height: '93vh', overflowY: 'scroll' }}>
                                     <div className="container" style={{ display: "flex", width: "100%" }}>
                                         <div className="container-xxl content-row">
@@ -475,7 +507,7 @@ export default function AdminPage({ videos, categories }) {
                                 </div>
                             )}
 
-                            {value === 1 && (
+                            {tabValue === 1 && (
                                 <div>
                                     <DataGrid
                                         rows={dataCat}
@@ -484,11 +516,6 @@ export default function AdminPage({ videos, categories }) {
                                         rowsPerPageOptions={[10]}
                                         getRowId={(row) => row.name}
                                         style={{ height: '75vh' }}
-                                    // onRowClick={(params) => {
-                                    //     setSelectedRow(params.row);
-                                    //     setCurrentSupplier(params.row);
-                                    // }}
-                                    // selectionModel={selectedRow ? [selectedRow._id] : []}
                                     />
                                     <Modal
                                         open={openModUpdate}

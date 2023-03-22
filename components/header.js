@@ -10,7 +10,7 @@ const Header = () => {
     const { data: session } = useSession()
 
     return (
-        <header style={{ position: "fixed", top: "0", left: "0", width: "100%", zIndex: "100" }}>
+        <header style={{ position: "fixed", top: "0", left: "0", width: "100%", zIndex: "100000" }}>
             <nav className="navbar navbar-expand-lg navbar-dark" style={{ background: "#aa1e2d" }}>
                 <div className="container-fluid">
 
