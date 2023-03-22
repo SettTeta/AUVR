@@ -80,9 +80,13 @@ export default function AdminPage({ videos, categories }) {
     const [dataCat, setDataCat] = useState(categories);
     const [currentCatRow, setCurrentCatRow] = useState(null)
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [openModAdd, setOpenModAdd] = useState(false);
+    const handleOpenModAdd = () => setOpenModAdd(true);
+    const handleCloseModAdd = () => setOpenModAdd(false);
+
+    const [openModUpdate, setOpenModUpdate] = useState(false);
+    const handleOpenModUpdate = () => setOpenModAdd(true);
+    const handleCloseModUpdate = () => setOpenModAdd(false);
 
     const addCategory = async (data) => {
         const response = await fetch('/api/browse/categories', {
@@ -317,6 +321,7 @@ export default function AdminPage({ videos, categories }) {
                     onClick={(event) => {
                         event.stopPropagation();
                         setCurrentCatRow(params.row);
+                        handleOpenModUpdate()
                     }}
                     color="success"
                 >
@@ -328,7 +333,7 @@ export default function AdminPage({ videos, categories }) {
 
     function renderCategory() {
         if (currentCatRow && currentCatRow._id === categories._id) {
-            
+
         }
     }
 
@@ -397,10 +402,10 @@ export default function AdminPage({ videos, categories }) {
                                     <VideoCallOutlinedIcon className='hover' style={{ width: "18%", height: "18%", paddingRight: "15px" }} />
                                 </Link>
 
-                                <AddLocationAltOutlinedIcon className='hover' style={{ width: "15%", height: "15%", paddingLeft: "15px" }} onClick={handleOpen} />
+                                <AddLocationAltOutlinedIcon className='hover' style={{ width: "15%", height: "15%", paddingLeft: "15px" }} onClick={handleOpenModAdd} />
                                 <Modal
-                                    open={open}
-                                    onClose={handleClose}
+                                    open={openModAdd}
+                                    onClose={handleCloseModAdd}
                                     aria-labelledby="modal-modal-title"
                                     aria-describedby="modal-modal-description"
                                 >
@@ -500,6 +505,22 @@ export default function AdminPage({ videos, categories }) {
                                     // }}
                                     // selectionModel={selectedRow ? [selectedRow._id] : []}
                                     />
+                                    <Modal
+                                        open={openModUpdate}
+                                        onClose={handleCloseModUpdate}
+                                        aria-labelledby="modal-modal-title"
+                                        aria-describedby="modal-modal-description"
+                                    >
+                                        <Box sx={style}>
+                                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                Update the Category
+                                            </Typography>
+                                            <form onSubmit={handleSubmit(renameCategory)}>
+                                                <TextField id="outlined-basic" label="Outlined" variant="outlined" {...register("name", { required: false })} />
+                                                <Button variant="text" type='submit'>Save</Button>
+                                            </form>
+                                        </Box>
+                                    </Modal>
                                 </div>
                             )}
 
