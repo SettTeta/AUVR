@@ -19,8 +19,11 @@ export default async function handler(req, res) {
     } else if (req.method === "DELETE") {
         const deletedDoc = await Category.deleteOne({ _id: id });
         res.status(200).json(deletedDoc);
-    } else if (req.method === "PUT") {
-        const updatedDoc = await Category.updateOne({ _id: id }, req.body);
+    } else if (req.method === 'PUT') {
+        const updatedDoc = await Category.updateOne(
+            { _id: ObjectId(id) }, // pass the ObjectId of the document to update
+            { $set: req.body } // use $set operator to update fields in the document
+        );
         res.status(200).json(updatedDoc);
     } else {
         res.setHeader("Allow", ["GET", "DELETE", "PUT"]);
