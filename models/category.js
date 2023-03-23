@@ -4,8 +4,7 @@ import { model, models, Schema } from "mongoose";
 const categorySchema = new Schema(
     {
         name: String,
-    },
-    { strict: false }
+    }
 );
 
 const Category = models?.category || model("categories", categorySchema);
