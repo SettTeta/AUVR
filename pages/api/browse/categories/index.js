@@ -1,9 +1,11 @@
 // pages/api/categories/index.js
 import { connect, set } from "mongoose";
 import Category from "../../../../models/category";
+import * as Mongoose from 'mongoose'
 
 const connectionString = process.env.MONGODB_URI;
-set('strictQuery', false);
+
+Mongoose.set('strictQuery', false);
 
 export default async function handler(req, res) {
     await connect(connectionString);
