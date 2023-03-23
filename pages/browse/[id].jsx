@@ -43,20 +43,19 @@ export default function Video({ video }) {
 
             <Header />
 
-            <section className="jumbotron" style={{ marginTop: "10vh" }}>
+            {/* <section className="jumbotron" style={{ marginTop: "10vh" }}>
                 <div className="container">
                     <br />
-                    <h1 className="jumbotron-heading" style={{ paddingBottom: "10px", justifyContent: "center", display: "flex" }}>{video.title}</h1>
                 </div>
-            </section>
+            </section> */}
 
-            <div className="album py-5 bg-light">
+            <div className="album py-5 bg-light" style={{ marginTop: "10vh" }}>
                 <div>
                     <div className="row g-0">
                         <div className="card mb-3" style={{ padding: "10px", width: "80vw" }}>
                             <div className="player-wrapper">
                                 <PlayerComponent
-                                    url={(video.player === "vimeo") ? `https://vimeo.com/${video.urlID}`: `https://www.youtube.com/embed/${video.urlID}`}
+                                    url={(video.player === "vimeo") ? `https://vimeo.com/${video.urlID}` : `https://www.youtube.com/embed/${video.urlID}`}
                                     className="react-player"
                                     playing
                                     width="100%"
@@ -65,42 +64,40 @@ export default function Video({ video }) {
                                 />
                             </div>
                         </div>
+                    </div>
 
-                        <div style={{display:"flex", flexDirection:"row",justifyContent:"center"}}>
-                            <div>
-                                <div className="card mb-3" style={{display:"flex", flexDirection:"row", padding:"5px", marginRight:"5px"}}>
-                                    <h5 className="card-title"><LocationOnOutlinedIcon />:</h5>
-                                    <p className="card-text">{video.location}</p>
-                                </div>
-                            </div>
-                            <div >
-                                <div className="card mb-3" style={{display:"flex", flexDirection:"row", padding:"5px", marginRight:"5px"}}>
-                                    <h5 className="card-title"><TimelapseOutlinedIcon />:</h5>
-                                    <p className="card-text">{video.duration}</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="card mb-3" style={{display:"flex", flexDirection:"row", padding:"5px"}}>
-                                    <h5 className="card-title"><CalendarMonthOutlinedIcon />:</h5>
-                                    <p className="card-text">{video.dateOfUpload}</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="row g-0 " style={{ display: "flex", marginLeft:"10%", marginRight:"10%" }}>
+                        <div style={{ padding: "20px" }}>
+                            <div className="card card-body">
+                                <div className="row g-200">
+                                    <div className="col-md-12">
+                                        <h1 className="jumbotron-heading" style={{ paddingBottom: "50px", justifyContent: "center", display: "flex" }}>{video.title}</h1>
 
-                        <div className="card mb-3" style={{ marginLeft: "10px", padding: "5px", display: "flex", flexDirection: "column", width: "90vw" }}>
-                            <div >
-                                <div className="row g-0" style={{ justifyContent: "end" }}>
-                                    <Button href={video.link} style={{ width: "5px" }}>
-                                        <LinkIcon />
-                                    </Button>
-                                    <Button onClick={handleExpandClick} style={{ width: "1px" }}>
-                                        <InfoIcon />
-                                    </Button>
+                                        <div className="row">
+                                            <div className="col-md-8">
+                                                <h5><DescriptionOutlinedIcon />  Description:</h5>
+                                                <p className="card-text">{video.desc}</p>
+                                            </div>
+
+                                            <div className="col-md-1 d-flex justify-content-center">
+                                                <p className="card-text"><LocationOnOutlinedIcon /> <br />{video.location}</p>
+                                            </div>
+                                            <div className="col-md-1">
+                                                <p className="card-text"><TimelapseOutlinedIcon /> <br />{video.duration}</p>
+                                            </div>
+                                            <div className="col-md-1">
+                                                <p className="card-text"><CalendarMonthOutlinedIcon /> <br />{video.dateOfUpload}</p>
+                                            </div>
+                                            <div className="col-md-1">
+                                                <h5 className="card-title"><CalendarMonthOutlinedIcon />:</h5>
+                                                <p className="card-text">{video.type}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div className="card-body">
-                                    <h5><DescriptionOutlinedIcon />  Description:</h5>
-                                    <p className="card-text">{video.desc}</p>
-                                </div>
+
                             </div>
                         </div>
                     </div>
