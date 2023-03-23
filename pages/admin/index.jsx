@@ -39,8 +39,7 @@ import Select from '@mui/material/Select';
 
 // data grid
 import { DataGrid } from '../../node_modules/@mui/x-data-grid';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import UpdateIcon from '@mui/icons-material/Update';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 const style = {
     position: 'absolute',
@@ -160,7 +159,7 @@ export default function AdminPage({ videos, categories }) {
                         <FormControl>
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue={editVideo.location}
+                                defaultValue={editedVideo.location}
                                 name="radio-buttons-group"
                                 row
                                 onChange={(e) => setEditedVideo({ ...editedVideo, location: e.target.value })}
@@ -285,7 +284,7 @@ export default function AdminPage({ videos, categories }) {
     }
 
     const columns = [
-        { field: 'name', headerName: 'Name:', width: 500 },
+        { field: 'name', headerName: 'Name:', width: 200 },
         {
             field: 'delete',
             headerName: 'Delete',
@@ -300,7 +299,7 @@ export default function AdminPage({ videos, categories }) {
 
                     }}
                     color="error"
-                ><DeleteForeverIcon></DeleteForeverIcon>
+                ><DeleteForeverOutlinedIcon/>
                 </Button>
             ),
         },
@@ -465,7 +464,7 @@ export default function AdminPage({ videos, categories }) {
 
                     <div style={{ minWidth: '400px', width: '70vw' }}>
                         <div className="album py-5 bg-light">
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: "5%", paddingLeft: "5%" }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: "5%", paddingLeft: "15%" }}>
                                 <Tabs value={tabValue} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
                                     <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
                                     <Tab icon={<InfoOutlinedIcon />} label="Categories" />
@@ -510,7 +509,7 @@ export default function AdminPage({ videos, categories }) {
                             )}
 
                             {tabValue === 1 && (
-                                <div>
+                                <div style={{width:"90%", paddingLeft:"10%", maxWidth:"600px"}}>
                                     <DataGrid
                                         rows={dataCat}
                                         columns={columns}
