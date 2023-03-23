@@ -83,14 +83,14 @@ export default function AdminPage({ videos, categories }) {
     const handleOpenModAdd = () => setOpenModAdd(true);
     const handleCloseModAdd = () => setOpenModAdd(false);
 
-    const { register: registerUpdate, handleSubmit: handleUpdateSubmit, reset } = useForm();
-    const [openModUpdate, setOpenModUpdate] = useState(false);
-    const handleOpenModUpdate = () => setOpenModUpdate(true);
-    const handleCloseModUpdate = () => setOpenModUpdate(false);
+    // const { register: registerUpdate, handleSubmit: handleUpdateSubmit, reset } = useForm();
+    // const [openModUpdate, setOpenModUpdate] = useState(false);
+    // const handleOpenModUpdate = () => setOpenModUpdate(true);
+    // const handleCloseModUpdate = () => setOpenModUpdate(false);
 
-    useEffect(() => {
-        reset(categories)
-    }, [])
+    // useEffect(() => {
+    //     reset(categories)
+    // }, [])
 
     function loadMoreVideos() {
         setVideosToShow(videosToShow + 3);
@@ -304,26 +304,26 @@ export default function AdminPage({ videos, categories }) {
                 </Button>
             ),
         },
-        {
-            field: 'update',
-            headerName: 'Update',
-            sortable: false,
-            filterable: false,
-            width: 100,
-            renderCell: (params) => (
-                <Button
-                    onClick={(event) => {
-                        event.stopPropagation();
-                        setCurrentCatRow(params.row);
-                        handleOpenModUpdate()
-                        console.log(currentCatRow)
-                    }}
-                    color="success"
-                >
-                    <UpdateIcon></UpdateIcon>
-                </Button>
-            ),
-        },
+        // {
+        //     field: 'update',
+        //     headerName: 'Update',
+        //     sortable: false,
+        //     filterable: false,
+        //     width: 100,
+        //     renderCell: (params) => (
+        //         <Button
+        //             onClick={(event) => {
+        //                 event.stopPropagation();
+        //                 setCurrentCatRow(params.row);
+        //                 handleOpenModUpdate()
+        //                 console.log(currentCatRow)
+        //             }}
+        //             color="success"
+        //         >
+        //             <UpdateIcon></UpdateIcon>
+        //         </Button>
+        //     ),
+        // },
     ];
 
     function deleteCategory(id) {
@@ -339,25 +339,25 @@ export default function AdminPage({ videos, categories }) {
         }
     }
 
-    const renameCategory = async (data) => {
-        const response = await fetch(`/api/browse/categories/${currentCatRow._id}`, {
-            method: 'PUT',
-            mode: 'cors',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
+    // const renameCategory = async (data) => {
+    //     const response = await fetch(`/api/browse/categories/${currentCatRow._id}`, {
+    //         method: 'PUT',
+    //         mode: 'cors',
+    //         cache: 'no-cache',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(data),
+    //     });
 
-        const result = await response.json();
-        if (result.error) {
-            alert('Error: ' + result.error);
-        } else {
-            setCurrentCatRow(null);
-            window.location.reload(false);
-        }
-    };
+    //     const result = await response.json();
+    //     if (result.error) {
+    //         alert('Error: ' + result.error);
+    //     } else {
+    //         setCurrentCatRow(null);
+    //         window.location.reload(false);
+    //     }
+    // };
 
     const addCategory = async (data) => {
         const response = await fetch('/api/browse/categories', {
@@ -519,7 +519,7 @@ export default function AdminPage({ videos, categories }) {
                                         getRowId={(row) => row.name}
                                         style={{ height: '75vh' }}
                                     />
-                                    <Modal
+                                    {/* <Modal
                                         open={openModUpdate}
                                         onClose={handleCloseModUpdate}
                                         aria-labelledby="modal-update-category"
@@ -534,7 +534,7 @@ export default function AdminPage({ videos, categories }) {
                                                 <Button variant="text" type='submit'>Save</Button>
                                             </form>
                                         </Box>
-                                    </Modal>
+                                    </Modal> */}
                                 </div>
                             )}
 

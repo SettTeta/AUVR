@@ -1,11 +1,8 @@
 // pages/api/categories/[id].js
 import { connect } from "mongoose";
 import Category from "../../../../models/category";
-import * as Mongoose from 'mongoose'
 
 const connectionString = process.env.MONGODB_URI;
-
-Mongoose.set('strictQuery', false);
 
 export default async function handler(req, res) {
     await connect(connectionString);
@@ -19,19 +16,10 @@ export default async function handler(req, res) {
     } else if (req.method === "DELETE") {
         const deletedDoc = await Category.deleteOne({ _id: id });
         res.status(200).json(deletedDoc);
-    } 
-    // else if (req.method === "PUT") {
-    //     const updatedDoc = await Category.updateOne({ _id: id }, req.body);
-    //     res.status(200).json(updatedDoc);
-    // } 
-    else if (req.method === 'PUT') {
-        const updatedDoc = await Category.updateOne(
-          { _id: id }, // pass the ObjectId of the document to update
-          { $set: req.body } // use $set operator to update fields in the document
-        );
+    } else if (req.method === "PUT") {
+        const updatedDoc = await Category.updateOne({ _id: id }, req.body);
         res.status(200).json(updatedDoc);
-    }
-    else {
+    } else {
         res.setHeader("Allow", ["GET", "DELETE", "PUT"]);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
