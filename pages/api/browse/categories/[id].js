@@ -3,7 +3,7 @@ import { connect } from "mongoose";
 import Category from "../../../../models/category";
 
 const connectionString = process.env.MONGODB_URI;
-mongoose.set('strictQuery', false);
+set('strictQuery', false);
 
 export default async function handler(req, res) {
     await connect(connectionString);
