@@ -385,7 +385,7 @@ export default function AdminPage({ videos, categories }) {
         <main role="main" style={{ paddingTop: "7vh" }}>
             <div>
                 <Head>
-                    <title>VR Tours</title>
+                    <title>VR Tours - Admin</title>
                     <meta name="description" content="A VR Video Hosting platform" />
                 </Head>
             </div>
