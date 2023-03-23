@@ -1,7 +1,6 @@
 import Header from '../../components/header'
 import Footer from '../../components/footer'
 import * as React from 'react'
-import VideoCard from '../../components/Card.js'
 import ScrollCard from '../../components/CardForScroll.js'
 import Head from 'next/head'
 import { useState } from "react";
@@ -30,6 +29,11 @@ export default function BrowsePage({ videos, categories }) {
         );
       })
       .slice(0, videosToShow);
+
+    if (videosToDisplay.length === 0) {
+      return null;
+    }
+    
     return (
       <div className='container' key={vidType}>
         <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>{vidType}</h1>

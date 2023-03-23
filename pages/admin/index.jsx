@@ -39,8 +39,7 @@ import Select from '@mui/material/Select';
 
 // data grid
 import { DataGrid } from '../../node_modules/@mui/x-data-grid';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import UpdateIcon from '@mui/icons-material/Update';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 const style = {
     position: 'absolute',
@@ -72,24 +71,25 @@ export default function AdminPage({ videos, categories }) {
     const [location, setLocation] = useState("all");
     const [selectedCatDropbox, setSelectedCatDropbox] = useState("all");
 
-    const { register, handleSubmit, reset } = useForm();
     const [data, setData] = useState("");
 
     const [editedVideo, setEditedVideo] = useState(null);
     const [dataCat, setDataCat] = useState(categories);
     const [currentCatRow, setCurrentCatRow] = useState(null)
 
+    const { register: registerAdd, handleSubmit: handleAddeSubmit} = useForm();
     const [openModAdd, setOpenModAdd] = useState(false);
     const handleOpenModAdd = () => setOpenModAdd(true);
     const handleCloseModAdd = () => setOpenModAdd(false);
 
-    const [openModUpdate, setOpenModUpdate] = useState(false);
-    const handleOpenModUpdate = () => setOpenModUpdate(true);
-    const handleCloseModUpdate = () => setOpenModUpdate(false);
+    // const { register: registerUpdate, handleSubmit: handleUpdateSubmit, reset } = useForm();
+    // const [openModUpdate, setOpenModUpdate] = useState(false);
+    // const handleOpenModUpdate = () => setOpenModUpdate(true);
+    // const handleCloseModUpdate = () => setOpenModUpdate(false);
 
-    useEffect(() => {
-        reset(categories)
-    }, [])
+    // useEffect(() => {
+    //     reset(categories)
+    // }, [])
 
     function loadMoreVideos() {
         setVideosToShow(videosToShow + 3);
@@ -159,7 +159,7 @@ export default function AdminPage({ videos, categories }) {
                         <FormControl>
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue={editVideo.location}
+                                defaultValue={editedVideo.location}
                                 name="radio-buttons-group"
                                 row
                                 onChange={(e) => setEditedVideo({ ...editedVideo, location: e.target.value })}
@@ -284,7 +284,7 @@ export default function AdminPage({ videos, categories }) {
     }
 
     const columns = [
-        { field: 'name', headerName: 'Name:', width: 500 },
+        { field: 'name', headerName: 'Name:', width: 200 },
         {
             field: 'delete',
             headerName: 'Delete',
@@ -299,30 +299,30 @@ export default function AdminPage({ videos, categories }) {
 
                     }}
                     color="error"
-                ><DeleteForeverIcon></DeleteForeverIcon>
+                ><DeleteForeverOutlinedIcon/>
                 </Button>
             ),
         },
-        {
-            field: 'update',
-            headerName: 'Update',
-            sortable: false,
-            filterable: false,
-            width: 100,
-            renderCell: (params) => (
-                <Button
-                    onClick={(event) => {
-                        event.stopPropagation();
-                        setCurrentCatRow(params.row);
-                        handleOpenModUpdate()
-                        console.log(currentCatRow)
-                    }}
-                    color="success"
-                >
-                    <UpdateIcon></UpdateIcon>
-                </Button>
-            ),
-        },
+        // {
+        //     field: 'update',
+        //     headerName: 'Update',
+        //     sortable: false,
+        //     filterable: false,
+        //     width: 100,
+        //     renderCell: (params) => (
+        //         <Button
+        //             onClick={(event) => {
+        //                 event.stopPropagation();
+        //                 setCurrentCatRow(params.row);
+        //                 handleOpenModUpdate()
+        //                 console.log(currentCatRow)
+        //             }}
+        //             color="success"
+        //         >
+        //             <UpdateIcon></UpdateIcon>
+        //         </Button>
+        //     ),
+        // },
     ];
 
     function deleteCategory(id) {
@@ -338,25 +338,25 @@ export default function AdminPage({ videos, categories }) {
         }
     }
 
-    const renameCategory = async (data) => {
-        const response = await fetch(`/api/browse/categories/${currentCatRow._id}`, {
-            method: 'PUT',
-            mode: 'cors',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
+    // const renameCategory = async (data) => {
+    //     const response = await fetch(`/api/browse/categories/${currentCatRow._id}`, {
+    //         method: 'PUT',
+    //         mode: 'cors',
+    //         cache: 'no-cache',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(data),
+    //     });
 
-        const result = await response.json();
-        if (result.error) {
-            alert('Error: ' + result.error);
-        } else {
-            setCurrentCatRow(null);
-            window.location.reload(false);
-        }
-    };
+    //     const result = await response.json();
+    //     if (result.error) {
+    //         alert('Error: ' + result.error);
+    //     } else {
+    //         setCurrentCatRow(null);
+    //         window.location.reload(false);
+    //     }
+    // };
 
     const addCategory = async (data) => {
         const response = await fetch('/api/browse/categories', {
@@ -369,6 +369,7 @@ export default function AdminPage({ videos, categories }) {
             referrerPolicy: "no-referrer",
             body: JSON.stringify(data),
         });
+        console.log(data)
         const result = await response.json();
         if (result.error) {
             alert("Error: " + result.error)
@@ -383,7 +384,7 @@ export default function AdminPage({ videos, categories }) {
         <main role="main" style={{ paddingTop: "7vh" }}>
             <div>
                 <Head>
-                    <title>VR Tours</title>
+                    <title>VR Tours - Admin</title>
                     <meta name="description" content="A VR Video Hosting platform" />
                 </Head>
             </div>
@@ -463,12 +464,12 @@ export default function AdminPage({ videos, categories }) {
 
                     <div style={{ minWidth: '400px', width: '70vw' }}>
                         <div className="album py-5 bg-light">
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: "5%", paddingLeft: "5%" }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: "5%", paddingLeft: "15%" }}>
                                 <Tabs value={tabValue} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
                                     <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
                                     <Tab icon={<InfoOutlinedIcon />} label="Categories" />
                                 </Tabs>
-                                
+
                                 {tabValue === 1 && (
                                     <Fab color="primary" aria-label="add" onClick={handleOpenModAdd} style={{ height: "40px", width: "40px" }}>
                                         <AddIcon />
@@ -485,9 +486,9 @@ export default function AdminPage({ videos, categories }) {
                                         <Typography id="modal-modal-title" variant="h6" component="h2">
                                             Add a Category
                                         </Typography>
-                                        <form onSubmit={handleSubmit(addCategory)}>
-                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...register("name", { required: true })} />
-                                            <Button variant="text" type='submit'>Save</Button>
+                                        <form onSubmit={handleAddeSubmit(addCategory)}>
+                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...registerAdd("name", { required: true })} />
+                                            <Button variant="text" type='submit'>Add</Button>
                                         </form>
 
                                     </Box>
@@ -508,7 +509,7 @@ export default function AdminPage({ videos, categories }) {
                             )}
 
                             {tabValue === 1 && (
-                                <div>
+                                <div style={{width:"90%", paddingLeft:"10%", maxWidth:"600px"}}>
                                     <DataGrid
                                         rows={dataCat}
                                         columns={columns}
@@ -517,7 +518,7 @@ export default function AdminPage({ videos, categories }) {
                                         getRowId={(row) => row.name}
                                         style={{ height: '75vh' }}
                                     />
-                                    <Modal
+                                    {/* <Modal
                                         open={openModUpdate}
                                         onClose={handleCloseModUpdate}
                                         aria-labelledby="modal-update-category"
@@ -527,12 +528,12 @@ export default function AdminPage({ videos, categories }) {
                                             <Typography id="modal-update-category" variant="h6" component="h2">
                                                 Update the Category
                                             </Typography>
-                                            <form onSubmit={handleSubmit(renameCategory)}>
-                                                <TextField id="outlined-basic" label="" variant="outlined" defaultValue={currentCatRow?.name} {...register("name", { required: false })} />
+                                            <form onSubmit={handleUpdateSubmit(renameCategory)}>
+                                                <TextField id="outlined-basic" label="" variant="outlined" defaultValue={currentCatRow?.name} {...registerUpdate("name", { required: false })} />
                                                 <Button variant="text" type='submit'>Save</Button>
                                             </form>
                                         </Box>
-                                    </Modal>
+                                    </Modal> */}
                                 </div>
                             )}
 
@@ -557,4 +558,3 @@ export async function getServerSideProps() {
     const categories = await cat.json()
     return { props: { videos, categories } }
 }
-
