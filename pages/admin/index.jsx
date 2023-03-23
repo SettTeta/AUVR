@@ -72,17 +72,18 @@ export default function AdminPage({ videos, categories }) {
     const [location, setLocation] = useState("all");
     const [selectedCatDropbox, setSelectedCatDropbox] = useState("all");
 
-    const { register, handleSubmit, reset } = useForm();
     const [data, setData] = useState("");
 
     const [editedVideo, setEditedVideo] = useState(null);
     const [dataCat, setDataCat] = useState(categories);
     const [currentCatRow, setCurrentCatRow] = useState(null)
 
+    const { register: registerAdd, handleSubmit: handleAddeSubmit} = useForm();
     const [openModAdd, setOpenModAdd] = useState(false);
     const handleOpenModAdd = () => setOpenModAdd(true);
     const handleCloseModAdd = () => setOpenModAdd(false);
 
+    const { register: registerUpdate, handleSubmit: handleUpdateSubmit, reset } = useForm();
     const [openModUpdate, setOpenModUpdate] = useState(false);
     const handleOpenModUpdate = () => setOpenModUpdate(true);
     const handleCloseModUpdate = () => setOpenModUpdate(false);
@@ -369,6 +370,7 @@ export default function AdminPage({ videos, categories }) {
             referrerPolicy: "no-referrer",
             body: JSON.stringify(data),
         });
+        console.log(data)
         const result = await response.json();
         if (result.error) {
             alert("Error: " + result.error)
@@ -468,7 +470,7 @@ export default function AdminPage({ videos, categories }) {
                                     <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
                                     <Tab icon={<InfoOutlinedIcon />} label="Categories" />
                                 </Tabs>
-                                
+
                                 {tabValue === 1 && (
                                     <Fab color="primary" aria-label="add" onClick={handleOpenModAdd} style={{ height: "40px", width: "40px" }}>
                                         <AddIcon />
@@ -485,9 +487,9 @@ export default function AdminPage({ videos, categories }) {
                                         <Typography id="modal-modal-title" variant="h6" component="h2">
                                             Add a Category
                                         </Typography>
-                                        <form onSubmit={handleSubmit(addCategory)}>
-                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...register("name", { required: true })} />
-                                            <Button variant="text" type='submit'>Save</Button>
+                                        <form onSubmit={handleAddeSubmit(addCategory)}>
+                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...registerAdd("name", { required: true })} />
+                                            <Button variant="text" type='submit'>Add</Button>
                                         </form>
 
                                     </Box>
@@ -527,8 +529,8 @@ export default function AdminPage({ videos, categories }) {
                                             <Typography id="modal-update-category" variant="h6" component="h2">
                                                 Update the Category
                                             </Typography>
-                                            <form onSubmit={handleSubmit(renameCategory)}>
-                                                <TextField id="outlined-basic" label="" variant="outlined" defaultValue={currentCatRow?.name} {...register("name", { required: false })} />
+                                            <form onSubmit={handleUpdateSubmit(renameCategory)}>
+                                                <TextField id="outlined-basic" label="" variant="outlined" defaultValue={currentCatRow?.name} {...registerUpdate("name", { required: false })} />
                                                 <Button variant="text" type='submit'>Save</Button>
                                             </form>
                                         </Box>
@@ -557,4 +559,3 @@ export async function getServerSideProps() {
     const categories = await cat.json()
     return { props: { videos, categories } }
 }
-
