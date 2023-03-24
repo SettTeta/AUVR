@@ -3,10 +3,10 @@ import LoginButton from "../components/login";
 const Footer = () => {
   return (
     <footer
-      className="text-center text-lg-start mt-xl-5 pt-4"
+      className="text-center text-lg-start  pt-4"
       style={{ background: "#aa1e2d" }}
     >
-      <div className="container-fluid p-4" style={{marginTop:"100px"}}>
+      <div className="container-fluid p-4">
         <div className="row">
           <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
             <h5 className="text-uppercase mb-4 footer-title">UNDERGRADUATE</h5>
