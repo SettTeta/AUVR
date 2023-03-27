@@ -26,8 +26,7 @@ export default function BrowsePage({ videos, categories }) {
     const videosToDisplay = videos
       .filter(video => {
         return (
-          video.title.toLowerCase().includes(searchValue.toLowerCase()) &&
-          video.type === vidType
+          video.type === vidType          
         );
       })
       .slice(0, videosToShow);
@@ -62,6 +61,44 @@ export default function BrowsePage({ videos, categories }) {
         </div>
       </div>
     );
+  }
+
+  function renderAllVideo() {
+    const videosToDisplay = videos
+      .filter(video => {
+        return (
+          (video.title.toLowerCase().includes(searchValue.toLowerCase()) || video.location.toLowerCase().includes(searchValue.toLowerCase()) || video.desc.toLowerCase().includes(searchValue.toLowerCase())|| video.type.toLowerCase().includes(searchValue.toLowerCase()))
+        );
+      })
+
+      return (
+        <div className='container'>
+          <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>All - Searching: {searchValue}</h1>
+          <div className="container bg-white" style={{ display: "flex", flexWrap: "wrap", width: "100%", height: "auto", maxHeight: "570px", marginBottom: "10px", borderRadius: "20px", overflowX: "auto" }}>
+            {videosToDisplay.map((src, index) => (
+              <div
+                className="scroll"
+                key={src._id}
+                style={{ flex: "0 0 auto", marginBottom: "100px" }}
+              >
+                <ScrollCard
+                  title={src.title}
+                  link={src.youtube}
+                  thumbnail={src.thumbnail}
+                  desc={src.desc}
+                  onView={src._id}
+                  duration={src.duration}
+                  location={src.location}
+                  dOU={src.dateOfUpload}
+                  player={src.player}
+                  urlID={src.urlID}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+      
   }
 
 
@@ -114,20 +151,11 @@ export default function BrowsePage({ videos, categories }) {
           <br />
           <br />
 
-          <div className="input-group rounded" style={{ padding: "0 15% 0 15%" }}>
-            <input type="search" className="form-control rounded" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-            <span className="input-group-text border-0" id="search-addon">
-              <i className="fas fa-search" onClick={search}>Clear</i>
-            </span>
-          </div>
-
-          <div className="rounded col-md-6" style={{ margin: "0 10% 0", background: "white", padding: "5px 0px 10px" }}>
-            <div className='row g-0'>
-              <TextField type="search" className='col-md-10' label="Search" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} variant="standard" style={{ paddingRight: "10px" }} />
-              <Button className="border-0 col-md-1" id="search-addon" onClick={search} variant="contained">
-                <BackspaceIcon></BackspaceIcon>
-              </Button>
-            </div>
+          <div className="input-group" style={{ padding: "0 15% 0 15%" }}>
+            <input type="search" className="form-control" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+            <Button className="input-group-text border-0" id="search-addon" variant='filled'>
+              <BackspaceIcon></BackspaceIcon>
+            </Button>
           </div>
 
 
@@ -136,9 +164,16 @@ export default function BrowsePage({ videos, categories }) {
 
       <div className="album py-5 bg-light">
 
-        {categories.map(cat => (
-          renderVideoRow(`${cat.name}`)
-        ))}
+        {searchValue && (
+            renderAllVideo()
+        )}
+
+        {!searchValue && (
+          categories.map(cat => (
+            renderVideoRow(`${cat.name}`)
+          ))
+        )}
+
 
       </div>
 
