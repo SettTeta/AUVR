@@ -78,7 +78,7 @@ export default function AdminPage({ videos, categories }) {
     const [dataCat, setDataCat] = useState(categories);
     const [currentCatRow, setCurrentCatRow] = useState(null)
 
-    const { register: registerAdd, handleSubmit: handleAddeSubmit} = useForm();
+    const { register: registerAdd, handleSubmit: handleAddeSubmit } = useForm();
     const [openModAdd, setOpenModAdd] = useState(false);
     const handleOpenModAdd = () => setOpenModAdd(true);
     const handleCloseModAdd = () => setOpenModAdd(false);
@@ -292,16 +292,18 @@ export default function AdminPage({ videos, categories }) {
             sortable: false,
             filterable: false,
             width: '150',
-            align:"right",
+            align: "right",
+            headerAlign: 'right',
             renderCell: (params) => (
                 <Button
+                    style={{fontSize:"3rem"}}
                     onClick={(event) => {
                         event.stopPropagation();
                         deleteCategory(params.row._id);
 
                     }}
                     color="error"
-                ><DeleteForeverOutlinedIcon/>
+                ><DeleteForeverOutlinedIcon />
                 </Button>
             ),
         },
@@ -383,7 +385,7 @@ export default function AdminPage({ videos, categories }) {
 
     // if (session) {
     return (
-        <main role="main" style={{ paddingTop: "7vh" }}>
+        <main role="main" style={{ paddingTop: "7vh", background: "#f8f9fa" }}>
             <div>
                 <Head>
                     <title>VR Tours - Admin</title>
@@ -393,7 +395,7 @@ export default function AdminPage({ videos, categories }) {
 
             <Header />
 
-            <div style={{ height: '90vh' }}>
+            <div style={{ height: '93vh' }}>
 
                 <div className='row g-0'>
                     <div style={{ minWidth: '400px', width: "20%", padding: '20px', backgroundColor: '#f8f9fa' }}>
@@ -499,7 +501,7 @@ export default function AdminPage({ videos, categories }) {
                             </div>
 
                             {tabValue === 0 && (
-                                <div style={{ height: '93vh', overflowY: 'scroll' }}>
+                                <div style={{ height: '70vh', overflowY: 'scroll' }}>
                                     <div className="container" style={{ display: "flex", width: "100%" }}>
                                         <div className="container-xxl content-row">
                                             {renderVideoCards()}
@@ -512,7 +514,7 @@ export default function AdminPage({ videos, categories }) {
                             )}
 
                             {tabValue === 1 && (
-                                <div style={{width:"90%", paddingLeft:"10%", minWidth:"300px"}}>
+                                <div style={{ width: "90%", paddingLeft: "10%", minWidth: "300px", maxWidth: "400px" }}>
                                     <DataGrid
                                         rows={dataCat}
                                         columns={columns}
