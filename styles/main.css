@@ -1,6 +1,6 @@
 :root {
-    --left-bg-color: rgba(87,84,236, 0.7);
-    --right-bg-color: rgba(43,43,43, 0.8);
+    --left-bg-color: rgba(87, 84, 236, 0.7);
+    --right-bg-color: rgba(43, 43, 43, 0.8);
     --hover-width: 75%;
     --other-width: 25%;
     --speed: 700ms;
@@ -73,7 +73,7 @@
     background-size: cover;
 }
 
-.split.left::before{
+.split.left::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -81,7 +81,7 @@
     background-color: var(--left-bg-color);
 }
 
-.split.right::before{
+.split.right::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -105,31 +105,46 @@
     width: var(--other-width);
 }
 
-.split.right, .split.left, .split.right::before, .split.left::before{
+.split.right,
+.split.left,
+.split.right::before,
+.split.left::before {
     transition: all var(--speed) ease-in-out;
 }
 
-.player-container{
-    width:80vw;
+.player-container {
+    width: 80vw;
 }
 
-@media only screen and (max-width: 800px){
-    .player-container{
+@media only screen and (max-width: 800px) {
+    .player-container {
         width: 95vw;
     }
 }
 
 
 
-.footer-title{
+.footer-title {
     color: white;
 }
 
 .text-white {
     text-decoration: none;
-    font-size:small;
+    font-size: small;
 }
 
 .text-white:hover {
-    text-decoration:underline;
+    text-decoration: underline;
+}
+
+
+.add-tab {
+    margin-right: 40%;
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 800px) {
+    .add-tab {
+        margin-right: 1%;
+    }
 }

@@ -285,13 +285,14 @@ export default function AdminPage({ videos, categories }) {
     }
 
     const columns = [
-        { field: 'name', headerName: 'Name:', width: 200 },
+        { field: 'name', headerName: 'Name:', width: '150' },
         {
             field: 'delete',
             headerName: 'Delete',
             sortable: false,
             filterable: false,
-            width: 100,
+            width: '150',
+            align:"right",
             renderCell: (params) => (
                 <Button
                     onClick={(event) => {
@@ -392,7 +393,7 @@ export default function AdminPage({ videos, categories }) {
 
             <Header />
 
-            <div style={{ display: 'flex', height: '90vh' }}>
+            <div style={{ height: '90vh' }}>
 
                 <div className='row g-0'>
                     <div style={{ minWidth: '400px', width: "30vw", padding: '20px', backgroundColor: '#f8f9fa' }}>
@@ -465,14 +466,14 @@ export default function AdminPage({ videos, categories }) {
 
                     <div style={{ minWidth: '400px', width: '70vw' }}>
                         <div className="album py-5 bg-light">
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: "5%", paddingLeft: "15%" }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'left', paddingRight: "15%", paddingLeft: "10%" }}>
                                 <Tabs value={tabValue} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
                                     <Tab icon={<VideoLibraryOutlinedIcon />} label="Videos" />
                                     <Tab icon={<InfoOutlinedIcon />} label="Categories" />
                                 </Tabs>
 
                                 {tabValue === 1 && (
-                                    <Fab color="primary" aria-label="add" onClick={handleOpenModAdd} style={{ height: "40px", width: "40px" }}>
+                                    <Fab color="primary" aria-label="add" className='add-tab' onClick={handleOpenModAdd} style={{ height: "40px", width: "40px" }}>
                                         <AddIcon />
                                     </Fab>
                                 )}
@@ -511,7 +512,7 @@ export default function AdminPage({ videos, categories }) {
                             )}
 
                             {tabValue === 1 && (
-                                <div style={{width:"90%", paddingLeft:"10%", maxWidth:"600px"}}>
+                                <div style={{width:"90%", paddingLeft:"10%", minWidth:"300px"}}>
                                     <DataGrid
                                         rows={dataCat}
                                         columns={columns}

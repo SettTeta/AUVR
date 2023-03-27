@@ -35,7 +35,7 @@ function HomePage() {
                             <h4 className="mb-3" style={{color:"white", textShadow: "2px 2px 0px black"}}>A collection of VR Videos in Assumption University</h4>
                             <br></br>
                             <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Browse</Link>
-                            <Link className="btn btn-outline-light btn-lg" href="/story" role="button" style={{marginLeft:"10px"}}>Immerse</Link>
+                            {/* <Link className="btn btn-outline-light btn-lg" href="/story" role="button" style={{marginLeft:"10px"}}>Immerse</Link> */}
                         </div>
                     </div>
                 </div>
