@@ -396,7 +396,7 @@ export default function AdminPage({ videos, categories }) {
             <div style={{ height: '90vh' }}>
 
                 <div className='row g-0'>
-                    <div style={{ minWidth: '400px', width: "30vw", padding: '20px', backgroundColor: '#f8f9fa' }}>
+                    <div style={{ minWidth: '400px', width: "29vw", padding: '20px', backgroundColor: '#f8f9fa' }}>
                         <section className="jumbotron text-center" >
                             <div className="container">
                                 <br></br>
