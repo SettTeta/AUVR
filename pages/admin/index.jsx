@@ -396,7 +396,7 @@ export default function AdminPage({ videos, categories }) {
             <div style={{ height: '90vh' }}>
 
                 <div className='row g-0'>
-                    <div style={{ minWidth: '400px', width: "29vw", padding: '20px', backgroundColor: '#f8f9fa' }}>
+                    <div style={{ minWidth: '400px', width: "20%", padding: '20px', backgroundColor: '#f8f9fa' }}>
                         <section className="jumbotron text-center" >
                             <div className="container">
                                 <br></br>
@@ -464,7 +464,7 @@ export default function AdminPage({ videos, categories }) {
                     </div>
 
 
-                    <div style={{ minWidth: '400px', width: '70vw' }}>
+                    <div style={{ minWidth: '400px', width: '60%' }}>
                         <div className="album py-5 bg-light">
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'left', paddingRight: "15%", paddingLeft: "10%" }}>
                                 <Tabs value={tabValue} onChange={handleTabChange} aria-label="icon label tabs example" centered style={{ paddingBottom: "5px" }}>
