@@ -28,7 +28,7 @@ function CardTemplate(props) {
                 <div className="col-md-2 align-self-center ">
                     <img className="rounded mx-auto d-block"
                         // src={thumbnail} style={{ height: "90%", width: "90%", padding: "5px" }}>
-                        src={(player === "vimeo") ? `https://vumbnail.com/${urlID}.jpg` : `http://i2.ytimg.com/vi/${urlID}/mqdefault.jpg`} style={{ height: "90%", width: "90%", padding: "5px" }}>
+                        src={(player === "vimeo") ? `https://vumbnail.com/${urlID}.jpg` : `http://i2.ytimg.com/vi/${urlID}/mqdefault.jpg`} style={{ height: "90%", width: "90%", padding: "1%" }}>
                     </img>
                 </div>
 

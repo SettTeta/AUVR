@@ -40,7 +40,7 @@ const Header = () => {
                                 <Link className="nav-link" href="/gettingStarted">Getting Started</Link>
                             </li> */}
                             <li className="nav-item">
-                                <Link className="nav-link" href="/story">Start Immersion</Link>
+                                <Link className="nav-link" href="/story">Immersion</Link>
                             </li>
 
                             {session && (

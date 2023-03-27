@@ -5,6 +5,8 @@ import ScrollCard from '../../components/CardForScroll.js'
 import Head from 'next/head'
 import { useState } from "react";
 import Link from 'next/link'
+import BackspaceIcon from '@mui/icons-material/Backspace';
+import { TextField, Button } from '@mui/material'
 
 import Banner from '../../public/banner2.webp'
 
@@ -33,7 +35,7 @@ export default function BrowsePage({ videos, categories }) {
     if (videosToDisplay.length === 0) {
       return null;
     }
-    
+
     return (
       <div className='container' key={vidType}>
         <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>{vidType}</h1>
@@ -118,6 +120,17 @@ export default function BrowsePage({ videos, categories }) {
               <i className="fas fa-search" onClick={search}>Clear</i>
             </span>
           </div>
+
+          <div className="rounded col-md-6" style={{ margin: "0 10% 0", background: "white", padding: "5px 0px 10px" }}>
+            <div className='row g-0'>
+              <TextField type="search" className='col-md-10' label="Search" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} variant="standard" style={{ paddingRight: "10px" }} />
+              <Button className="border-0 col-md-1" id="search-addon" onClick={search} variant="contained">
+                <BackspaceIcon></BackspaceIcon>
+              </Button>
+            </div>
+          </div>
+
+
         </div>
       </section>
 

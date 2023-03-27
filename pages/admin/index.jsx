@@ -51,6 +51,7 @@ const style = {
     border: '0.5px solid #000',
     boxShadow: 24,
     p: 4,
+    justifyContent: 'center',
 };
 
 export default function AdminPage({ videos, categories }) {
@@ -487,8 +488,9 @@ export default function AdminPage({ videos, categories }) {
                                             Add a Category
                                         </Typography>
                                         <form onSubmit={handleAddeSubmit(addCategory)}>
-                                            <TextField id="outlined-basic" label="Outlined" variant="outlined" {...registerAdd("name", { required: true })} />
-                                            <Button variant="text" type='submit'>Add</Button>
+                                            <TextField id="outlined-basic" label="Add" variant="outlined" {...registerAdd("name", { required: true })} />
+                                            <br />
+                                            <Button variant="text" type='submit'>Save</Button>
                                         </form>
 
                                     </Box>
@@ -542,7 +544,6 @@ export default function AdminPage({ videos, categories }) {
                 </div>
             </div>
 
-            <Footer />
         </main>
     )
     // }
