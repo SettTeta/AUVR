@@ -55,6 +55,15 @@ export default function Video({ video }) {
                                     height="100%"
                                     controls
                                 />
+
+<PlayerComponent
+                                    url={(video.player === "vimeo") ? `https://vimeo.com/${video.urlID}` : `https://www.youtube.com/embed/${video.urlID}`}
+                                    className="react-player"
+                                    playing
+                                    width="100%"
+                                    height="100%"
+                                    controls
+                                />
                             </div>
 
                             <h1 className="jumbotron-heading" style={{ borderTop: "solid 0.5pt", paddingBottom: "10px" }}></h1>
