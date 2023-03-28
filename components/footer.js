@@ -6,7 +6,7 @@ const Footer = () => {
       className="text-center text-lg-start  pt-4"
       style={{ background: "#aa1e2d" }}
     >
-      <div className="container-fluid p-4">
+      <div className="container-fluid p-4 foot">
         <div className="row">
           <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
             <h5 className="text-uppercase mb-4 footer-title">UNDERGRADUATE</h5>
@@ -208,7 +208,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="col-lg-3 col-md-6 mb-4 mb-lg-0"></div>
-          <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <div className="col-lg-3 col-md-6 mb-4 mb-lg-0" style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
             <div className="col-lg-3 col-md-6 mb-4 mb-lg-0">
               <LoginButton />
             </div>

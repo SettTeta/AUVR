@@ -240,7 +240,7 @@ export default function AdminPage({ videos, categories }) {
                 let videoType = selectedCatDropbox === "all" ? true : video.type === selectedCatDropbox;
                 return video.title.toLowerCase().includes(searchValue.toLowerCase()) && videoLocation && videoType;
             })
-            .slice(0, videosToShow);
+            // .slice(0, videosToShow);
         return videosToDisplay.map(renderVideoCard);
     }
 
@@ -385,7 +385,7 @@ export default function AdminPage({ videos, categories }) {
 
     // if (session) {
     return (
-        <main role="main" style={{ paddingTop: "7vh", background: "#f8f9fa" }}>
+        <main role="main" style={{ paddingTop: "7vh", background: "#f8f9fa", height:"100%" }}>
             <div>
                 <Head>
                     <title>VR Tours - Admin</title>
@@ -505,9 +505,9 @@ export default function AdminPage({ videos, categories }) {
                                     <div className="container" style={{ display: "flex", width: "100%" }}>
                                         <div className="container-xxl content-row">
                                             {renderVideoCards()}
-                                            {videosToShow < videos.length && (
+                                            {/* {videosToShow < videos.length && (
                                                 <button className="btn btn-secondary" onClick={loadMoreVideos}>Load more</button>
-                                            )}
+                                            )} */}
                                         </div>
                                     </div>
                                 </div>

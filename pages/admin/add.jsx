@@ -207,7 +207,7 @@ export default function AdminPage({ categories }) {
                                 {(activeStep === 2) && (
                                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "50vh" }}>
                                         <div className="col-md-6">
-                                            <label htmlFor="location" className="col-form-label">Location:</label>
+                                            <label htmlFor="location" className="col-form-label">7. Set location:</label>
                                             <select className="form-select" id="location" {...register("location", { required: false })}>
                                                 <option value="">Select Campus</option>
                                                 <option value="Suvanabhumi">Suvanabhumi</option>
@@ -216,7 +216,7 @@ export default function AdminPage({ categories }) {
                                         </div>
 
                                         <div className="col-md-6">
-                                            <label htmlFor="type" className="col-form-label">Type:</label>
+                                            <label htmlFor="type" className="col-form-label">8. Set type:</label>
                                             <select className="form-select" id="type" {...register("type", { required: false })}>
                                                 <option value="">Select Category</option>
                                                 {categories.map(cat => (

@@ -116,14 +116,6 @@
     width: 80vw;
 }
 
-@media only screen and (max-width: 800px) {
-    .player-container {
-        width: 95vw;
-    }
-}
-
-
-
 .footer-title {
     color: white;
 }
@@ -139,12 +131,28 @@
 
 
 .add-tab {
-    margin-right: 40%;
+    margin-right: 55%;
     margin-top: 20px;
 }
+
+
+
+.foot {
+    margin-left: 60px;
+}
+
 
 @media only screen and (max-width: 800px) {
     .add-tab {
         margin-right: 1%;
+    }
+    .player-container {
+        width: 95vw;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .foot {
+        margin-left: 0;
     }
 }

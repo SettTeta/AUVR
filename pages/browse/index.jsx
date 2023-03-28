@@ -73,7 +73,7 @@ export default function BrowsePage({ videos, categories }) {
 
       return (
         <div className='container'>
-          <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>All - Searching: {searchValue}</h1>
+          <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>Searching: {searchValue}</h1>
           <div className="container bg-white" style={{ display: "flex", flexWrap: "wrap", width: "100%", height: "auto", maxHeight: "570px", marginBottom: "10px", borderRadius: "20px", overflowX: "auto" }}>
             {videosToDisplay.map((src, index) => (
               <div
@@ -153,7 +153,7 @@ export default function BrowsePage({ videos, categories }) {
 
           <div className="input-group" style={{ padding: "0 15% 0 15%" }}>
             <input type="search" className="form-control" placeholder="Thailand" aria-label="Search" aria-describedby="search-addon" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-            <Button className="input-group-text border-0" id="search-addon" variant='filled'>
+            <Button className="input-group-text border-0" id="search-addon" variant='filled' style={{background:"#FFCCCB"}}>
               <BackspaceIcon></BackspaceIcon>
             </Button>
           </div>
