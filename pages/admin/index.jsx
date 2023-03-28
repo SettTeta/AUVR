@@ -238,7 +238,7 @@ export default function AdminPage({ videos, categories }) {
             .filter(video => {
                 let videoLocation = location === "all" ? true : video.location === location;
                 let videoType = selectedCatDropbox === "all" ? true : video.type === selectedCatDropbox;
-                return video.title.toLowerCase().includes(searchValue.toLowerCase()) && videoLocation && videoType;
+                return videoLocation && videoType;
             })
             // .slice(0, videosToShow);
         return videosToDisplay.map(renderVideoCard);
