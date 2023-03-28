@@ -74,7 +74,11 @@ export default function AdminPage({ categories }) {
     };
 
     const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        if (activeStep === 0) {
+            window.location.href = "/admin"
+        } else {
+            setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        }
     };
 
     const handleReset = () => {
@@ -109,16 +113,15 @@ export default function AdminPage({ categories }) {
                     </Stepper>
 
                     <React.Fragment>
-                        <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+                        {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
                         <Box sx={{ pt: 2 }}>
 
                             <form onSubmit={handleSubmit(addVideo)}>
 
                                 {(activeStep === 0) && (
-                                    <div className="row d-flex justify-content-center">
-
-                                        <div className="col-md-5">
-                                            <label htmlFor="player" className="col-form-label">Choose Video Player:</label>
+                                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "50vh" }}>
+                                        <div className='col-md-4'>
+                                            <label htmlFor="player" className="col-form-label">1. Choose Video Player:</label>
                                             <br />
                                             <div style={{ display: "flex", paddingTop: "7px" }}>
                                                 <div className="form-check">
@@ -136,8 +139,8 @@ export default function AdminPage({ categories }) {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-5">
-                                            <label htmlFor="link" className="col-form-label">Insert URL ID: <HelpOutlineOutlinedIcon className='hover' onClick={handleOpen} /></label>
+                                        <div className='col-md-4' style={{ paddingTop: "3rem" }}>
+                                            <label htmlFor="link" className="col-form-label">2. Insert URL ID: <HelpOutlineOutlinedIcon className='hover' onClick={handleOpen} /></label>
                                             <input className="form-control" id="link" {...register("urlID", { required: false })} placeholder="URL ID"></input>
                                         </div>
 
@@ -154,8 +157,11 @@ export default function AdminPage({ categories }) {
                                                 <Image className="rounded mx-auto d-block"
                                                     src={yHelp}
                                                     alt=""
-                                                    width="300"
+                                                    width="350"
                                                     height="40" />
+
+                                                <br />
+
                                                 <Typography id="modal-modal-title" variant="h6" component="h2">
                                                     For Vimeo:
                                                     <Image className="rounded mx-auto d-block"
@@ -171,33 +177,35 @@ export default function AdminPage({ categories }) {
                                 )}
 
                                 {(activeStep === 1) && (
-                                    <div className="row d-flex justify-content-start">
+                                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "50vh" }}>
 
-                                        <div className="col-md-7 ">
-                                            <label htmlFor="title" className="col-form-label">Title:</label>
+                                        <div className="col-md-5" style={{ justifyContent: "center" }}>
+                                            <label htmlFor="title" className="col-form-label">3. Set title:</label>
                                             <input type="text" className="form-control" id="title" {...register("title", { required: false })} placeholder="Video Title" />
                                         </div>
 
-                                        <div className="col-md-4">
-                                            <label htmlFor="dateOfUpload" className="col-form-label">Date of Upload:</label>
-                                            <input className="form-control" type="date" id="dateOfUpload" {...register("dateOfUpload", { required: false })} />
+                                        <div className="col-md-5" style={{ justifyContent: "center" }}>
+                                            <label htmlFor="desc" className="col-form-label">4. Set description:</label>
+                                            <textarea className="form-control" type="text" id="desc" rows="3" {...register("desc", { required: false })} placeholder="Description of Video"></textarea>
                                         </div>
 
-                                        <div className="col-md-4">
-                                            <label htmlFor="duration" className="col-form-label">Duration:</label>
-                                            <input className="form-control" type="time" id="duration" {...register("duration", { required: false })} />
-                                        </div>
+                                        <div className="d-flex col-md-4" style={{ justifyContent: "left" }}>
+                                            <div className="col-md-5" style={{ marginRight: "1rem" }}>
+                                                <label htmlFor="dateOfUpload" className="col-form-label">5. Date of Upload:</label>
+                                                <input className="form-control" type="date" id="dateOfUpload" {...register("dateOfUpload", { required: false })} />
+                                            </div>
 
-                                        <div className="mb-3">
-                                            <label htmlFor="desc" className="col-form-label">Description:</label>
-                                            <input className="form-control" type="text" id="desc" {...register("desc", { required: false })} placeholder="Description of Video"></input>
+                                            <div className="col-md-5" style={{ marginLeft: "1rem" }}>
+                                                <label htmlFor="duration" className="col-form-label">6. Video duration:</label>
+                                                <input className="form-control" type="time" id="duration" {...register("duration", { required: false })} />
+                                            </div>
                                         </div>
 
                                     </div>
                                 )}
 
                                 {(activeStep === 2) && (
-                                    <div className="row d-flex justify-content-start">
+                                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "50vh" }}>
                                         <div className="col-md-6">
                                             <label htmlFor="location" className="col-form-label">Location:</label>
                                             <select className="form-select" id="location" {...register("location", { required: false })}>
@@ -237,7 +245,7 @@ export default function AdminPage({ categories }) {
                             <Box style={{ display: 'flex', flexDirection: 'row' }}>
                                 <Button
                                     color="inherit"
-                                    disabled={activeStep === 0}
+                                    // disabled={activeStep === 0}
                                     onClick={handleBack}
                                     sx={{ mr: 1 }}
                                 >
@@ -255,8 +263,6 @@ export default function AdminPage({ categories }) {
 
                 </Box>
             </div>
-
-            <Footer />
         </main>
     )
     // }

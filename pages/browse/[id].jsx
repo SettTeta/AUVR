@@ -43,6 +43,9 @@ export default function Video({ video }) {
                 <div>
                     <div className="row g-0">
                         <div className="card mb-3 player-container" style={{ padding: "1%" }}>
+                            <h2 className="jumbotron-heading" style={{paddingBottom: "20px", justifyContent: "left", display: "flex", borderBottom: "solid 0.5pt" }}>{video.title}</h2>
+
+
                             <div className="player-wrapper">
                                 <PlayerComponent
                                     url={(video.player === "vimeo") ? `https://vimeo.com/${video.urlID}` : `https://www.youtube.com/embed/${video.urlID}`}
@@ -54,21 +57,19 @@ export default function Video({ video }) {
                                 />
                             </div>
 
-                            <h2 className="jumbotron-heading" style={{ marginTop: "30px", paddingTop: "20px", justifyContent: "left", display: "flex", borderTop: "solid 0.5pt" }}>{video.title}</h2>
-                            
-                            <h1 className="jumbotron-heading" style={{ borderTop: "solid 0.5pt", paddingBottom: "10px", marginTop: "10px" }}></h1>
+                            <h1 className="jumbotron-heading" style={{ borderTop: "solid 0.5pt", paddingBottom: "10px" }}></h1>
 
-                            <div className="col-md-8">
+                            <div >
                                 <h6><DescriptionOutlinedIcon />  Description:</h6>
-                                <p className="card-text" style={{fontSize:"1rem"}}>{video.desc}</p>
+                                <p className="card-text" style={{ fontSize: "1rem" }}>{video.desc}</p>
                             </div>
 
                             <h1 className="jumbotron-heading" style={{ borderTop: "solid 0.5pt", paddingBottom: "0px", marginTop: "20px" }}></h1>
 
 
-                            <div className="jumbotron-heading" style={{ justifyContent: "left", display: "flex", opacity: "0.5", fontSize:"1rem" }}>{video.location} | {video.type} | {video.dateOfUpload} </div>
+                            <div className="jumbotron-heading" style={{ justifyContent: "left", display: "flex", opacity: "0.5", fontSize: "1rem" }}>{video.location} | {video.type} | {video.dateOfUpload} </div>
 
-                            
+
 
                             {/* <p className="card-text" style={{}}></p>
 
