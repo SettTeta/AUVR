@@ -9,17 +9,15 @@ import Banner from '../public/banner1.webp'
 
 function HomePage({ videos }) {
     const [activePanel, setActivePanel] = useState(null);
+    const [shuffledVideos, setShuffledVideos] = useState([]);
+
+    useEffect(() => {
+        // Shuffle the videos array when the component mounts
+        const shuffled = [...videos].sort(() => Math.random() - 0.5);
+        setShuffledVideos(shuffled);
+    }, [videos]);
 
     function renderExpandCards() {
-        const [activePanel, setActivePanel] = useState(null);
-        const [shuffledVideos, setShuffledVideos] = useState([]);
-
-        useEffect(() => {
-            // Shuffle the videos array when the component mounts
-            const shuffled = [...videos].sort(() => Math.random() - 0.5);
-            setShuffledVideos(shuffled);
-        }, [videos]);
-
         const videosPerRow = 4;
         const rows = Math.ceil(shuffledVideos.length / videosPerRow);
 
