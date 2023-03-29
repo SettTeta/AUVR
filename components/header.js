@@ -33,7 +33,7 @@ const Header = () => {
                             </li>
 
                             <li className="nav-item">
-                                <Link className="nav-link" href="/browse">Browse</Link>
+                                <Link className="nav-link" href="/browse">Search</Link>
                             </li>
 
                             {/* <li className="nav-item">

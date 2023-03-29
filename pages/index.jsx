@@ -3,16 +3,59 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Banner from '../public/banner1.webp'
 
 function HomePage({ videos }) {
     const [activePanel, setActivePanel] = useState(null);
 
-    const handlePanelClick = (panelIndex, id) => {
-        setActivePanel(panelIndex === activePanel ? window.location.href = `/browse/${id}` : panelIndex);
-    };
+    function renderExpandCards() {
+        const [activePanel, setActivePanel] = useState(null);
+        const [shuffledVideos, setShuffledVideos] = useState([]);
+
+        useEffect(() => {
+            // Shuffle the videos array when the component mounts
+            const shuffled = [...videos].sort(() => Math.random() - 0.5);
+            setShuffledVideos(shuffled);
+        }, [videos]);
+
+        const videosPerRow = 4;
+        const rows = Math.ceil(shuffledVideos.length / videosPerRow);
+
+        const renderRow = (startIndex) => {
+            const rowVideos = shuffledVideos.slice(startIndex, startIndex + videosPerRow);
+
+            return (
+                <div key={startIndex} className="row mb-4">
+                    <div className="expand-container-card" style={{ display: "flex", flexWrap: "wrap", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px", overflowX: "hidden" }}>
+                        {rowVideos.map((src, index) => (
+                            <div className={`panel ${activePanel === startIndex + index ? 'active' : ''}`} style={src.player === "vimeo" ? { backgroundImage: `url('https://vumbnail.com/${src.urlID}.jpg')` } : { backgroundImage: `url('http://i2.ytimg.com/vi/${src.urlID}/mqdefault.jpg')` }} onClick={() => handlePanelClick(startIndex + index, src._id)}>
+                                <h3 style={{ textShadow: "2px 2px 0px black" }}>{src.title}</h3>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const handlePanelClick = (panelIndex, id) => {
+            setActivePanel(panelIndex === activePanel ? window.location.href = `/browse/${id}` : panelIndex);
+        };
+
+        return (
+            <>
+                <div className='container'>
+                    {Array.from({ length: rows }, (_, index) => renderRow(index * videosPerRow))}
+                </div>
+            </>
+        )
+    }
+
+
+
+
+
     return (
         <main role="main" className='main'>
 
@@ -24,40 +67,41 @@ function HomePage({ videos }) {
             <Header></Header>
 
             <div style={{
-                position: 'relative',
-                paddingTop: "100vh",
+                position: 'fixed',
+                height: "100vh",
+                width: "100vw",
                 marginTop: "10vh",
                 backgroundImage: `url(${Banner.src})`,
-                // backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOaG6RYDRhGtJ3hk8VQekA8foa4RmoRYEyoOvgLlbXLu-HUiVdA7nZ9Mlp01LSMlAFt6k&usqp=CAU')",
                 backgroundSize: "cover",
-                backgroundPosition: "center",
                 backgroundRepeat: "no-repeat"
             }}>
 
-                <div className="content p-0 text-center bg-image" style={{ height: "100vh", top: "0", position: "absolute", background: "rgba(0, 0, 0, 0.4)", width: "100%" }}>
-                    <div className="d-flex justify-content-center align-items-center h-100">
-                        <div >
-                            <h1 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Welcome to AUVR</h1>
-                            <h4 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>A collection of VR Videos in Assumption University</h4>
-                            <br></br>
-                            <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Browse</Link>
-                            {/* <Link className="btn btn-outline-light btn-lg" href="/story" role="button" style={{marginLeft:"10px"}}>Immerse</Link> */}
-                        </div>
+                <div className="content p-0 text-center bg-image" style={{ height: "100vh", top: "0", position: "relative", background: "rgba(0, 0, 0, 0.4)", width: "100%" }}>
+                </div>
+            </div>
+
+            <div className="content p-0 text-center bg-image" style={{ height: "100vh", top: "0", position: "relative", width: "100%" }}>
+                <div className="d-flex justify-content-center align-items-center h-100">
+                    <div >
+                        <h1 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Welcome to AUVR</h1>
+                        <h4 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Start searching through our collection of VR Videos in Assumption University</h4>
+                        <br></br>
+                        <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Search</Link>
                     </div>
                 </div>
             </div>
 
-            <div className='container'>
-                {/* <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>Poop</h1> */}
-                <div className="expand-container-card" style={{ display: "flex", flexWrap: "wrap", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px", overflowX: "hidden" }}>
-                    {videos.slice(0,6).map((src, index) => (
-                        <div key={src._id} className={`panel ${activePanel === index ? 'active' : ''}`} style={src.player === "vimeo" ? { backgroundImage: `url('https://vumbnail.com/${src.urlID}.jpg')`}:{ backgroundImage: `url('http://i2.ytimg.com/vi/${src.urlID}/mqdefault.jpg')`}} onClick={() => handlePanelClick(index, src._id)}>
-                            <h3 style={{textShadow: "2px 2px 0px black" }}>{src.title}</h3>
-                        </div>
-
-                    ))}
+            <div className="content p-0 text-center bg-image" style={{ height: "10vh", top: "0", position: "relative", width: "100%" }}>
+                <div className="d-flex justify-content-center align-items-center h-100">
+                    <div >
+                        <h4 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Or watch them now...</h4>
+                        <br></br>
+                    </div>
                 </div>
+                {renderExpandCards()}
+
             </div>
+
 
             <Footer />
 
