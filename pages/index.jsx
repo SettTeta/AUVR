@@ -12,7 +12,6 @@ function HomePage({ videos }) {
     const [shuffledVideos, setShuffledVideos] = useState([]);
 
     useEffect(() => {
-        // Shuffle the videos array when the component mounts
         const shuffled = [...videos].sort(() => Math.random() - 0.5);
         setShuffledVideos(shuffled);
     }, [videos]);

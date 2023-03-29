@@ -29,6 +29,7 @@ export default function ImmersionZone() {
         };
         loadAframe();
     }, []);
+    
 
     const handlePlay = () => {
         if (!playing) {
@@ -139,7 +140,7 @@ export default function ImmersionZone() {
 
 
                                 {/* video for display */}
-                                <video id="salad" autoplay
+                                <video id="salad" autoPlay
                                     src="sala.mp4" type="video/mp4"
                                     onEnded={handleDisplayOff}
                                 >
@@ -149,9 +150,7 @@ export default function ImmersionZone() {
 
                             </a-assets>
 
-                            <a-entity vimeo="id: 789745180" id="vimeo" position="0 -1 -3">
-                                <a-plane color="#000000" scale="3.2 1.8" position="0.0 3.4 -2.0"></a-plane>
-                            </a-entity>
+
 
                             <a-camera>
                                 {/* inner */}
@@ -312,6 +311,13 @@ export default function ImmersionZone() {
                                 </Entity>
                             )}
 
+                            <a-entity vimeo="id: 812372432" id="vimeo" position="0 -1 -3">
+                                <a-plane color="#000000" scale="3.2 1.8" position="0.0 3.4 -2.0"></a-plane>
+                            </a-entity>
+
+                            <a-entity position="0 -2 -3">
+                                <a-vimeo src="https://vimeo.com/812372432" width="16" height="9"></a-vimeo>
+                            </a-entity>
                             {videoDisplay && (
 
                                 <a-curvedimage
@@ -362,7 +368,6 @@ export default function ImmersionZone() {
                                         material="color:#ff0000"
                                     />
                                 </Entity>
-
                             )}
 
 
