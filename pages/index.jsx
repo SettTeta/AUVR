@@ -3,12 +3,18 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Header from '../components/header'
 import Footer from '../components/footer'
+import { useState } from 'react'
 
 import Banner from '../public/banner1.webp'
 
-function HomePage() {
+function HomePage({ videos }) {
+    const [activePanel, setActivePanel] = useState(null);
+
+    const handlePanelClick = (panelIndex, id) => {
+        setActivePanel(panelIndex === activePanel ? window.location.href = `/browse/${id}` : panelIndex);
+    };
     return (
-        <main role="main">
+        <main role="main" className='main'>
 
             <Head>
                 <title>VR Tours - Home</title>
@@ -28,11 +34,11 @@ function HomePage() {
                 backgroundRepeat: "no-repeat"
             }}>
 
-                <div className="content p-0 text-center bg-image" style={{height:"100vh", top:"0", position: "absolute", background: "rgba(0, 0, 0, 0.4)" , width: "100%" }}>
+                <div className="content p-0 text-center bg-image" style={{ height: "100vh", top: "0", position: "absolute", background: "rgba(0, 0, 0, 0.4)", width: "100%" }}>
                     <div className="d-flex justify-content-center align-items-center h-100">
                         <div >
-                            <h1 className="mb-3" style={{color:"white", textShadow: "2px 2px 0px black"}}>Welcome to AUVR</h1>
-                            <h4 className="mb-3" style={{color:"white", textShadow: "2px 2px 0px black"}}>A collection of VR Videos in Assumption University</h4>
+                            <h1 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Welcome to AUVR</h1>
+                            <h4 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>A collection of VR Videos in Assumption University</h4>
                             <br></br>
                             <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Browse</Link>
                             {/* <Link className="btn btn-outline-light btn-lg" href="/story" role="button" style={{marginLeft:"10px"}}>Immerse</Link> */}
@@ -41,9 +47,17 @@ function HomePage() {
                 </div>
             </div>
 
+            <div className='container'>
+                {/* <h1 style={{ paddingLeft: "3rem", paddingBottom: "0.2rem", background: "#aa1e2d", color: "white", borderRadius: "10px", paddingTop: "5px" }}>Poop</h1> */}
+                <div className="expand-container-card" style={{ display: "flex", flexWrap: "wrap", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px", overflowX: "hidden" }}>
+                    {videos.slice(0,6).map((src, index) => (
+                        <div key={src._id} className={`panel ${activePanel === index ? 'active' : ''}`} style={src.player === "vimeo" ? { backgroundImage: `url('https://vumbnail.com/${src.urlID}.jpg')`}:{ backgroundImage: `url('http://i2.ytimg.com/vi/${src.urlID}/mqdefault.jpg')`}} onClick={() => handlePanelClick(index, src._id)}>
+                            <h3 style={{textShadow: "2px 2px 0px black" }}>{src.title}</h3>
+                        </div>
 
-            
-
+                    ))}
+                </div>
+            </div>
 
             <Footer />
 
@@ -52,6 +66,12 @@ function HomePage() {
 }
 
 export default HomePage
+
+export async function getServerSideProps() {
+    const vid = await fetch(`https://auvr.vercel.app/api/browse/videos`)
+    const videos = await vid.json()
+    return { props: { videos } }
+}
 
 
 

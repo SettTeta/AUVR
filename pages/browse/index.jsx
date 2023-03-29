@@ -111,7 +111,7 @@ export default function BrowsePage({ videos, categories }) {
   );
 
   return (
-    <main role="main">
+    <main role="main" className='main'>
       <div>
         <Head>
           <title>VR Tours</title>
