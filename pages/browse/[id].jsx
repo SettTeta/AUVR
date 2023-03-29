@@ -26,7 +26,7 @@ export default function Video({ video }) {
     const PlayerComponent = video.player === "vimeo" ? Vimeo : YouTube;
 
     return (
-        <>
+        <main className='main'>
             <Head>
                 <title>{video.title}</title>
             </Head>
@@ -43,7 +43,7 @@ export default function Video({ video }) {
                 <div>
                     <div className="row g-0">
                         <div className="card mb-3 player-container" style={{ padding: "1%" }}>
-                            <h2 className="jumbotron-heading" style={{paddingBottom: "20px", justifyContent: "left", display: "flex", borderBottom: "solid 0.5pt" }}>{video.title}</h2>
+                            <h2 className="jumbotron-heading" style={{paddingBottom: "20px", paddingTop: "10px", justifyContent: "left", display: "flex", borderBottom: "solid 0.5pt" }}>{video.title}</h2>
 
                             <div className="player-wrapper">
                                 <PlayerComponent
@@ -126,7 +126,7 @@ export default function Video({ video }) {
                 </div>
             </div>
             <Footer />
-        </>
+        </main>
     );
 }
 

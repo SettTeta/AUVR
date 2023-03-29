@@ -6,6 +6,7 @@
     --speed: 700ms;
 }
 
+
 .col-md-4:hover {
     opacity: 0.75;
 }
@@ -146,6 +147,7 @@
     .add-tab {
         margin-right: 1%;
     }
+
     .player-container {
         width: 95vw;
     }
@@ -155,4 +157,56 @@
     .foot {
         margin-left: 0;
     }
+}
+
+.expand-container-card {
+    display: flex;
+    width: 40vw;
+}
+
+.panel {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 45vh;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    flex: 0.5;
+    margin: 10px;
+    position: relative;
+    -webkit-transition: all 700ms ease-in;
+}
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    opacity: 0;
+}
+
+.panel.active {
+    flex: 3;
+}
+
+.panel.active h3 {
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
+}
+
+@media (max-width: 480px) {
+    .expand-container-card {
+        width: 100vw;
+    }
+
+    .panel:nth-of-type(6),
+    .panel:nth-of-type(5) {
+        display: none;
+    }
+}
+
+.main{
+    overflow-x: hidden;
 }
