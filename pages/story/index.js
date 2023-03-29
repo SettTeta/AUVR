@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Scene, Entity } from "aframe-react";
 import Head from 'next/head'
 import Script from "next/script";
-import axios from "axios";
 
 export default function ImmersionZone() {
     const [fr, setFr] = useState(false);
@@ -10,8 +9,8 @@ export default function ImmersionZone() {
     const [videoPlayer, setVideoPlayer] = useState(true);
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
     const vimeoVideoId = '812372432';
-
-    const [currentVideo, setCurrentVideo] = useState(`#video-${vimeoVideoId}`);
+    const videoOrderList = [`video-${vimeoVideoId}`];
+    const [currentVideo, setCurrentVideo] = useState(`#${videoOrderList[0]}`);
 
     useEffect(() => {
         const loadAframe = async () => {
@@ -19,42 +18,9 @@ export default function ImmersionZone() {
             const pauseIcon = await import("../../components/pauseIcon");
             const playIcon = await import("../../components/playIcon");
             setFr(true);
-            console.log("TOTOTOTOTOTOTOTOTO",process.env.NEXT_PUBLIC_VIMEO_TOKEN)
         };
         loadAframe();
     }, []);
-
-    useEffect(() => {
-        fetchVimeoUrl(vimeoVideoId);
-    }, [vimeoVideoId]);
-
-    const fetchVimeoUrl = async (videoId) => {
-        const url = await fetchVimeoVideoUrl(videoId);
-        if (url) {
-            const video = document.querySelector(`#${videoId}`);
-            video.src = url;
-        }
-    };
-
-    async function fetchVimeoVideoUrl(videoId) {
-        try {
-            const response = await axios.get(`https://api.vimeo.com/videos/${videoId}`, {
-                headers: {
-                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_VIMEO_TOKEN}`,
-                },
-            });
-    
-            console.log('Vimeo API Response:', response.data); // Add this line to log the response data
-    
-            const videoFiles = response.data.files;
-            const videoFile = videoFiles.find((file) => file.type === 'video/mp4');
-            return videoFile ? videoFile.link : null;
-        } catch (error) {
-            console.error(`Error fetching Vimeo video: ${error}`);
-            return null;
-        }
-    }
-    
 
     const handlePlay = () => {
         if (!playing) {
@@ -103,13 +69,15 @@ export default function ImmersionZone() {
         const nextVideoIndex = (currentVideoIndex + 1) % videoOrderList.length;
         setCurrentVideoIndex(nextVideoIndex);
         setCurrentVideo(`#${videoOrderList[nextVideoIndex]}`);
-        setVideoPlayer(true)
+        setVideoPlayer(true);
     };
 
     return (
         <>
             <Head>
-                <title>Woop</title>
+                <title>Vimeo A-Frame Component</title>
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+
             </Head>
 
 
@@ -118,9 +86,22 @@ export default function ImmersionZone() {
 
                     <div>
                         {/* aframe-gui-component */}
-                        <Script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js" />
-                        <Script src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js" />
-
+                        <Script
+                            src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"
+                            strategy="beforeInteractive"
+                        />
+                        <Script
+                            src="https://unpkg.com/aframe-event-set-component@5.x.x/dist/aframe-event-set-component.min.js"
+                            strategy="beforeInteractive"
+                        />
+                        <Script
+                            src="https://aframe.io/releases/0.8.0/aframe.min.js"
+                            strategy="beforeInteractive"
+                        />
+                        <Script
+                            src="../../components/aframe-vimeo-component.min.js"
+                            strategy="beforeInteractive"
+                        />
                         {/* fullscreen and vr mode */}
                         <button onClick={() => document.querySelector('.Scene').requestFullscreen()} style={{ paddingTop: "70px" }}>Request Fullscreen</button>
 
@@ -132,16 +113,6 @@ export default function ImmersionZone() {
                                     src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"
                                 ></audio>
 
-
-                                <video
-                                    id={`video-${vimeoVideoId}`}
-                                    key={vimeoVideoId}
-                                    src={`${vimeoVideoId}.mp4`}
-                                    onEnded={handleVideoEnd}
-                                    playsInline
-                                />
-
-
                             </a-assets>
 
 
@@ -150,6 +121,7 @@ export default function ImmersionZone() {
                                 {/* inner */}
                                 <a-cursor
                                     id="cursor"
+                                    position="-0.7 2.7 0.5"
                                     animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
                                     color="#ff0000"
                                     // animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
@@ -168,14 +140,11 @@ export default function ImmersionZone() {
                                 </a-gui-cursor>
                             </a-camera>
 
-                            {/* 360 video display */}
-                            <a-videosphere
-                                id="videosphere"
-                                src={`video-${vimeoVideoId}`}
-                                rotation="0 -90 0"
-                                // autoPlay
-                                playsInline
-                            ></a-videosphere>
+
+                            <a-entity vimeo="id: 812289036" 
+                                geometry="primitive:sphere; radius:10; phiLength:360; phiStart:0; thetaLength:145"
+                                material="shader:flat; side:back; height:2048; width:2048"></a-entity>
+
 
 
                             {/* show entity */}
