@@ -5,7 +5,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import { useState, useEffect } from 'react'
 import { Button } from '@mui/material'
-
+import SearchIcon from '@mui/icons-material/Search';
 import Banner from '../public/banner1.webp'
 
 function HomePage({ videos }) {
@@ -87,7 +87,7 @@ function HomePage({ videos }) {
                         <h1 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Welcome to AUVR</h1>
                         <h4 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Start searching through our collection of VR Videos in Assumption University</h4>
                         <br></br>
-                        <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Search</Link>
+                        <Link href="/browse" style={{textDecoration:"none"}}> <Button variant='contained' size='large'> Search <SearchIcon fontSize='large' style={{paddingLeft:"10px"}}/></Button> </Link>
                     </div>
                 </div>
             </div>
