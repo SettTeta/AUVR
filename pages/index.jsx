@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { useState, useEffect } from 'react'
+import { Button } from '@mui/material'
 
 import Banner from '../public/banner1.webp'
 
@@ -26,10 +27,14 @@ function HomePage({ videos }) {
 
             return (
                 <div key={startIndex} className="row mb-4">
-                    <div className="expand-container-card" style={{position:"relative", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px" }}>
+                    <div className="expand-container-card" style={{ position: "relative", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px" }}>
                         {rowVideos.map((src, index) => (
                             <div key={index} className={`panel ${activePanel === startIndex + index ? 'active' : ''}`} style={src.player === "vimeo" ? { backgroundImage: `url('https://vumbnail.com/${src.urlID}.jpg')` } : { backgroundImage: `url('http://i2.ytimg.com/vi/${src.urlID}/mqdefault.jpg')` }} onClick={() => handlePanelClick(startIndex + index, src._id)}>
-                                <h3 style={{ textShadow: "2px 2px 0px black" }}>{src.title}</h3>
+                                <Link href={`/browse/${src._id}`}>
+                                    <h3 style={{ position: "absolute", bottom: "0", left: "50%", transform: "translate(-50%, -50%)", color: "white", textShadow: "2px 2px 0px black" }}>
+                                        <Button className="" variant="contained" color='error'>{src.title}</Button>
+                                    </h3>
+                                </Link>
                             </div>
                         ))}
                     </div>
@@ -38,7 +43,9 @@ function HomePage({ videos }) {
         };
 
         const handlePanelClick = (panelIndex, id) => {
-            setActivePanel(panelIndex === activePanel ? window.location.href = `/browse/${id}` : panelIndex);
+            // setActivePanel(panelIndex === activePanel ? window.location.href = `/browse/${id}` : panelIndex);
+            setActivePanel(panelIndex === activePanel ? null : panelIndex);
+
         };
 
         return (
@@ -49,10 +56,6 @@ function HomePage({ videos }) {
             </>
         )
     }
-
-
-
-
 
     return (
         <main role="main" className='main'>
