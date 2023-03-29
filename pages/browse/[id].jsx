@@ -45,18 +45,8 @@ export default function Video({ video }) {
                         <div className="card mb-3 player-container" style={{ padding: "1%" }}>
                             <h2 className="jumbotron-heading" style={{paddingBottom: "20px", justifyContent: "left", display: "flex", borderBottom: "solid 0.5pt" }}>{video.title}</h2>
 
-
                             <div className="player-wrapper">
                                 <PlayerComponent
-                                    url={(video.player === "vimeo") ? `https://vimeo.com/${video.urlID}` : `https://www.youtube.com/embed/${video.urlID}`}
-                                    className="react-player"
-                                    playing
-                                    width="100%"
-                                    height="100%"
-                                    controls
-                                />
-
-<PlayerComponent
                                     url={(video.player === "vimeo") ? `https://vimeo.com/${video.urlID}` : `https://www.youtube.com/embed/${video.urlID}`}
                                     className="react-player"
                                     playing
