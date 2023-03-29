@@ -4,8 +4,7 @@ import Link from 'next/link'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { useState, useEffect } from 'react'
-import { Button } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search';
+
 import Banner from '../public/banner1.webp'
 
 function HomePage({ videos }) {
@@ -27,14 +26,10 @@ function HomePage({ videos }) {
 
             return (
                 <div key={startIndex} className="row mb-4">
-                    <div className="expand-container-card" style={{ position: "relative", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px" }}>
+                    <div className="expand-container-card" style={{position:"relative", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px" }}>
                         {rowVideos.map((src, index) => (
                             <div key={index} className={`panel ${activePanel === startIndex + index ? 'active' : ''}`} style={src.player === "vimeo" ? { backgroundImage: `url('https://vumbnail.com/${src.urlID}.jpg')` } : { backgroundImage: `url('http://i2.ytimg.com/vi/${src.urlID}/mqdefault.jpg')` }} onClick={() => handlePanelClick(startIndex + index, src._id)}>
-                                <Link href={`/browse/${src._id}`}>
-                                    <h3 style={{ position: "absolute", bottom: "0", left: "50%", transform: "translate(-50%, -50%)", color: "white", textShadow: "2px 2px 0px black" }}>
-                                        <Button className="" variant="contained" color='error'>{src.title}</Button>
-                                    </h3>
-                                </Link>
+                                <h3 style={{ textShadow: "2px 2px 0px black", background: "rgba(0, 0, 0, 0.4)", padding:"0 10px", borderRadius:"10px" }}>{src.title}</h3>
                             </div>
                         ))}
                     </div>
@@ -43,9 +38,7 @@ function HomePage({ videos }) {
         };
 
         const handlePanelClick = (panelIndex, id) => {
-            // setActivePanel(panelIndex === activePanel ? window.location.href = `/browse/${id}` : panelIndex);
-            setActivePanel(panelIndex === activePanel ? null : panelIndex);
-
+            setActivePanel(panelIndex === activePanel ? window.location.href = `/browse/${id}` : panelIndex);
         };
 
         return (
@@ -56,6 +49,10 @@ function HomePage({ videos }) {
             </>
         )
     }
+
+
+
+
 
     return (
         <main role="main" className='main'>
@@ -87,7 +84,7 @@ function HomePage({ videos }) {
                         <h1 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Welcome to AUVR</h1>
                         <h4 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Start searching through our collection of VR Videos in Assumption University</h4>
                         <br></br>
-                        <Link href="/browse" style={{textDecoration:"none"}}> <Button variant='contained' size='large'> Search <SearchIcon fontSize='large' style={{paddingLeft:"10px"}}/></Button> </Link>
+                        <Link className="btn btn-outline-light btn-lg" href="/browse" role="button">Search</Link>
                     </div>
                 </div>
             </div>
