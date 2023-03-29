@@ -26,7 +26,7 @@ function HomePage({ videos }) {
 
             return (
                 <div key={startIndex} className="row mb-4">
-                    <div className="expand-container-card" style={{ display: "flex", flexWrap: "wrap", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px", overflowX: "hidden" }}>
+                    <div className="expand-container-card" style={{position:"relative", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px" }}>
                         {rowVideos.map((src, index) => (
                             <div key={index} className={`panel ${activePanel === startIndex + index ? 'active' : ''}`} style={src.player === "vimeo" ? { backgroundImage: `url('https://vumbnail.com/${src.urlID}.jpg')` } : { backgroundImage: `url('http://i2.ytimg.com/vi/${src.urlID}/mqdefault.jpg')` }} onClick={() => handlePanelClick(startIndex + index, src._id)}>
                                 <h3 style={{ textShadow: "2px 2px 0px black" }}>{src.title}</h3>
@@ -89,7 +89,7 @@ function HomePage({ videos }) {
                 </div>
             </div>
 
-            <div className="content p-0 text-center bg-image" style={{ height: "10vh", top: "0", position: "relative", width: "100%" }}>
+            <div className="content p-0 text-center bg-image" style={{ height: "auto", top: "0", position: "relative", width: "100%" }}>
                 <div className="d-flex justify-content-center align-items-center h-100">
                     <div >
                         <h4 className="mb-3" style={{ color: "white", textShadow: "2px 2px 0px black" }}>Or watch them now...</h4>
