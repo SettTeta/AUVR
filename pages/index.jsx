@@ -28,7 +28,7 @@ function HomePage({ videos }) {
                 <div key={startIndex} className="row mb-4">
                     <div className="expand-container-card" style={{ display: "flex", flexWrap: "wrap", width: "100%", height: "auto", marginBottom: "10px", borderRadius: "20px", overflowX: "hidden" }}>
                         {rowVideos.map((src, index) => (
-                            <div className={`panel ${activePanel === startIndex + index ? 'active' : ''}`} style={src.player === "vimeo" ? { backgroundImage: `url('https://vumbnail.com/${src.urlID}.jpg')` } : { backgroundImage: `url('http://i2.ytimg.com/vi/${src.urlID}/mqdefault.jpg')` }} onClick={() => handlePanelClick(startIndex + index, src._id)}>
+                            <div key={index} className={`panel ${activePanel === startIndex + index ? 'active' : ''}`} style={src.player === "vimeo" ? { backgroundImage: `url('https://vumbnail.com/${src.urlID}.jpg')` } : { backgroundImage: `url('http://i2.ytimg.com/vi/${src.urlID}/mqdefault.jpg')` }} onClick={() => handlePanelClick(startIndex + index, src._id)}>
                                 <h3 style={{ textShadow: "2px 2px 0px black" }}>{src.title}</h3>
                             </div>
                         ))}
