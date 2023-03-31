@@ -1,9 +1,11 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Script from 'next/script';
 import Image from 'next/image';
 
 const Basic = () => {
+    const [fr, setFr] = useState(false);
+
     useEffect(() => {
         const script = document.createElement('script');
         script.src = '/js/host-console-warning.js';
@@ -11,7 +13,9 @@ const Basic = () => {
         document.body.appendChild(script);
 
         const loadAframe = async () => {
-            await import("aframe");
+            const AFRAME = await import('aframe');
+            console.log(AFRAME);
+            setFr(true);
         };
         loadAframe();
 
@@ -29,48 +33,55 @@ const Basic = () => {
             <Head>
                 <title>Vimeo A-Frame Component</title>
                 <meta name="apple-mobile-web-app-capable" content="yes" />
-
-                {/* <link rel="stylesheet" href="/css/app.css" /> */}
             </Head>
 
-            <Script src="https://aframe.io/releases/0.8.0/aframe.min.js"></Script>
-            <Script src="/aframe-vimeo-component.min.js"></Script>
+            {fr && (
+                <div>
+                    <Script src="https://aframe.io/releases/1.3.0/aframe.min.js"></Script>
+                    <Script src="/aframe-vimeo-component.min.js"></Script>
 
-            <a-scene>
-                <a-assets>
-                    <a-asset-item id="terrain" src="/models/terrain.gltf"></a-asset-item>
-                    <Image id="skymap" src="/images/skymap.jpg" alt="" />
-                </a-assets>
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: `
+          <a-scene>
+            <a-assets>
+              <img id="skymap" src="/images/skymap.jpg" />
+            </a-assets>
 
-                <a-camera position="-0.7 2.7 0.5"></a-camera>
+            <a-camera position="-0.7 2.7 0.5"></a-camera>
 
-                <a-entity
-                    vimeo="id: 812289036"
-                    id="sky"
-                    geometry="primitive:sphere; radius:10; phiLength:360; phiStart:0; thetaLength:145"
-                    material="shader:flat; side:back; height:2048; src:#skymap; width:2048"
-                ></a-entity>
+            <a-entity
+              vimeo="id: 812289036"
+              id="sky"
+              geometry="primitive:sphere; radius:10; phiLength:360; phiStart:0; thetaLength:145"
+              material="shader:flat; side:back; height:2048; src:#skymap; width:2048"
+            ></a-entity>
 
-                <a-entity
-                    id="show"
-                    position="0 -6 0"
-                    onClick={handleHide}
-                    onTouchStart={handleHide}
-                    event-set__mouseenter="scale: 1.2 1.2 1.2"
-                    event-set__mouseleave="scale: 1 1 1"
-                >
-                    <a-entity
-                        rotation="90 0 0"
-                        geometry="primitive: torus; radius: 6; radiusTubular: 0.2"
-                        material="color: #ff0000; opacity: 0.8"
-                    />
-                    <a-entity
-                        rotation="90 0 0"
-                        geometry="primitive: cylinder; radius: 5.3"
-                        material="color: #ffffff; opacity: 1"
-                    />
-                </a-entity>
-            </a-scene>
+            <a-entity
+              id="show"
+              position="0 -6 0"
+              onclick="console.log('Handle hide event');"
+              ontouchstart="console.log('Handle hide event');"
+              event-set__mouseenter="scale: 1.2 1.2 1.2"
+              event-set__mouseleave="scale: 1 1 1"
+            >
+              <a-entity
+                rotation="90 0 0"
+                geometry="primitive: torus; radius: 6; radiusTubular: 0.2"
+                material="color: #ff0000; opacity: 0.8"
+              />
+              <a-entity
+                rotation="90 0 0"
+                geometry="primitive: cylinder; radius: 5.3"
+                material="color: #ffffff; opacity: 1"
+              />
+            </a-entity>
+          </a-scene>
+          `,
+                        }}
+                    ></div>
+                </div>
+            )}
         </>
     );
 };

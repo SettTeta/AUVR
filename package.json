@@ -37,5 +37,19 @@
     "react-router-dom": "^6.8.1",
     "react-use": "^17.4.0",
     "vimeo": "^2.3.1"
+  },
+
+  "devDependencies": {
+    "axios": "^0.17.1",
+    "dotenv": "^5.0.1",
+    "ejs": "^2.6.1",
+    "host-validation": "^2.0.1",
+    "jsx-loader": "^0.13.2",
+    "standard": "^12.0.1",
+    "sync-glitch-cli": "^2.0.1",
+    "webpack": "^4.12.2",
+    "webpack-cli": "^3.2.3",
+    "yargs": "^12.0.5"
   }
+
 }
