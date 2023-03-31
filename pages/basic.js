@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
+import Script from 'next/script';
+import Image from 'next/image';
 
 const Basic = () => {
     useEffect(() => {
@@ -27,15 +29,15 @@ const Basic = () => {
             <Head>
                 <title>Vimeo A-Frame Component</title>
                 <meta name="apple-mobile-web-app-capable" content="yes" />
-                <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-                <script src="/aframe-vimeo-component.min.js"></script>
-                <link rel="stylesheet" href="/css/app.css" />
+                <Script src="https://aframe.io/releases/0.8.0/aframe.min.js"></Script>
+                <Script src="/aframe-vimeo-component.min.js"></Script>
+                {/* <link rel="stylesheet" href="/css/app.css" /> */}
             </Head>
 
             <a-scene>
                 <a-assets>
                     <a-asset-item id="terrain" src="/models/terrain.gltf"></a-asset-item>
-                    <img id="skymap" src="/images/skymap.jpg" />
+                    <Image id="skymap" src="/images/skymap.jpg" alt=""/>
                 </a-assets>
 
                 <a-camera position="-0.7 2.7 0.5"></a-camera>
