@@ -29,15 +29,17 @@ const Basic = () => {
             <Head>
                 <title>Vimeo A-Frame Component</title>
                 <meta name="apple-mobile-web-app-capable" content="yes" />
-                <Script src="https://aframe.io/releases/0.8.0/aframe.min.js"></Script>
-                <Script src="/aframe-vimeo-component.min.js"></Script>
+
                 {/* <link rel="stylesheet" href="/css/app.css" /> */}
             </Head>
+
+            <Script src="https://aframe.io/releases/0.8.0/aframe.min.js"></Script>
+            <Script src="/aframe-vimeo-component.min.js"></Script>
 
             <a-scene>
                 <a-assets>
                     <a-asset-item id="terrain" src="/models/terrain.gltf"></a-asset-item>
-                    <Image id="skymap" src="/images/skymap.jpg" alt=""/>
+                    <Image id="skymap" src="/images/skymap.jpg" alt="" />
                 </a-assets>
 
                 <a-camera position="-0.7 2.7 0.5"></a-camera>
