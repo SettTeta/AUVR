@@ -16,5 +16,10 @@ module.exports = {
 
   images: {
     domains: ['i2.ytimg.com'],
+  },
+
+  env: {
+    VIMEO_TOKEN: process.env.VIMEO_TOKEN,
   }
+
 }
