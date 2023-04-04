@@ -85,7 +85,7 @@ export default function AdminPage({ categories }) {
         setActiveStep(0);
     };
 
-    // if (session) {
+    if (session) {
     return (
         <main role="main" style={{ paddingTop: "14vh" }}>
             <div>
@@ -265,7 +265,7 @@ export default function AdminPage({ categories }) {
             </div>
         </main>
     )
-    // }
+    }
     return (<><p>Access Denied</p> <Footer /></>)
 
 }

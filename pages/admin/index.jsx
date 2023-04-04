@@ -92,9 +92,9 @@ export default function AdminPage({ videos, categories }) {
     //     reset(categories)
     // }, [])
 
-    function loadMoreVideos() {
-        setVideosToShow(videosToShow + 3);
-    }
+    // function loadMoreVideos() {
+    //     setVideosToShow(videosToShow + 3);
+    // }
 
     function renderVideoCard(video) {
         if (editedVideo && editedVideo._id === video._id) {
@@ -238,7 +238,8 @@ export default function AdminPage({ videos, categories }) {
             .filter(video => {
                 let videoLocation = location === "all" ? true : video.location === location;
                 let videoType = selectedCatDropbox === "all" ? true : video.type === selectedCatDropbox;
-                return videoLocation && videoType;
+                let searched = video.title.toLowerCase().includes(searchValue.toLowerCase())
+                return videoLocation && videoType && searched;
             })
             // .slice(0, videosToShow);
         return videosToDisplay.map(renderVideoCard);
@@ -383,7 +384,7 @@ export default function AdminPage({ videos, categories }) {
     }
 
 
-    // if (session) {
+    if (session) {
     return (
         <main role="main" style={{ paddingTop: "7vh", background: "#f8f9fa", height:"100%" }}>
             <div>
@@ -549,7 +550,7 @@ export default function AdminPage({ videos, categories }) {
 
         </main>
     )
-    // }
+    }
     return (<><p>Access Denied</p> <Footer /></>)
 
 }
